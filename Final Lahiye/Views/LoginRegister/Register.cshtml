@@ -1,0 +1,79 @@
+﻿    <main>
+        <div class="breadcrumb-header mb-5">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                <h1>Register</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-controller="LoginRegister" asp-action="Register">Register</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">All</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-xxl-6 col-xl-6 col-lg-6  d-lg-block d-none">
+                    <img src="~/images/blog-image-1.jpg" width="100%" alt="">
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="login">
+                        <h2 class="loginTitle">Sign Up Your Account</h2>
+                        <span class="loginDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. ipsam labore
+                            dolore sunt
+                            laudantium aperiam.</span>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="Name">Name *</label>
+                                        <input type="Text" name="Name"  placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="UserName">User Name *</label>
+                                        <input type="Text" name="UserName"  placeholder="User Name">
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="Email">Email Address *</label>
+                                        <input type="email" name="Email" id="Email" placeholder="Email Address">
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="Password">Password *</label>
+                                        <div class="accountTitleItem">
+                                            <input type="password" name="password" id="password"
+                                                placeholder="Password">
+                                            <i class="eyes fa-solid fa-eye-slash icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="Password">Confirm Password *</label>
+                                        <div class="accountTitleItem">
+                                            <input type="password" name="confirm_password" id="confirm_password"
+                                                placeholder="Confirm Password">
+                                            <i class="eyes fa-solid fa-eye-slash conf_icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                                    <input class="loginBtn" type="submit" value="Sign Up">
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                    <div class="SignUp">
+                                        <span>Sign in Your Account <a class="loginRegister"
+                                           asp-controller="LoginRegister" asp-action="Login"> Your Account</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&family=Rajdhani&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+  <link rel="stylesheet" href="~/style/style.css" />
+  <title>eMart</title>
+</head>
+
+<body>
+  <header>
+    <section id="Up-Navigation" class="Up-Navigation">
+      <div class="up-header d-none d-lg-block">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+              <div class="up-header-top-left">
+                <span class="up-header-text">Free delivery on orders over <b>$1499</b>. Don't miss discount.</span>
+              </div>
+            </div>
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+              <div class="up-header-top-right">
+                <ul class="up-header-socialmedia-menu d-flex justify-content-end">
+                  <li><a class="navigation-socialmediadresses"
+                      href="https://www.facebook.com/code.edu.az?mibextid=LQQJ4d"><i
+                        class="fa-brands fa-facebook"></i></a></li>
+                  <li><a class="navigation-socialmediadresses"
+                      href="https://instagram.com/code.edu.az?igshid=YzcxN2Q2NzY0OA=="><i
+                        class="fa-brands fa-instagram"></i></a></li>
+                  <li><a class="navigation-socialmediadresses"
+                      href="https://twitter.com/code?s=11&t=os23-3sOyh5IZXRtF17Hqg"><i
+                        class="fa-brands fa-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="Navigation">
+      <div class="container-fluid">
+        <div class="hamburger-navigation" onclick="toogleMobileMenu(this)" >
+          <div class="line line-1"></div>
+          <div class="line line-2"></div>
+          <div class="line line-3"></div>
+          <!-- <ul class="mobile-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="login.html"><i class="fa-regular fa-user"></i></a></li>
+            <li><a href="wishlist.html"><i class="fa-regular fa-heart"></i></a></li>
+            <li><a href="basket.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+          </ul> -->
+        </div>
+        <div class="row headerWidthNone">
+          <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+            <div class="headerLogo">
+              <a href="#"><img src="~/images/interior-logo.webp" class="logo" alt="website-logo" /></a>
+            </div>
+          </div>
+          <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
+            <nav class="basketCartRegister">
+              <ul class="navigation">
+                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Shop" asp-action="Index">Shop</a></li>
+                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                <li class="navigation-item"><a class="navigation-item-area  navigationPages">Pages <i
+                      class="fa-solid fa-chevron-down"></i></a>
+                  <ul class="submenu">
+                    <li class="submenuItem"><a class="submenuItem-area" asp-controller="Error" asp-action="Index">Error Page</a></li>
+                    <li class="submenuItem"><a class="submenuItem-area" asp-controller="FAQ" asp-action="Index">FAQ</a></li>
+                  </ul>
+                </li>
+                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Contact" asp-action="Index" >Contact</a></li>
+                <li class="navigation-item ">
+                  <i class="navigation-item-area-icon-serach fa-solid fa-magnifying-glass"></i>
+                </li>
+                <li class="basketCartRegister-header"><a asp-controller="Wishlist" asp-action="Index" ><i class="fa-regular fa-heart"></i></a>
+                </li>
+                <li class="basketCartRegister-header"><a asp-controller="Basket" asp-action="Index" class="cartCount"><span
+                      class="cartCountItem">12</span><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="basketCartRegister-header"><a asp-controller="LoginRegister" asp-action="Login"><i class="fa-regular fa-user"></i></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <a href="#" class="scrollToTop"><i class="fa-solid fa-arrow-up"></i></a>
+            @RenderBody()
+    
+  <footer>
+    <section id="footerlink" class="footerColor">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="footerContent">
+              <div class="footerPagesName mt-5">
+                <h4>Quick Link</h4>
+              </div>
+              <div class="footerPages mt-4">
+                <ul>
+                  <li><a asp-controller="Contact" asp-action="Index">About</a></li>
+                  <li><a asp-controller="SingleProduct" asp-action="Index">Product</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index" >Responsibility</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Career</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index" >Press</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Image Bank</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="footerContent">
+              <div class="footerPagesName mt-5">
+                <h4>Customer Service</h4>
+              </div>
+              <div class="footerPages mt-4">
+                <ul>
+                  <li><a asp-action="LoginRegister" asp-action="Index">My Account</a></li>
+                  <li><a asp-controller="Checkout" asp-action="Index">Checkout Page</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Help Center</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Terms & Condition</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index" >Deliveries & Refunds</a></li>
+                  <li><a asp-controller="Basket" asp-action="Index">Cart Page</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="footerContent">
+              <div class="footerPagesName mt-5">
+                <h4>More</h4>
+              </div>
+              <div class="footerPages mt-4">
+                <ul>
+                  <li><a asp-controller="Blog" asp-action="Index">Gift Cardt</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Lookbook</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Rewards Program</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Wedding Dress</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Host a Party</a></li>
+                  <li><a asp-controller="Blog" asp-action="Index">Extended Sizing</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="footerContent mt-5">
+              <div class="signup-footer">
+                <h4>Don't Miss Any Update</h4>
+                <p>You can join us</p>
+                <form action="" class="search">
+                  <span class="searchItem">
+                    <input type="mail" placeholder="Your Email Address" class="searchText" required />
+                    <input type="submit" class="searchBtn">
+                  </span>
+                </form>
+                <span class="payment-footer"><a href="#"><img src="~/images/payment.png" alt=""></a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 footerCopyright-line mt-5 d-flex justify-content-center align-items-center ">
+          <div class="footer-solid">
+            <p class="footerCopyright mt-3">Copyright © 2023 . Coded By <b><a class="footerCopyrightText"
+                  href="https://github.com/nicathuseynli"> Nicat Huseynli </a></b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </footer>
+      <script src="~/js/eye.js"></script>
+  <script src="~/js/jquery-3.6.1.min.js"></script>
+  <script src="~/js/jquery.js"></script>
+  <script src="~/js/main.js"></script>
+  <script src="https://kit.fontawesome.com/ea59f2a167.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
