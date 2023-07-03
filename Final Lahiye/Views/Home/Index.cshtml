@@ -1,4 +1,5 @@
-﻿ <main>
+﻿@model HomeVM 
+<main>
     <section id="Header-Hero">
       <div class="hero">
         <div class="container">
@@ -6,15 +7,15 @@
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
               <div class="header-hero-description">
                 <div class="header-hero-description-item mb-4">
-                  <h1>Renovate your Interior</h1>
-                  <p>Invite clip connection style underline boolean device</p>
+                  <h1>@Model?.Hero.Title</h1>
+                  <p>@Model?.Hero.Description</p>
                 </div>
                 <a href="#" class="btn-header-shop">Shop Now</a>
               </div>
             </div>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
               <div class="header-hero-slider-img">
-                <img src="~/images/interior-slider.webp" class="header-hero-slider-img-item" width="900px" alt="">
+                <img src="~/images/@Model?.Hero.HeroImage" class="header-hero-slider-img-item mt-4" width="900px" alt="">
               </div>
             </div>
           </div>
@@ -25,7 +26,7 @@
     <section id="Main-Banner-Page">
       <div class="baner">
         <div class="banerContent d-flex justify-content-center align-items-center flex-column">
-          <h1 class="banerContentItem">Lets modify your interior modern looks</h1>
+          <h1 class="banerContentItem">@Model?.Banner?.Title</h1>
           <a href="#" class="banerBtn">Shop Now</a>
         </div>
       </div>

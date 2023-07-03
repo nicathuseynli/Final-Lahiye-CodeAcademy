@@ -1,0 +1,21 @@
+﻿@model UpdateHeaderUpSocialMediaVM
+<div class="container">
+    <h1 class="text-center">Update Social Media Address</h1>
+      <div class="row">
+             <form asp-action="UpdateSocialMedia" method="post" class="forms-sample" enctype="multipart/form-data">
+                  <div class="form-group">
+                   <input asp-for="FacebookLink" class="form-control" placeholder="FacebookLink">
+                 </div>  
+                 <div class="form-group">
+                   <input asp-for="TwitterLink" class="form-control" placeholder="TwitterLink">
+                 </div>    
+                 <div class="form-group">
+                   <input asp-for="InstagramLink" class="form-control" placeholder="InstagramLink">
+                 </div>
+                 <button type="submit" class="btn btn-outline-success me-2">Update</button>
+                 <input type="hidden" asp-for="Id"/>
+                 <button asp-action="SocialMediaIndex" class="btn btn-outline-danger">Cancel</button>
+             </form>
+      </div>
+</div>
+

@@ -1,21 +1,31 @@
-﻿using Final_Lahiye.Models;
+﻿using Final_Lahiye.Data;
+using Final_Lahiye.Models;
+using Final_Lahiye.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
-namespace Final_Lahiye.Controllers
+namespace Final_Lahiye.Controllers;
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly AppDbContext _context;
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger, AppDbContext context)
     {
-        private readonly ILogger<HomeController> _logger;
+        _logger = logger;
+        _context = context;
+    }
 
-        public HomeController(ILogger<HomeController> logger)
+    public async Task<IActionResult> Index()
+    {
+        var heros = await _context.Heros.FirstOrDefaultAsync();
+        var banners = await _context.Banners.FirstOrDefaultAsync();
+        HomeVM homeVM = new HomeVM()
         {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
+            Hero = heros,
+            Banner = banners,
+        };
+        return View(homeVM);
     }
 }

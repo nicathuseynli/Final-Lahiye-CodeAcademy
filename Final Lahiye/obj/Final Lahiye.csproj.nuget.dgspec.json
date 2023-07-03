@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj": {}
+    "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj": {
+    "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj",
         "projectName": "Final Lahiye",
-        "projectPath": "C:\\Users\\user\\source\\repos\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\Final Lahiye\\Final Lahiye\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -61,6 +61,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.19, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.14, )"
             }
           },
           "imports": [
