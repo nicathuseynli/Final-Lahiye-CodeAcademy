@@ -4,7 +4,7 @@
       <div class="hero">
         <div class="container">
           <div class="row">
-            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-5">
               <div class="header-hero-description">
                 <div class="header-hero-description-item mb-4">
                   <h1>@Model?.Hero.Title</h1>
@@ -25,8 +25,9 @@
 
     <section id="Main-Banner-Page">
       <div class="baner">
+        <img src="~/images/@Model?.Banner.BannerImage" class="banerImg" alt="">
         <div class="banerContent d-flex justify-content-center align-items-center flex-column">
-          <h1 class="banerContentItem">@Model?.Banner?.Title</h1>
+          <h1 class="banerContentItem">@Model.Banner.Title</h1>
           <a href="#" class="banerBtn">Shop Now</a>
         </div>
       </div>
@@ -40,12 +41,12 @@
               <div class="elementor-widget">
                 <div class="elementor-widget-left">
                   <div class="elementor-widget-left-Content">
-                    <img src="~/images/elementor-widget-left.webp" width="640" alt="">
+                    <img src="~/images/@Model?.Elementor.ElementorUpImage" width="640" alt="">
                   </div>
                 </div>
               </div>
               <div class="elementor-widget-right d-flex justify-content-end">
-                <img src="~/images/elementer-widget-right-img.webp" width="580" height="720" alt="">
+                <img src="~/images/@Model?.Elementor.ElementorDownImage" width="580" height="720" alt="">
               </div>
             </div>
           </div>
@@ -453,33 +454,19 @@
           </div>
         </div>
         <div class="row gy-2 ms-4 me-4">
+            @foreach (var item in Model.Testimonials)
+            {
           <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12  col-12">
-            <div class="elementorContent elementorContent-first">
+            <div class="elementorContent">
+                <img src="~/images/@item?.Image" class="elementorContent-Item" alt="">
               <div class="up-elementorContent-text text-center ">
-                <h3 class="upelementorContentheader">Modern Interior Design</h3>
+                <h3 class="upelementorContentheader">@item?.Title</h3>
                 <a href="" class="up-elementor-btn-home mt-2">Shop Now</a>
               </div>
               <span class="caption"></span>
             </div>
           </div>
-          <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12  col-12">
-            <div class="elementorContent elementorContent-second">
-              <div class="up-elementorContent-text text-center ">
-                <h3 class="upelementorContentheader">Art Interior Design</h3>
-                <a href="" class="up-elementor-btn-home mt-2">Shop Now</a>
-              </div>
-              <span class="caption"></span>
-            </div>
-          </div>
-          <div class="col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12  col-12">
-            <div class="elementorContent elementorContent-third">
-              <div class="up-elementorContent-text text-center ">
-                <h3 class="upelementorContentheader">Minimalist style</h3>
-                <a href="" class="up-elementor-btn-home mt-2">Shop Now</a>
-              </div>
-              <span class="caption"></span>
-            </div>
-          </div>
+            }
         </div>
       </div>
     </section>
@@ -487,16 +474,19 @@
     <section id="Main-Ending-Below-Elementor" class="below-elementor">
       <div class="container-fluid">
         <div class="row gy-4 mt-3 ms-5">
-          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+            @foreach (var shortInfo in @Model.ShortInformations)
+            {            
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="below-elementorItem d-flex">
-              <img src="~/images/truck.svg" class="below-elementorItem-signature" alt="">
+              <img src="~/images/@shortInfo.Icon" class="below-elementorItem-signature" alt="">
               <div class="elementorItem-text ms-5 d-flex flex-column flex-nowrap justify-content-center ">
-                <h6>Free Shipping</h6>
-                <p>Get free shipping over $1499</p>
+                <h6>@shortInfo.Title</h6>
+                <p>@shortInfo.Information</p>
               </div>
             </div>
-          </div>
-          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xsm-12">
+                  </div>
+            }
+@*          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xsm-12">
             <div class="below-elementorItem d-flex">
               <img src="~/images/dollar.svg" class="below-elementorItem-signature" alt="">
               <div class="elementorItem-text ms-5 d-flex flex-column flex-nowrap justify-content-center">
@@ -522,7 +512,7 @@
                 <p>Customer Online Support</p>
               </div>
             </div>
-          </div>
+          </div>*@
 
         </div>
       </div>

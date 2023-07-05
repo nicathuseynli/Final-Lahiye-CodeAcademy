@@ -6,4 +6,10 @@ public class HomeVM
     public Hero Hero { get; set; }
 
     public Banner Banner { get; set; }
+
+    public Elementor Elementor { get; set; }
+
+    public List<ShortInformation> ShortInformations { get; set; }
+
+    public List<Testimonial> Testimonials { get; set; }
 }

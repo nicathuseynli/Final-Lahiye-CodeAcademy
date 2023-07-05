@@ -19,12 +19,18 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var heros = await _context.Heros.FirstOrDefaultAsync();
-        var banners = await _context.Banners.FirstOrDefaultAsync();
+        var hero = await _context.Heros.FirstOrDefaultAsync();
+        var banner = await _context.Banners.FirstOrDefaultAsync();
+        var elementor = await _context.Elementors.FirstOrDefaultAsync();
+        var shortInfo = await _context.ShortInformations.ToListAsync();
+        var testimonial = await _context.Testimonials.ToListAsync();
         HomeVM homeVM = new HomeVM()
         {
-            Hero = heros,
-            Banner = banners,
+            Hero = hero,
+            Banner = banner,
+            Elementor = elementor,
+            ShortInformations = shortInfo,
+            Testimonials = testimonial,
         };
         return View(homeVM);
     }

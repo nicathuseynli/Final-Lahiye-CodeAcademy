@@ -1,4 +1,5 @@
-﻿    <main class="main-content">
+﻿ @model ContactVM 
+  <main class="main-content">
          <section id="Contact">
             <div class="container-fluid">
                 <div class="row gy-5">
@@ -9,17 +10,16 @@
                                 <h2 class="reach-to-Us-info-header ">Reach Out To Us</h2>
                                 <div class="by-address">
                                     <span class="by-contact-header"><b>By Address</b></span>
-                                    <p class="by-contact-desc mt-2">Please reach us: 121 King St, Melbourne VIC 3000,
-                                        Australia</p>
+                                    <p class="by-contact-desc mt-2">@Model.Contact.ByAddress</p>
                                 </div>
                                 <div class="by-email mt-4">
                                     <span class="by-contact-header mt-2">By email</span>
                                     <p class="by-contact-desc">Please email us and we'll get back to you within 24
-                                        hours: info@example.com</p>
+                                        hours: @Model.Contact.ByEmail</p>
                                 </div>
                                 <div class="by-phone mt-4">
                                     <span class="by-contact-header mt-2"><b>By phone</b></span>
-                                    <p class="by-contact-desc">Call our store: 888 123 4567</p>
+                                    <p class="by-contact-desc">Call our store: @Model.Contact.ByPhone</p>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                         <div class="store-product-content">
                             <div class="store-product-item">
                                 <div class="store-product-img">
-                                    <img class="primary-img" src="~/images/store1.jpg" height="auto"
+                                    <img class="primary-img" src="~/images/@Model.Contact.Image[0]" height="auto"
                                         width="800">
                                 </div>
                             </div>
@@ -78,12 +78,12 @@
                     <div class="store-product-desc">
                         <div class="store-product-desc-item">
                             <h5 class="store-produtc-title">
-                                NEWYORK
+                                @Model.Contact.City[0]
                             </h5>
                             <h3 class="store-product-name">
                                 <span class="store-product-text">Thrift</span>
                             </h3>
-                            <p class="store-desc">There are many variations of passages of Lorem <span>available denounce
+                            <p class="store-desc">@Model.Contact.Description[0] <span>
                                 </span></p>
                         </div>
                     </div>
@@ -94,19 +94,19 @@
                             <div class="store-product-item">
                                 <div class="store-product-img">
                                     <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                        src="~/images/store3retry.jpg" height="auto" width="800">
+                                        src="~/images/@Model.Contact.Image[1]" height="auto" width="800">
                                 </div>
                             </div>
                         </div>
                         <div class="store-product-desc">
                             <div class="store-product-desc-item">
                                 <h5 class="store-produtc-title">
-                                    WASHINGTON
+                                    @Model.Contact.City[1]
                                 </h5>
                                 <h3 class="store-product-name">
                                     <span class="store-product-text">Shophouse</span>
                                 </h3>
-                                <p class="store-desc">On the other hand, we denounce with righteous<span>indignation </span>
+                                <p class="store-desc">@Model.Contact.Description[1] <span></span>
                                 </p>
                             </div>
                         </div>
@@ -118,21 +118,21 @@
                             <div class="store-product-item">
                                 <div class="store-product-img">
                                     <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                        src="~/images/store3.jpg" height="auto" width="800">
+                                        src="~/images/@Model.Contact.Image[2]" height="auto" width="800">
                                 </div>
                             </div>
                         </div>
                         <div class="store-product-desc">
                             <div class="store-product-desc-item">
                                 <h5 class="store-produtc-title">
-                                    LAS VEGAS
+                                    @Model.Contact.City[2]
                                 </h5>
                                 <h3 class="store-product-name">
                                     <span class="store-product-text">Leisurewear
                                     </span>
                                 </h3>
-                                <p class="store-desc">Righteous indignation and dislike we denounce
-                                    with<span>righteous</span></p>
+                                <p class="store-desc">@Model.Contact.Description[2]
+                                    <span></span></p>
                             </div>
                         </div>
                     </div>

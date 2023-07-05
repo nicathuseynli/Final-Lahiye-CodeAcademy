@@ -379,12 +379,13 @@ a {
 
 /*Main-Up-Elementor-Page-Start*/
 .blogHeader {
-  font-size: 20px;
-  font-family: var(--main-font);
-  color: #E3ECF3;
+    font-size: 20px;
+    font-family: var(--main-font);
+    color: #E3ECF3;
 }
- .up-elementor-btn-home{
-  display: inline-block;
+
+.up-elementor-btn-home {
+    display: inline-block;
     padding: 20px 45px;
     background-color: white;
     color: black;
@@ -393,90 +394,96 @@ a {
     font-weight: 600;
     letter-spacing: 1.5px;
 }
-.up-elementor{
-background-color: #E3ECF3;
+
+.up-elementor {
+    background-color: #E3ECF3;
 }
 
-.up-elementorContent-text{
-  visibility: hidden;
-  transition: .5s linear; 
-  position: relative;
-  z-index: 9999;
+.up-elementorContent-text {
+    visibility: hidden;
+    transition: .5s linear;
+    position: relative;
+    z-index: 9999;
 }
 
-.elementorContent:hover .up-elementorContent-text{
-  visibility: visible;
-  transition: 1s linear;
+.elementorContent:hover .up-elementorContent-text {
+    visibility: visible;
+    transition: 1s linear;
 }
 
 .up-elementor-btn-home:hover {
-  cursor: pointer;
-  transform: translateY(-.5em);
-  transition: 0.4s linear;
-  background-color: transparent ;
-  border: 1px solid white;
-  color: white !important;
-} 
-.upelementorContentheader{
- color: white;
- font-family: var(--main-font);
- font-weight: 700;
+    cursor: pointer;
+    transform: translateY(-.5em);
+    transition: 0.4s linear;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white !important;
 }
 
-.elementorContent{
-  position: relative;
-  width: 90%;
-  /* padding-top: 270px;
+.upelementorContentheader {
+    color: white;
+    font-family: var(--main-font);
+    font-weight: 700;
+}
+
+.elementorContent {
+    position: relative;
+    width: 90%;
+    /* padding-top: 270px;
   padding-bottom: 80px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.elementorContent .caption{
-  position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 1;
-  background: none;
--webkit-transition: all 0.5s ease 0s; /* Safari and Chrome */
--moz-transition: all 0.5s ease 0s; /* Firefox */
--ms-transition: all 0.5s ease 0s; /* IE 9 */
--o-transition: all 0.5s ease 0s; /* Opera */
-transition: all 0.5s ease 0s;
-}
-.element-widgetContent{
-  padding-top: 15px;
-  padding-bottom: 150px;
-}
-.elementorContent:hover .caption {
-	background: rgba(0, 0, 0, 0.5);
-}
-.elementorContent-first{
-  background-image: url('/images/hover-image-01.webp');
-  max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 489px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
+    .elementorContent .caption {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        background: none;
+        -webkit-transition: all 0.5s ease 0s; /* Safari and Chrome */
+        -moz-transition: all 0.5s ease 0s; /* Firefox */
+        -ms-transition: all 0.5s ease 0s; /* IE 9 */
+        -o-transition: all 0.5s ease 0s; /* Opera */
+        transition: all 0.5s ease 0s;
+    }
+
+.element-widgetContent {
+    padding-top: 15px;
+    padding-bottom: 150px;
+}
+
+.elementorContent:hover .caption {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.elementorContent-Item {
+    max-width: 100%;
+    position: absolute;
+}
+/*
 .elementorContent-second{
-  background-image: url('/images/hover-image-02.webp');
+  background-image: url(/assets/images/hover-image-02.webp);
   max-width: 100%;
   margin-top: 70px
 }
 
 .elementorContent-third{
-  background-image: url('/images/hover-image-03.webp');
+  background-image: url(/assets/images/hover-image-03.webp);
   max-width: 100%;
-}
+} */
 
 @media screen and (min-width: 280px) and (max-width: 875.5px) {
-  .elementorContent {
-    text-align: center !important;
-  }
+    .elementorContent {
+        text-align: center !important;
+    }
 }
 
 /*Main-Up-Elementor-Page-End*/
@@ -521,41 +528,54 @@ transition: all 0.5s ease 0s;
 /*---------------------------------------------------------------------------------------------------------------------------*/
 /*Main baner Start*/
 .baner {
-  background-image: url('/images/wide-section-full-scaled.webp');
-  height: 100%;
-  width: 100%;
-  padding-top: 200px;
-  padding-bottom: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.banerImg {
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.banerContent {
+    position: absolute;
+    content: "";
+    z-index: 9999;
+    width: 100%;
+    top: 220px;
 }
 
 .banerContentItem {
-  font-family: var(--body-font);
-  width: 28%;
-  text-align: center;
-  color: white;
-  font-weight: 600;
+    font-family: var(--body-font);
+    width: 28%;
+    text-align: center;
+    color: white;
+    font-weight: 600;
 }
 
 .banerBtn {
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  padding: 20px 35px;
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: 600;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 20px 35px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
-.banerBtn:hover {
-  cursor: pointer;
-  transform: translateY(-1em);
-  transition: 0.4s;
-  background-color: black;
-  color: white !important;
-}
+    .banerBtn:hover {
+        cursor: pointer;
+        transform: translateY(-1em);
+        transition: 0.4s;
+        background-color: black;
+        color: white !important;
+    }
+
 
 /* Elementor-Widget Start*/
 .elementer-widget-content{

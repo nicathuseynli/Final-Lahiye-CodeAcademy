@@ -1,12 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Final_Lahiye.Data;
+using Final_Lahiye.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace Final_Lahiye.Controllers
+namespace Final_Lahiye.Controllers;
+public class BlogController : Controller
 {
-    public class BlogController : Controller
+    private readonly AppDbContext _context;
+    private readonly ILogger<BlogController> _logger;
+
+    public BlogController(AppDbContext context, ILogger<BlogController> logger)
     {
-        public IActionResult Index()
+        _context = context;
+        _logger = logger;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var blog = await _context.Blogs.ToListAsync();
+        var author = await _context.Authors.ToListAsync();
+        ViewBag.datetime = DateTime.Now.ToString("dd MMMM yyyy");
+
+        BlogVM blogVM = new()
         {
-            return View();
-        }
+            Blogs = blog,
+            Authors = author,
+        };
+        return View(blogVM);
     }
 }

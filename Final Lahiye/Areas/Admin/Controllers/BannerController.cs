@@ -32,14 +32,11 @@ public class BannerController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateBannerVM createbannerVM)
     {
-        if (!ModelState.IsValid)
-            return View();
+        if (!ModelState.IsValid) return View();
 
-        if (!createbannerVM.BannerPhoto.ContentType.Contains("image/"))
-            return View();
+        if (!createbannerVM.BannerPhoto.ContentType.Contains("image/")) return View();
 
-        if (createbannerVM.BannerPhoto.Length / 1024 > 500)
-            return View();
+        if (createbannerVM.BannerPhoto.Length / 1024 > 500) return View();
 
         string filename = Guid.NewGuid().ToString() + "_" + createbannerVM.BannerPhoto.FileName;
 

@@ -1,3 +1,5 @@
+using Final_Lahiye.Areas.Services.Implementations;
+using Final_Lahiye.Areas.Services.Interface;
 using Final_Lahiye.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer"));
 });
 
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 
 var app = builder.Build();
 

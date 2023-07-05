@@ -12,4 +12,10 @@ public class AppDbContext :DbContext
     public DbSet<HeaderUpText> HeaderUpTexts { get; set; }
     public DbSet<Hero> Heros { get; set; }
     public DbSet<Banner> Banners { get; set; }
+    public DbSet<Elementor> Elementors { get; set; }
+    public DbSet<Testimonial> Testimonials { get; set; }
+    public DbSet<ShortInformation> ShortInformations { get; set; }
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
 }
