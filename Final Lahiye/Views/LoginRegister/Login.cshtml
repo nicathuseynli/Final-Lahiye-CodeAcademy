@@ -1,4 +1,5 @@
-﻿    <main>
+﻿@model LoginRegisterVM  
+  <main>
         <div class="breadcrumb-header mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center h-100">
                 <h1>Login</h1>
@@ -13,15 +14,13 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-xxl-6 col-xl-6 col-lg-6  d-lg-block d-none">
-                    <img src="~/images/blog-image-1.jpg" width="100%" alt="">
+                    <img src="~/images/@Model?.LoginPage.Image" width="100%" alt="">
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="login">
                         <div class="loginContent">
                             <h2 class="loginTitle">Sign In Your Account</h2>
-                            <p class="loginDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. ipsam labore
-                                dolore sunt
-                                laudantium aperiam.</p>
+                            <p class="loginDesc">@Model?.LoginPage.Description .</p>
                         </div>
                         <form action="#">
                             <div class="row">

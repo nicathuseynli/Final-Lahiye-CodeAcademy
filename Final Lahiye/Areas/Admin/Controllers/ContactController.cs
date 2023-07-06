@@ -51,9 +51,6 @@ public class ContactController : Controller
 
         Contact contact = new()
         {
-            ByAddress = createContactVM.ByAddress,
-            ByEmail = createContactVM.ByEmail,
-            ByPhone = createContactVM.ByPhone,
             Magazine = createContactVM.Magazine,
             City = createContactVM.City,
             Description = createContactVM.Description,
@@ -101,9 +98,6 @@ public class ContactController : Controller
         var updateContactVM = new UpdateContactVM()
         {
             Id = contact.Id,
-            ByAddress = contact.ByAddress,
-            ByEmail = contact.ByEmail,
-            ByPhone = contact.ByPhone,
             Magazine = contact.Magazine,
             City = contact.City,
             Description = contact.Description,
@@ -143,9 +137,6 @@ public class ContactController : Controller
             contact.Image = filename;
             #endregion
         }
-        contact.ByAddress = updateContactVM.ByAddress;
-        contact.ByEmail = updateContactVM.ByEmail;
-        contact.ByPhone = updateContactVM.ByPhone;
         contact.Magazine = updateContactVM.Magazine;
         contact.City = updateContactVM.City;
         contact.Description = updateContactVM.Description;

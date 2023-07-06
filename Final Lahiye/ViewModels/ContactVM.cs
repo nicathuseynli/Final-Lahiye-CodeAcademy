@@ -3,5 +3,6 @@
 namespace Final_Lahiye.ViewModels;
 public class ContactVM
 {
-    public Contact Contact { get; set; }
+    public ContactDetails ContactDetails { get; set; }
+    public List<Contact> Contacts { get; set; }
 }

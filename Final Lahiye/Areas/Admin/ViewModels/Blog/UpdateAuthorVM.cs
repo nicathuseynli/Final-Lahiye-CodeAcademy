@@ -8,12 +8,12 @@ public class UpdateAuthorVM
     public string FullName { get; set; }
 
     public string Proffession { get; set; }
+
     public int Blogid { get; set; }
 
-
-    [AllowNull]
     public string Image { get; set; }
 
+    [AllowNull]
     public IFormFile Photo { get; set; }
 
 }

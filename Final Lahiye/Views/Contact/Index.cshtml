@@ -10,16 +10,16 @@
                                 <h2 class="reach-to-Us-info-header ">Reach Out To Us</h2>
                                 <div class="by-address">
                                     <span class="by-contact-header"><b>By Address</b></span>
-                                    <p class="by-contact-desc mt-2">@Model.Contact.ByAddress</p>
+                                    <p class="by-contact-desc mt-2">@Model.ContactDetails?.ByAddress</p>
                                 </div>
                                 <div class="by-email mt-4">
                                     <span class="by-contact-header mt-2">By email</span>
                                     <p class="by-contact-desc">Please email us and we'll get back to you within 24
-                                        hours: @Model.Contact.ByEmail</p>
+                                        hours: @Model.ContactDetails?.ByEmail</p>
                                 </div>
                                 <div class="by-phone mt-4">
                                     <span class="by-contact-header mt-2"><b>By phone</b></span>
-                                    <p class="by-contact-desc">Call our store: @Model.Contact.ByPhone</p>
+                                    <p class="by-contact-desc">Call our store: @Model.ContactDetails?.ByPhone</p>
                                 </div>
                             </div>
                         </div>
@@ -64,12 +64,14 @@
             <h3 class="store-header d-flex justify-content-center align-items-center mt-5 mb-5">Our Stores</h3>
           <div class="container">
             <div class="row">
+                @foreach (var item in @Model.Contacts)
+                {
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="store-product">
                         <div class="store-product-content">
                             <div class="store-product-item">
                                 <div class="store-product-img">
-                                    <img class="primary-img" src="~/images/@Model.Contact.Image[0]" height="auto"
+                                    <img class="primary-img" src="~/images/@item.Image" height="auto"
                                         width="800">
                                 </div>
                             </div>
@@ -78,65 +80,17 @@
                     <div class="store-product-desc">
                         <div class="store-product-desc-item">
                             <h5 class="store-produtc-title">
-                                @Model.Contact.City[0]
+                                @item.City
                             </h5>
                             <h3 class="store-product-name">
-                                <span class="store-product-text">Thrift</span>
+                                <span class="store-product-text">@item.City</span>
                             </h3>
-                            <p class="store-desc">@Model.Contact.Description[0] <span>
+                            <p class="store-desc">@item.Description <span>
                                 </span></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="store-product">
-                        <div class="store-product-content">
-                            <div class="store-product-item">
-                                <div class="store-product-img">
-                                    <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                        src="~/images/@Model.Contact.Image[1]" height="auto" width="800">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="store-product-desc">
-                            <div class="store-product-desc-item">
-                                <h5 class="store-produtc-title">
-                                    @Model.Contact.City[1]
-                                </h5>
-                                <h3 class="store-product-name">
-                                    <span class="store-product-text">Shophouse</span>
-                                </h3>
-                                <p class="store-desc">@Model.Contact.Description[1] <span></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="store-product">
-                        <div class="store-product-content">
-                            <div class="store-product-item">
-                                <div class="store-product-img">
-                                    <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                        src="~/images/@Model.Contact.Image[2]" height="auto" width="800">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="store-product-desc">
-                            <div class="store-product-desc-item">
-                                <h5 class="store-produtc-title">
-                                    @Model.Contact.City[2]
-                                </h5>
-                                <h3 class="store-product-name">
-                                    <span class="store-product-text">Leisurewear
-                                    </span>
-                                </h3>
-                                <p class="store-desc">@Model.Contact.Description[2]
-                                    <span></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
           </div>
         </section>

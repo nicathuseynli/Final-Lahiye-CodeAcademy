@@ -5,12 +5,6 @@ public class UpdateContactVM
 {
     public int Id { get; set; }
 
-    public string ByAddress { get; set; }
-
-    public string ByEmail { get; set; }
-
-    public string ByPhone { get; set; }
-
     public string City { get; set; }
 
     public string Magazine { get; set; }

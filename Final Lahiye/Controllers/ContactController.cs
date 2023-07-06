@@ -7,25 +7,24 @@ namespace Final_Lahiye.Controllers;
 public class ContactController : Controller
 {
     private readonly AppDbContext _context;
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<ContactController> _logger;
 
-    public ContactController(AppDbContext context)
+    public ContactController(AppDbContext context, ILogger<ContactController> logger)
     {
         _context = context;
-    }
-
-    public ContactController(ILogger<HomeController> logger)
-    {
         _logger = logger;
     }
 
+
     public async Task<IActionResult> Index()
     {
-        var contact = await _context.Contacts.FirstOrDefaultAsync();
+        var contacts = await _context.Contacts.ToListAsync();
+        var details = await _context.ContactDetailss.FirstOrDefaultAsync();
 
         ContactVM contactVM = new()
         {
-            Contact = contact,
+            Contacts = contacts,
+            ContactDetails = details,
         };
         return View(contactVM);
     }

@@ -11,10 +11,8 @@ public class UpdateBlogPageVM
 
     public string AuthorName { get; set; }
 
-    [AllowNull]
     public string Image { get; set; }
 
-    public int BlogId { get; set; }
-
+    [AllowNull]
     public IFormFile Photo { get; set; }
 }

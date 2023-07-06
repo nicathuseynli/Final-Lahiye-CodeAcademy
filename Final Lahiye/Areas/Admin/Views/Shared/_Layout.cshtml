@@ -208,6 +208,33 @@
                             </ul>
                         </div>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="about">
+                            <i  class="mdi mdi-frequently-asked-questions"></i>
+                            <span class="menu-title">FAQ Page</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="faq">
+                            <ul class="nav flex-column sub-menu">
+                              <li class="nav-item"> <a class="nav-link" asp-controller="FaqPage" asp-action="Index">FAQ Page</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="about">
+                            <i  class="mdi mdi-file-document-alert"></i>
+                            <span class="menu-title">Error Page</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="faq">
+                            <ul class="nav flex-column sub-menu">
+                              <li class="nav-item"> <a class="nav-link" asp-controller="ErrorPage" asp-action="Index">Error Page</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
                      <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#contact" aria-expanded="false" aria-controls="contact">
                             <i class="mdi mdi-phone  menu-icon"></i>
@@ -216,22 +243,21 @@
                         </a>
                         <div class="collapse" id="contact">
                             <ul class="nav flex-column sub-menu">
-                           <li class="nav-item"> <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact Page </a></li>
+                           <li class="nav-item"> <a class="nav-link" asp-controller="ContactDetails" asp-action="Index">Contact Details </a></li>
+                           <li class="nav-item"> <a class="nav-link" asp-controller="Contact" asp-action="Index">Magazine Page </a></li>
                             </ul>
                         </div>
                     </li>  
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#headerfooter" aria-expanded="false" aria-controls="headerfooter">
                             <i class="mdi mdi-creative-commons menu-icon"></i>
-                            <span class="menu-title">Header & Footer</span>
+                            <span class="menu-title">Login Register</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="headerfooter">
                             <ul class="nav flex-column sub-menu">
-                             <li class="nav-item"> <a class="nav-link" asp-controller="HeaderInfo" asp-action="Index">Information</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="QuickLink" asp-action="Index">QuickLink</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="SocialMedia" asp-action="Index">Social Media Adresses</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="HeaderPhone" asp-action="Index">Header Phone Number</a></li>                            
+                             <li class="nav-item"> <a class="nav-link" asp-controller="LoginPage" asp-action="Index">Login Page</a></li>                    
+                             <li class="nav-item"> <a class="nav-link" asp-controller="RegisterPage" asp-action="Index">Register Page</a></li>                    
                          </ul>
                         </div>
                     </li>

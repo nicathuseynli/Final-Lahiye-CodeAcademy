@@ -18,4 +18,9 @@ public class AppDbContext :DbContext
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Contact> Contacts { get; set; }
+    public DbSet<ContactDetails> ContactDetailss { get; set; }
+    public DbSet<LoginPage> LoginPages { get; set; }
+    public DbSet<RegisterPage> RegisterPages { get; set; }
+    public DbSet<ErrorPage> ErrorPages { get; set; }
+    public DbSet<FaqPage> FaqPages { get; set; }
 }
