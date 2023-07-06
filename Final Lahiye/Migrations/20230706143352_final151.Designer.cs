@@ -290,7 +290,7 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("Heros");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.LoginPage", b =>
+            modelBuilder.Entity("Final_Lahiye.Models.Login", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -311,7 +311,7 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("LoginPages");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.RegisterPage", b =>
+            modelBuilder.Entity("Final_Lahiye.Models.Register", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

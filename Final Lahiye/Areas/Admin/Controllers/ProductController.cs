@@ -1,0 +1,175 @@
+﻿using Final_Lahiye.Areas.Admin.ViewModels.Home;
+using Final_Lahiye.Data;
+using Final_Lahiye.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+namespace Final_Lahiye.Areas.Admin.Controllers;
+[Area("Admin")]
+public class ProductController : Controller
+{
+    private readonly AppDbContext _context;
+    private readonly ILogger<ProductController> _logger;
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
+    public ProductController(AppDbContext context, ILogger<ProductController> logger, IWebHostEnvironment webHostEnvironment)
+    {
+        _context = context;
+        _logger = logger;
+        _webHostEnvironment = webHostEnvironment;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var homeproduct = await _context.Products.ToListAsync();
+        return View(homeproduct);
+    }
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
+        ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
+        ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(CreateHomeProductVM createhomeproductVm)
+    {
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
+            ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
+            ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
+
+            return View();
+        }
+
+        if (!createhomeproductVm.Photo.ContentType.Contains("image/") )
+            return View();
+
+        if (createhomeproductVm.Photo.Length / 1024 > 500 )
+            return View();
+
+        string filename = Guid.NewGuid().ToString() + "_" + createhomeproductVm.Photo.FileName;
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
+
+        using FileStream stream = new FileStream(path, FileMode.Create);
+
+        await createhomeproductVm.Photo.CopyToAsync(stream);
+
+        Product homeproduct = new()
+        {
+            Name = createhomeproductVm.Name,
+            LastPrice = createhomeproductVm.LastPrice,
+            CurrentPrice = createhomeproductVm.CurrentPrice,
+            SalePercent = createhomeproductVm.SalePercent,
+            CategoryId = createhomeproductVm.CategoryId,
+            ColourId = createhomeproductVm.ColourId,
+            StockStatusId = createhomeproductVm.StockStatusId,
+            Image = filename,
+        };
+        await _context.Products.AddAsync(homeproduct);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+
+    }
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        if (homeproduct == null)
+            return NotFound();
+        return View(homeproduct);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Delete(int id)
+    {
+
+        var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        if (homeproduct == null)
+            return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", homeproduct.Image);
+
+        if (System.IO.File.Exists(path))  System.IO.File.Delete(path);
+        
+
+        _context.Products.Remove(homeproduct);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
+        ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
+        ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
+
+        var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        if (homeproduct == null) return NotFound();
+
+        var updateHomeProductVM = new UpdateHomeProductVM()
+        {
+            Id = id,
+            CategoryId = homeproduct.CategoryId,
+            ColourId = homeproduct.ColourId,
+            StockStatusId = homeproduct.StockStatusId,
+            Name = homeproduct.Name,
+            LastPrice = homeproduct.LastPrice,
+            CurrentPrice = homeproduct.CurrentPrice,
+            SalePercent = homeproduct.SalePercent,
+            Image = homeproduct.Image,
+        };
+
+        return View(updateHomeProductVM);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(UpdateHomeProductVM updateHomeProductVM)
+    {
+
+        ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
+        ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
+        ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
+
+        var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == updateHomeProductVM.Id);
+        if (homeproduct == null) return NotFound();
+
+        if (updateHomeProductVM.Photo != null)
+        {
+            if (updateHomeProductVM.Photo.ContentType.Contains("image/"))  return View();
+
+            if (updateHomeProductVM.Photo.Length / 1024 > 500 ) return View();
+
+
+            string filename = Guid.NewGuid().ToString() + " _ " + updateHomeProductVM.Photo.FileName;
+
+            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
+
+            using FileStream stream = new FileStream(path, FileMode.Create);
+
+            await updateHomeProductVM.Photo.CopyToAsync(stream);
+
+            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", homeproduct.Image);
+            if (System.IO.File.Exists(oldPath)) System.IO.File.Delete(oldPath);
+            
+            homeproduct.Image = filename;
+        }
+
+        homeproduct.Name = updateHomeProductVM.Name;
+        homeproduct.CurrentPrice = updateHomeProductVM.CurrentPrice;
+        homeproduct.LastPrice = updateHomeProductVM.LastPrice;
+        homeproduct.SalePercent = updateHomeProductVM.SalePercent;
+        homeproduct.CategoryId = updateHomeProductVM.CategoryId;
+        homeproduct.ColourId = updateHomeProductVM.ColourId;
+        homeproduct.StockStatusId = updateHomeProductVM.StockStatusId;
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+}

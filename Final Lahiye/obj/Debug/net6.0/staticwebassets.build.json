@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cSa9ih59K3YPSU6lIP/i3bkSAMRsSNwrjlpeMIVnABs=",
+  "Hash": "cxXqS+QYOuAphLiA3WTqmYffBnhdVz8cootN7DUCiB8=",
   "Source": "Final Lahiye",
   "BasePath": "_content/Final Lahiye",
   "Mode": "Default",
@@ -2667,6 +2667,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\171cbd9f-4113-43ba-97c1-056ad42fb788_blog-image-8.jpg",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/171cbd9f-4113-43ba-97c1-056ad42fb788_blog-image-8.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\171cbd9f-4113-43ba-97c1-056ad42fb788_blog-image-8.jpg"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\1de9c9e2-3db4-49f4-8bc3-5b56344856bf _ heart-color-black.svg",

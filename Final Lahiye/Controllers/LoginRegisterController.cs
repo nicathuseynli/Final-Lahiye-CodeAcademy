@@ -15,25 +15,25 @@ public class LoginRegisterController : Controller
         _logger = logger;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Login()
     {
         var login = await _context.LoginPages.FirstOrDefaultAsync();
-        var register = await _context.RegisterPages.FirstOrDefaultAsync();
-
-        LoginRegisterVM loginRegisterVM = new()
+       
+        LoginRegisterVM loginVM = new()
         {
             LoginPage = login,
-            RegisterPage = register,
         };
-        return View(loginRegisterVM);
+        return View(loginVM);
     }
 
-    public IActionResult Login()
+    public async Task<IActionResult> Register()
     {
-        return View();
-    } 
-    public IActionResult Register()
-    {
-        return View();
+        var register = await _context.RegisterPages.FirstOrDefaultAsync();
+
+        LoginRegisterVM registerVM = new()
+        {
+            RegisterPage = register,
+        };
+        return View(registerVM);
     }
 }

@@ -12,4 +12,6 @@ public class HomeVM
     public List<ShortInformation> ShortInformations { get; set; }
 
     public List<Testimonial> Testimonials { get; set; }
+
+    public List<Product> Products { get; set; }
 }

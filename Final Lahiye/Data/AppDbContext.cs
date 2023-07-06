@@ -23,4 +23,8 @@ public class AppDbContext :DbContext
     public DbSet<RegisterPage> RegisterPages { get; set; }
     public DbSet<ErrorPage> ErrorPages { get; set; }
     public DbSet<FaqPage> FaqPages { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Colour> Colours { get; set; }
+    public DbSet<StockStatus> StockStatuses { get; set; }
 }

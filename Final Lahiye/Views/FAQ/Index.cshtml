@@ -38,83 +38,26 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="accordion" id="accordionExample">
+                                                @{int accardionCount = 1;}
+                                            @foreach (var accardion in Model.Faqs.OrderBy(x=>x.Id).Take(4))
+                                            {
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" id="headingFirst">
                                                         <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseFirst"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapse-@accardionCount"
                                                             aria-expanded="true" aria-controls="collapseFirst">
-                                                            Before you get started
+                                                            @accardion.Question
                                                         </button>
                                                     </h2>
-                                                    <div id="collapseFirst" class="accordion-collapse collapse show"
+                                                    <div id="collapse-@accardionCount" class="accordion-collapse collapse show"
                                                         aria-labelledby="headingFirst" data-bs-parent="#accordionExample">
                                                         <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing
-                                                                elit. Neque similique eaque quam sit voluptate sequi
-                                                                dolores aspernatur aperiam. Soluta nihil nobis
-                                                                dignissimos. Perferendis, illo esse?</p>
+                                                            <p>@accardion.Answer</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingSecond">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseSecond"
-                                                            aria-expanded="false" aria-controls="collapseSecond">
-                                                            Compatibility with premium plugins
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseSecond" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingSecond" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                Iste eius veniam officiis ea nemo illum nulla quos sunt,
-                                                                similique, voluptatibus corrupti cupiditate. Ipsa
-                                                                corrupti dolorem magnam repudiandae provident quo
-                                                                voluptate!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingThird">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseThird"
-                                                            aria-expanded="false" aria-controls="collapseThird">
-                                                            Install theme demo contents
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseThird" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingThird"
-                                                        data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                Iste eius veniam officiis ea nemo illum nulla quos sunt,
-                                                                similique, voluptatibus corrupti cupiditate. Ipsa
-                                                                corrupti dolorem magnam repudiandae provident quo
-                                                                voluptate!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingFourth">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapse-fourth"
-                                                            aria-expanded="false" aria-controls="#collapse-fourth">
-                                                            Translation and localization
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapse-fourth" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingFourth"
-                                                        data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                Iste eius veniam officiis ea nemo illum nulla quos sunt,
-                                                                similique, voluptatibus corrupti cupiditate. Ipsa
-                                                                corrupti dolorem magnam repudiandae provident quo
-                                                                voluptate!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                accardionCount++;
+                                            }
                                             </div>
                                         </div>
                                     </div>
@@ -123,83 +66,25 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="accordion" id="accordionExample">
+                                                     @foreach (var accardion in Model.Faqs.OrderByDescending(x=>x.Id).Take(4))
+                                            {
                                                 <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingBir">
+                                                    <h2 class="accordion-header" id="headingFirst">
                                                         <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseBir"
-                                                            aria-expanded="true" aria-controls="collapseBir">
-                                                            Before you get started
+                                                            data-bs-toggle="collapse" data-bs-target="#collapse-@accardionCount"
+                                                            aria-expanded="true" aria-controls="collapseFirst">
+                                                            @accardion.Question
                                                         </button>
                                                     </h2>
-                                                    <div id="collapseBir" class="accordion-collapse collapse show"
-                                                        aria-labelledby="headingBir" data-bs-parent="#accordionExample">
+                                                    <div id="collapse-@accardionCount" class="accordion-collapse collapse show"
+                                                        aria-labelledby="headingFirst" data-bs-parent="#accordionExample">
                                                         <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing
-                                                                elit. Neque similique eaque quam sit voluptate sequi
-                                                                dolores aspernatur aperiam. Soluta nihil nobis
-                                                                dignissimos. Perferendis, illo esse?</p>
+                                                            <p>@accardion.Answer</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingIki">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseIki"
-                                                            aria-expanded="false" aria-controls="collapseIki">
-                                                            Compatibility with premium plugins
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseIki" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingIki" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                Iste eius veniam officiis ea nemo illum nulla quos sunt,
-                                                                similique, voluptatibus corrupti cupiditate. Ipsa
-                                                                corrupti dolorem magnam repudiandae provident quo
-                                                                voluptate!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingUc">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseUc"
-                                                            aria-expanded="false" aria-controls="collapseUc">
-                                                            Install theme demo contents
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseUc" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingUc"
-                                                        data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                Iste eius veniam officiis ea nemo illum nulla quos sunt,
-                                                                similique, voluptatibus corrupti cupiditate. Ipsa
-                                                                corrupti dolorem magnam repudiandae provident quo
-                                                                voluptate!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingDord">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseDord"
-                                                            aria-expanded="false" aria-controls="#collapseDord">
-                                                            Translation and localization
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseDord" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingDord"
-                                                        data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                Iste eius veniam officiis ea nemo illum nulla quos sunt,
-                                                                similique, voluptatibus corrupti cupiditate. Ipsa
-                                                                corrupti dolorem magnam repudiandae provident quo
-                                                                voluptate!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                accardionCount++;
+                                            }
                                             </div>
                                         </div>
                                     </div>

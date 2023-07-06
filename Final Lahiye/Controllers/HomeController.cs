@@ -24,6 +24,7 @@ public class HomeController : Controller
         var elementor = await _context.Elementors.FirstOrDefaultAsync();
         var shortInfo = await _context.ShortInformations.ToListAsync();
         var testimonial = await _context.Testimonials.ToListAsync();
+        var product = await _context.Products.ToListAsync();
         HomeVM homeVM = new HomeVM()
         {
             Hero = hero,
@@ -31,6 +32,7 @@ public class HomeController : Controller
             Elementor = elementor,
             ShortInformations = shortInfo,
             Testimonials = testimonial,
+            Products = product,
         };
         return View(homeVM);
     }
