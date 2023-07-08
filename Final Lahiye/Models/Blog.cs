@@ -5,8 +5,6 @@ public class Blog :BaseEntity<int>
 {
     public string Title { get; set; }
 
-    public string AuthorName { get; set; }
-
     public string Image { get; set; }
 
     [NotMapped]

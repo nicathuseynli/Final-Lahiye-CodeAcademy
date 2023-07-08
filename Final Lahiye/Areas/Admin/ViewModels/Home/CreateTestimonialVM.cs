@@ -5,6 +5,10 @@ public class CreateTestimonialVM
 {
     [Required]
     public string Title { get; set; }
+
+    [Required]
+    public string Header { get; set; }
+
     [Required]
     public IFormFile Photo { get; set; }
 }

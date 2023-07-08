@@ -82,10 +82,6 @@ namespace Final_Lahiye.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("AuthorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -109,8 +105,9 @@ namespace Final_Lahiye.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -327,7 +324,54 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("Heros");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.Login", b =>
+            modelBuilder.Entity("Final_Lahiye.Models.HomeProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ColourId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("CurrentPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Header")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("InStock")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("LastPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SalePercent")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ColourId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Final_Lahiye.Models.LoginPage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -348,52 +392,7 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("LoginPages");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColourId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("CurrentPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("LastPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SalePercent")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StockStatusId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ColourId");
-
-                    b.HasIndex("StockStatusId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Final_Lahiye.Models.Register", b =>
+            modelBuilder.Entity("Final_Lahiye.Models.RegisterPage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -439,22 +438,6 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("ShortInformations");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.StockStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("InStock")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StockStatuses");
-                });
-
             modelBuilder.Entity("Final_Lahiye.Models.Testimonial", b =>
                 {
                     b.Property<int>("Id")
@@ -462,6 +445,10 @@ namespace Final_Lahiye.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Header")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -494,7 +481,7 @@ namespace Final_Lahiye.Migrations
                         .HasForeignKey("ColourId");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.Product", b =>
+            modelBuilder.Entity("Final_Lahiye.Models.HomeProduct", b =>
                 {
                     b.HasOne("Final_Lahiye.Models.Category", "Category")
                         .WithMany("Products")
@@ -508,17 +495,9 @@ namespace Final_Lahiye.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Final_Lahiye.Models.StockStatus", "StockStatus")
-                        .WithMany("Products")
-                        .HasForeignKey("StockStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
 
                     b.Navigation("Colour");
-
-                    b.Navigation("StockStatus");
                 });
 
             modelBuilder.Entity("Final_Lahiye.Models.Author", b =>
@@ -534,11 +513,6 @@ namespace Final_Lahiye.Migrations
             modelBuilder.Entity("Final_Lahiye.Models.Colour", b =>
                 {
                     b.Navigation("Colours");
-                });
-
-            modelBuilder.Entity("Final_Lahiye.Models.StockStatus", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

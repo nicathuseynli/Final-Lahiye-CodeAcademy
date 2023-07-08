@@ -30,7 +30,6 @@ public class ProductController : Controller
     {
         ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
         ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
-        ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
         return View();
     }
 
@@ -42,7 +41,6 @@ public class ProductController : Controller
         {
             ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
             ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
-            ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
 
             return View();
         }
@@ -61,15 +59,16 @@ public class ProductController : Controller
 
         await createhomeproductVm.Photo.CopyToAsync(stream);
 
-        Product homeproduct = new()
+        HomeProduct homeproduct = new()
         {
             Name = createhomeproductVm.Name,
             LastPrice = createhomeproductVm.LastPrice,
+            InStock = createhomeproductVm.InStock,
             CurrentPrice = createhomeproductVm.CurrentPrice,
             SalePercent = createhomeproductVm.SalePercent,
+            Header = createhomeproductVm.Header,
             CategoryId = createhomeproductVm.CategoryId,
             ColourId = createhomeproductVm.ColourId,
-            StockStatusId = createhomeproductVm.StockStatusId,
             Image = filename,
         };
         await _context.Products.AddAsync(homeproduct);
@@ -109,7 +108,6 @@ public class ProductController : Controller
     {
         ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
         ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
-        ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
 
         var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
         if (homeproduct == null) return NotFound();
@@ -119,8 +117,9 @@ public class ProductController : Controller
             Id = id,
             CategoryId = homeproduct.CategoryId,
             ColourId = homeproduct.ColourId,
-            StockStatusId = homeproduct.StockStatusId,
+            InStock = homeproduct.InStock,
             Name = homeproduct.Name,
+            Header = homeproduct.Header,
             LastPrice = homeproduct.LastPrice,
             CurrentPrice = homeproduct.CurrentPrice,
             SalePercent = homeproduct.SalePercent,
@@ -136,14 +135,13 @@ public class ProductController : Controller
 
         ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
         ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
-        ViewBag.StockStatus = new SelectList(await _context.StockStatuses.ToListAsync(), "Id", "StockStatus");
 
         var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == updateHomeProductVM.Id);
         if (homeproduct == null) return NotFound();
 
         if (updateHomeProductVM.Photo != null)
         {
-            if (updateHomeProductVM.Photo.ContentType.Contains("image/"))  return View();
+            if (!updateHomeProductVM.Photo.ContentType.Contains("image/"))  return View();
 
             if (updateHomeProductVM.Photo.Length / 1024 > 500 ) return View();
 
@@ -165,10 +163,11 @@ public class ProductController : Controller
         homeproduct.Name = updateHomeProductVM.Name;
         homeproduct.CurrentPrice = updateHomeProductVM.CurrentPrice;
         homeproduct.LastPrice = updateHomeProductVM.LastPrice;
+        homeproduct.Header = updateHomeProductVM.Header;
+        homeproduct.InStock = updateHomeProductVM.InStock;
         homeproduct.SalePercent = updateHomeProductVM.SalePercent;
         homeproduct.CategoryId = updateHomeProductVM.CategoryId;
         homeproduct.ColourId = updateHomeProductVM.ColourId;
-        homeproduct.StockStatusId = updateHomeProductVM.StockStatusId;
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }

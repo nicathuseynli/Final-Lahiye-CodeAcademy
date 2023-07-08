@@ -9,8 +9,6 @@ public class UpdateBlogPageVM
 
     public string Title { get; set; }
 
-    public string AuthorName { get; set; }
-
     public string Image { get; set; }
 
     [AllowNull]

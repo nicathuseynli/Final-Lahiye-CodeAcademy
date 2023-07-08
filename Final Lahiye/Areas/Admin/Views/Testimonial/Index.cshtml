@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Header</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
                     <th scope="col">Operations</th>
@@ -21,6 +22,7 @@
                 {
                     <tr>
                         <td scope="col">@(count++)</td>
+                        <td scope="col">@testimonial.Header</td>
                         <td scope="col">@testimonial.Title</td>
                         <td scope="col">
                             <img src="~/images/@testimonial.Image" style="border-radius:20%" />

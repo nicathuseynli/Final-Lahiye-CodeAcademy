@@ -22,17 +22,21 @@ public class HomeController : Controller
         var hero = await _context.Heros.FirstOrDefaultAsync();
         var banner = await _context.Banners.FirstOrDefaultAsync();
         var elementor = await _context.Elementors.FirstOrDefaultAsync();
+        var product = await _context.Products.FirstOrDefaultAsync();
+        var testimonial = await _context.Testimonials.FirstOrDefaultAsync();
         var shortInfo = await _context.ShortInformations.ToListAsync();
-        var testimonial = await _context.Testimonials.ToListAsync();
-        var product = await _context.Products.ToListAsync();
+        var hometestimonial = await _context.Testimonials.ToListAsync();
+        var homeproducts = await _context.Products.ToListAsync();
         HomeVM homeVM = new HomeVM()
         {
             Hero = hero,
             Banner = banner,
             Elementor = elementor,
             ShortInformations = shortInfo,
-            Testimonials = testimonial,
-            Products = product,
+            Testimonials = hometestimonial,
+            Testimonial = testimonial,
+            Products = homeproducts,
+            Product = product,
         };
         return View(homeVM);
     }

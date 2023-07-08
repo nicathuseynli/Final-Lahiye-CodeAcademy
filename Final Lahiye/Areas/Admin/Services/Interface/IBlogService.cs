@@ -10,5 +10,5 @@ public interface IBlogService
 
     Task DeleteAsync(int id);
 
-    Task UpdateAsync(UpdateBlogPageVM updateBlogPageVM);
+    Task<bool> UpdateAsync(UpdateBlogPageVM updateBlogPageVM);
 }

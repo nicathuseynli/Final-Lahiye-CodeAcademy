@@ -9,9 +9,13 @@ public class HomeVM
 
     public Elementor Elementor { get; set; }
 
+    public HomeProduct Product { get; set; }
+
+    public Testimonial Testimonial { get; set; }
+
     public List<ShortInformation> ShortInformations { get; set; }
 
     public List<Testimonial> Testimonials { get; set; }
 
-    public List<Product> Products { get; set; }
+    public List<HomeProduct> Products { get; set; }
 }

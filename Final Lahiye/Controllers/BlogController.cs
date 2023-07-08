@@ -17,15 +17,6 @@ public class BlogController : Controller
 
     public async Task<IActionResult> Index()
     {
-
-        //var query = _context.Blogs.Include(x => x.AuthorName).AsQueryable();
-
-        //if (categoryId.HasValue && categoryId.Value > 0 || shoppagecolourId.HasValue && authorId.Value > 0)
-        //{
-        //    query = query.Where(x => x.AuhtorId == authorId);
-        //}
-        //var blogPage = await query.ToListAsync();
-
         var blog = await _context.Blogs.Include(x=>x.Author).ToListAsync();
         var author = await _context.Authors.Include(x=>x.Blogs).ToListAsync();
         ViewBag.datetime = DateTime.Now.ToString("dd MMMM yyyy");

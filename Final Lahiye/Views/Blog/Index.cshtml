@@ -9,7 +9,7 @@
 
             <a asp-controller="SingleBlog" asp-action="Index" class="blog-page-item-single"><img src="~/images/@item.Image" alt="" class="blog-page-image"></a>
             
-            <p class="blog-page-personId">By @item.AuthorName</p>
+            <p class="blog-page-personId">By @item.Author.FullName</p>
             <h5 class="blog-page-header">@item.Title</h5>
             <p class="blog-page-datetime"><i class="fa-solid fa-calendar-days"></i><span>@ViewBag.datetime</span></p>
             </div>

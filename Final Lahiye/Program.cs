@@ -1,3 +1,5 @@
+using Final_Lahiye.Areas.Admin.Services.Implementations;
+using Final_Lahiye.Areas.Admin.Services.Interface;
 using Final_Lahiye.Areas.Services.Implementations;
 using Final_Lahiye.Areas.Services.Interface;
 using Final_Lahiye.Data;
@@ -13,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
 
 var app = builder.Build();
 

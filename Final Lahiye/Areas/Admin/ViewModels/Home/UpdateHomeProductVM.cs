@@ -7,11 +7,13 @@ public class UpdateHomeProductVM
 
     public string Name { get; set; }
 
-    public string Description { get; set; }
+    public string Header { get; set; }
 
     public int SalePercent { get; set; }
 
     public decimal LastPrice { get; set; }
+
+    public bool InStock { get; set; }
 
     public decimal CurrentPrice { get; set; }
 
@@ -19,7 +21,6 @@ public class UpdateHomeProductVM
 
     public int ColourId { get; set; }
 
-    public int StockStatusId { get; set; }
     [AllowNull]
     public IFormFile Photo { get; set; }
 

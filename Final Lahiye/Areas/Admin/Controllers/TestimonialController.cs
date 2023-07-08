@@ -52,6 +52,7 @@ public class TestimonialController : Controller
         Testimonial testimonial = new()
         {
             Title = createTestimonialVM.Title,
+            Header = createTestimonialVM.Header,
             Image = filename
         };
         await _context.Testimonials.AddAsync(testimonial);
@@ -97,6 +98,7 @@ public class TestimonialController : Controller
         {
             Id = testimonial.Id,
             Title = testimonial.Title,
+            Header = testimonial.Header,
             Image = testimonial.Image,
         };
         return View(updateTestimonial);
@@ -134,6 +136,7 @@ public class TestimonialController : Controller
             #endregion
         }
         testimonial.Title = updateTestimoniaVMl.Title;
+        testimonial.Header = updateTestimoniaVMl.Header;
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }

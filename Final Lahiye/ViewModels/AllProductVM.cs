@@ -3,7 +3,7 @@
 namespace Final_Lahiye.ViewModels;
 public class AllProductVM
 {
-    public Product Product { get; set; }
+    public HomeProduct Product { get; set; }
 
-    public List<Product> Products { get; set; }
+    public List<HomeProduct> Products { get; set; }
 }

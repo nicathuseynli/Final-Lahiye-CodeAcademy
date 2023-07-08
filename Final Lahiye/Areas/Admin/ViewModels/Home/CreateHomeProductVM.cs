@@ -5,12 +5,15 @@ public class CreateHomeProductVM
 {
     [Required]
     public string Name { get; set; }
-    [Required]
-    public string Description { get; set; }
 
     public int SalePercent { get; set; }
 
     public decimal LastPrice { get; set; }
+
+    public string Header { get; set; }
+
+    [Required]
+    public bool InStock { get; set; }
 
     [Required]
     public decimal CurrentPrice { get; set; }
@@ -18,8 +21,6 @@ public class CreateHomeProductVM
     public int CategoryId { get; set; }
 
     public int ColourId { get; set; }
-
-    public int StockStatusId { get; set; }
 
     [Required]
     public IFormFile Photo { get; set; }
