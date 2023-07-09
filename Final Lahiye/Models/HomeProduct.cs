@@ -8,6 +8,28 @@ public class HomeProduct :BaseEntity<int>
 
     public string Name { get; set; }
 
+    public int Rating { get; set; }
+
+    public string SKUCode { get; set; }
+
+    public string DeliveryInfo { get; set; }
+
+    public string ShippingInfo { get; set; }
+
+    public string Description { get; set; }
+
+    public string Style { get; set; }
+
+    public string RoomType { get; set; }
+
+    public int PackCount { get; set; }
+
+    public string IdealFor { get; set; }
+
+    public int Capacity { get; set; }
+
+    public string Shape { get; set; }
+
     public int SalePercent { get; set; }
 
     public decimal LastPrice { get; set; }

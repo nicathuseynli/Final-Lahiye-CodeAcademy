@@ -10,4 +10,6 @@ public class ShopVM
     public List<Colour> Colours { get; set; }
 
     public HomeProduct Product { get; set; }
+
+    public Category Category { get; set; }
 }

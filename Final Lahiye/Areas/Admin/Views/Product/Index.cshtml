@@ -2,7 +2,7 @@
 @{
     int count = 1;
 }
-<div class="container">
+<div class="container-fluid">
     <div class="d-flex justify-content-end">
         <a asp-action="Create" class="btn btn-outline-success mx-2 my-2">Create</a>
     </div>
@@ -16,6 +16,16 @@
                     <th scope="col">LastPrice</th>
                     <th scope="col">CurrentPrice</th>
                     <th scope="col">SalePercent</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">SKUCode</th>
+                    <th scope="col">DeliveryInfo</th>
+                    <th scope="col">ShippingInfo</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Style</th>
+                    <th scope="col">RoomType</th>
+                    <th scope="col">IdealFor</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Shape</th>
                     <th scope="col">InStock</th>
                     <th scope="col">CategoryId</th>
                     <th scope="col">ShopColourId</th>
@@ -33,6 +43,16 @@
                         <td scope="col">@homeProduct.LastPrice</td>
                         <td scope="col">@homeProduct.CurrentPrice</td>
                         <td scope="col">@homeProduct.SalePercent</td>
+                        <td scope="col">@homeProduct.Rating</td>
+                        <td scope="col">@homeProduct.SKUCode</td>
+                        <td scope="col">@homeProduct.DeliveryInfo</td>
+                        <td scope="col">@homeProduct.ShippingInfo</td>
+                        <td scope="col">@homeProduct.Description</td>
+                        <td scope="col">@homeProduct.Style</td>
+                        <td scope="col">@homeProduct.RoomType</td>
+                        <td scope="col">@homeProduct.IdealFor</td>
+                        <td scope="col">@homeProduct.Capacity</td>
+                        <td scope="col">@homeProduct.Shape</td>
                         <td scope="col">@homeProduct.InStock</td>
                         <td scope="col">@homeProduct.CategoryId</td>
                         <td scope="col">@homeProduct.ColourId</td>

@@ -18,7 +18,7 @@ public class ProductController : Controller
         var homeproduct = await _context.Products.Include(c => c.Category).FirstOrDefaultAsync(x => x.Id == id);
         var newproduct = await _context.Products.ToListAsync();
 
-        AllProductVM productVM = new ()
+        ProductVM productVM = new ()
         {
             Product = homeproduct,
             Products = newproduct,

@@ -13,6 +13,38 @@ public class CreateHomeProductVM
     public string Header { get; set; }
 
     [Required]
+    public int Rating { get; set; }
+
+    [Required]
+    public string SKUCode { get; set; }
+
+    [Required]
+    public string DeliveryInfo { get; set; }
+
+    [Required]
+    public string ShippingInfo { get; set; }
+
+    [Required]
+    public string Description { get; set; }
+
+    [Required]
+    public string Style { get; set; }
+
+    [Required]
+    public string RoomType { get; set; }   
+    
+    [Required]
+    public int PackCount { get; set; }
+
+    [Required]
+    public string IdealFor { get; set; }
+
+    [Required]
+    public int Capacity { get; set; }
+
+    [Required]
+    public string Shape { get; set; }   
+
     public bool InStock { get; set; }
 
     [Required]

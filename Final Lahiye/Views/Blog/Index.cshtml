@@ -7,7 +7,7 @@
             {
              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 blog-page-item">
 
-            <a asp-controller="SingleBlog" asp-action="Index" class="blog-page-item-single"><img src="~/images/@item.Image" alt="" class="blog-page-image"></a>
+            <a asp-controller="SingleBlog" asp-action="Index" asp-route-id="@item.Id" class="blog-page-item-single"><img src="~/images/@item.Image" alt="" class="blog-page-image"></a>
             
             <p class="blog-page-personId">By @item.Author.FullName</p>
             <h5 class="blog-page-header">@item.Title</h5>

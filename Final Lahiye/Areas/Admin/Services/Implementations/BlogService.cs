@@ -53,37 +53,37 @@ public class BlogService : IBlogService
     public async Task<bool> UpdateAsync(UpdateBlogPageVM updateBlogPageVM)
     {
 
-        var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == updateBlogPageVM.Id);
-        if (blog == null) 
-            return false;
+        //var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == updateBlogPageVM.Id);
+        //if (blog == null) 
+        //    return false;
 
-        if (updateBlogPageVM.Photo != null)
-        {
-            #region Create NewImage
-            if (!updateBlogPageVM.Photo.ContentType.Contains("image/"))
-                return false;
+        //if (updateBlogPageVM.Photo != null)
+        //{
+        //    #region Create NewImage
+        //    if (!updateBlogPageVM.Photo.ContentType.Contains("image/"))
+        //        return false;
 
-            if (updateBlogPageVM.Photo.Length / 1024 > 1000)
-                return false;
+        //    if (updateBlogPageVM.Photo.Length / 1024 > 1000)
+        //        return false;
 
-            string filename = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.Photo.FileName;
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
+        //    string filename = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.Photo.FileName;
+        //    string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
 
-            using FileStream stream = new FileStream(path, FileMode.Create);
+        //    using FileStream stream = new FileStream(path, FileMode.Create);
 
-            await updateBlogPageVM.Photo.CopyToAsync(stream);
-            #endregion
+        //    await updateBlogPageVM.Photo.CopyToAsync(stream);
+        //    #endregion
 
-            #region DeleteOldImage
-            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.Image);
-            if (System.IO.File.Exists(oldPath))
-                System.IO.File.Delete(oldPath);
-            blog.Image = filename;
-            #endregion
-        }
-        blog.Title = updateBlogPageVM.Title;
-        blog.AuthorId = updateBlogPageVM.AuthorId;
-        await _context.SaveChangesAsync();
+        //    #region DeleteOldImage
+        //    string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.Image);
+        //    if (System.IO.File.Exists(oldPath))
+        //        System.IO.File.Delete(oldPath);
+        //    blog.Image = filename;
+        //    #endregion
+        //}
+        //blog.Title = updateBlogPageVM.Title;
+        //blog.AuthorId = updateBlogPageVM.AuthorId;
+        //await _context.SaveChangesAsync();
         return true;
     }
 }

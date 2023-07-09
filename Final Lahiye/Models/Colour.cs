@@ -3,5 +3,5 @@ public class Colour:BaseEntity<int>
 {
     public string Name { get; set; }
     //navigation
-    public virtual ICollection<Colour> Colours { get; set; }
+    public virtual ICollection<HomeProduct> Products { get; set; }
 }

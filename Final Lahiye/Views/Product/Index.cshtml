@@ -1,9 +1,13 @@
-﻿   <section id="ProductAndSidebar">
+﻿ @model ProductVM
+@*@{
+    int Count = Model.Product.Count();
+}*@
+  <section id="ProductAndSidebar">
       <div class="container mt-5 mb-5 pt-5 pb-5">
         <div class="sideBarHeader">
           <span class="singlePageBarHeader"><a id="sideBarHeaderClick" name="Path"asp-controller="Home" asp-action="Index" >Home</a><span
               class="category"> /
-              Furniture /</span><span class="categprodname"> Green ArmChair</span></span>
+              @Model.Product?.Category /</span><span class="categprodname"> @Model.Product?.Name </span></span>
         </div>
         <div class="row gy-5 m-auto">
           <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 pe-lg-5">
@@ -12,12 +16,12 @@
                 <div class="row gy-4">
                   <div class='col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4' id='thumb_container'>
                     <img  class="primary-img"
-                      src="~/images/interior-slider-product2.webp"
+                      src="~/images/@Model.Product?.Image"
                        onClick='sendimg(this);'>
                   </div>
                   <div class='col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4' id='thumb_container'>
                     <img class="primary-img"
-                      src="~/images/interior-slider-product1.webp"
+                      src="~/images/@Model.Product?.Image"
                        onClick='sendimg(this);'>
                   </div>
                 </div>
@@ -25,7 +29,7 @@
               <div class='col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12'>
                 <div id="main_image">
                   <img id='mainimg' class="primary-img"
-                    src="~/images/interior-slider-product2.webp"
+                    src="~/images/@Model.Product?.Image"
                     onClick='sendimg(this);'>
                 </div>
               </div>
@@ -33,21 +37,23 @@
           </div>
           <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 ps-5">
             <div class="shopDetailsProductTitle">
-              <h4>Green Armchair</h4>
+              <h4>@Model.Product?.Name</h4>
             </div>
             <div class="shopDetailsProductReting d-flex align-items-center flex-wrap">
               <ul class="d-flex mt-3">
-                <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                  @for (int i = 0; i < Model.Product?.Rating ; i++)
+                  {
+                    <li class="shopDetailsProductRetingItem">
+                        <i class="fa-regular fa-star"></i>
+                     </li>
+                  }
                 <li class="shopDetailsProductRetingItem"><i class="fa-regular fa-star"></i></li>
               </ul>
               <span class="shopDetailsProductReview mt-3 ms-3">(1 Review)</span>
             </div>
             <div class="shopDetailsProductPrice mt-4">
-              <del>$450.00</del>
-              <span class="singleproductPrice">$380.00</span><span class="singleproduct-discount ms-3">-16%</span>
+              <del>$@Model.Product?.LastPrice</del>
+              <span class="singleproductPrice">$@Model.Product?.CurrentPrice</span><span class="singleproduct-discount ms-3">-@Model.Product?.SalePercent%</span>
             </div>
             <div class="shopDetailsProduct shopDetailsProductDesc">
               <i class="fa-solid fa-circle-check mt-1"></i>
@@ -78,25 +84,25 @@
             <div class="prod-info d-flex flex-column order">
               <div class="delivery-time mt-3 me-5">
                 <i class="fa-solid fa-truck-fast"></i><span class="estimated-delivery">Estimated Delivery:</span><span
-                  class="delivery-time">Within 5-7 days</span>
+                  class="delivery-time">@Model.Product?.DeliveryInfo</span>
               </div>
               <div class="free-shipping mt-1 me-4">
                 <i class="fa-solid fa-cart-shopping"></i><span class="free-shipping">Free shipping:</span><span
-                  class="order-price">On orders over $1499 and above</span>
+                  class="order-price">@Model.Product?.ShippingInfo</span>
               </div>
             </div>
             <div class="product-datas d-flex justify-content-between align-items-center">
               <span class="sku_wrapper mt-3">
-                SKU : <span class="sku"> SGA90056</span>
+                SKU : <span class="sku"> @Model.Product.SKUCode</span>
               </span>
               <span class="categories_wrapper mt-3">
                 Categories : <span class="categories">
-                  <a class="category_type" href="#">Deal,</a>
-                  <a class="category_type" href="#">Furniture</a></span>
-              </span>
+                  <a class="category_type" href="#">@Model.Product.Category</a>
+@*                  <a class="category_type" href="#">Furniture</a></span>
+*@              </span>
             </div>
             <div class="payment-product mt-5">
-              <p>Online Payment</p>
+              <p>Online Payment options</p>
               <img src="~/images/product-online-Payment.png" alt="">
             </div>
           </div>
@@ -138,21 +144,14 @@
                       <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
                         <div class="row">
                           <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 mt-4">
-                            <img src="~/images/interior-slider-product2.webp" width="90%" height="90%" alt="">
+                            <img src="~/images/@Model.Product.Image" width="90%" height="90%" alt="">
                           </div>
                           <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7 mt-5 d-flex  flex-column">
                             <h5 class="desc-product-header mb-4">Product Details</h5>
             
-                            <p class="desc-product-details-up mb-5">Talk digital shark heads-up door win involved turn timepoint
-                              bed.
-                              Room management exploratory they
-                              forward should reinvent field. Dunder buy-in first invested gave ipsum down email monday elephant.
-                              Please pushback deliverables dive best.</p>
-            
+                            <p class="desc-product-details-up mb-5">@Model.Product.Description
+                            </p>
                             <p class="desc-product-details-down mt-2">
-                              Commitment are by world across ui first charts. 2 unit live whatever diarize when closing all know.
-                              Now anomalies shelf-ware you win-win-win me close plane. Don't stop then tomorrow work. Creep
-                              procrastinating break support sky.
                             </p>
                           </div>
                         </div>
@@ -170,13 +169,13 @@
                                 <p>Color</p>
                               </div>
                               <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 mt-4">
-                                <p>Sofa</p>
-                                <p>Wood</p>
-                                <p>Everyone</p>
-                                <p>1</p>
-                                <p>1</p>
-                                <p>Rectangular</p>
-                                <p>Dark Brown</p>
+                                <p>@Model.Product?.Style</p>
+                                <p>@Model.Product?.RoomType</p>
+                                <p>@Model.Product?.PackCount</p>
+                                <p>@Model.Product?.IdealFor</p>
+                                <p>@Model.Product?.Capacity</p>
+                                <p>@Model.Product?.Shape</p>
+                                <p>@Model.Product?.Category</p>
                               </div>
                             </div>
                           </div>

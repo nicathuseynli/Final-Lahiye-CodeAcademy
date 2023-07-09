@@ -2570,8 +2570,11 @@ left: 0;background-color: #000;
 /*Shop Page Start*/
 
 /*===========Shop Start==========*/
+.sidebarCat{
+    color:black
+}
 .footer-solid {
-  position: relative;
+    position: relative;
 }
 .footer-soli:before {
   position: absolute;
