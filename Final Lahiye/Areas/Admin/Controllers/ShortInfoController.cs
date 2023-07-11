@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.Home;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.Home;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,14 @@ public class ShortInfoController : Controller
     private readonly AppDbContext _context;
     private readonly ILogger<ShortInfoController> _logger;
     private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly IShortInfoService _shortInfoService;
 
-    public ShortInfoController(AppDbContext context, ILogger<ShortInfoController> logger, IWebHostEnvironment webHostEnvironment)
+    public ShortInfoController(AppDbContext context, ILogger<ShortInfoController> logger, IWebHostEnvironment webHostEnvironment, IShortInfoService shortInfoService)
     {
         _context = context;
         _logger = logger;
         _webHostEnvironment = webHostEnvironment;
+        _shortInfoService = shortInfoService;
     }
 
     public async Task<IActionResult> Index()
@@ -41,51 +44,23 @@ public class ShortInfoController : Controller
 
         if (createshortInfoVM.IconPhoto.Length / 1024 > 500) return View();
 
-        string filename = Guid.NewGuid().ToString() + "_" + createshortInfoVM.IconPhoto.FileName;
-
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-        using FileStream stream = new FileStream(path, FileMode.Create);
-
-        await createshortInfoVM.IconPhoto.CopyToAsync(stream);
-
-        ShortInformation shortInfo = new()
-        {
-            Title = createshortInfoVM.Title,
-            Information = createshortInfoVM.Information,
-            Icon = filename
-        };
-        await _context.ShortInformations.AddAsync(shortInfo);
-        await _context.SaveChangesAsync();
+        await _shortInfoService.CreateAsync(createshortInfoVM);
         return RedirectToAction(nameof(Index));
     }
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var shortInfo = await _context.ShortInformations.FirstOrDefaultAsync(x => x.Id == id);
-        if (shortInfo == null)
-            return NotFound();
-        return View(shortInfo);
+        var delete = await _shortInfoService.GetByIdAsync(id);
+
+        return View(delete);
     }
+
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-
-        var shortInfo = await _context.ShortInformations.FirstOrDefaultAsync(x => x.Id == id);
-        if (shortInfo == null)
-            return View();
-
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", shortInfo.Icon);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.ShortInformations.Remove(shortInfo);
-        await _context.SaveChangesAsync();
+        var delete = _shortInfoService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(Index));
-
     }
 
     [HttpGet]
@@ -107,37 +82,8 @@ public class ShortInfoController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateShortInfoVM updateshortInfoVM)
     {
-
-        var shortInfo = await _context.ShortInformations.FirstOrDefaultAsync(x => x.Id == updateshortInfoVM.Id);
-        if (shortInfo == null) return NotFound();
-
-        if (updateshortInfoVM.IconPhoto != null)
-        {
-            #region Create NewImage
-            if (!updateshortInfoVM.IconPhoto.ContentType.Contains("image/"))
-                return View();
-
-            if (updateshortInfoVM.IconPhoto.Length / 1024 > 1000)
-                return View();
-
-            string filename = Guid.NewGuid().ToString() + " _ " + updateshortInfoVM.IconPhoto.FileName;
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-            using FileStream stream = new FileStream(path, FileMode.Create);
-
-            await updateshortInfoVM.IconPhoto.CopyToAsync(stream);
-            #endregion
-
-            #region DeleteOldImage
-            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", shortInfo.Icon);
-            if (System.IO.File.Exists(oldPath))
-                System.IO.File.Delete(oldPath);
-            shortInfo.Icon = filename;
-            #endregion
-        }
-        shortInfo.Information = updateshortInfoVM.Information;
-        shortInfo.Title = updateshortInfoVM.Title;
-        await _context.SaveChangesAsync();
+        var result = await _shortInfoService.UpdateAsync(updateshortInfoVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.FAQ;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.FAQ;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ public class FAQPageController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<FAQPageController> _logger;
+    private readonly IFaqService _faqService;
 
-    public FAQPageController(AppDbContext context, ILogger<FAQPageController> logger)
+    public FAQPageController(AppDbContext context, ILogger<FAQPageController> logger, IFaqService faqService)
     {
         _context = context;
         _logger = logger;
+        _faqService = faqService;
     }
 
     public async Task<IActionResult> Index()
@@ -35,34 +38,21 @@ public class FAQPageController : Controller
     {
         if (!ModelState.IsValid) return View();
 
-        FaqPage faqPage = new()
-        {
-            Title = createFaqPageVM.Title,
-            Question = createFaqPageVM.Question,
-            Answer = createFaqPageVM.Answer,
-        };
-        await _context.FaqPages.AddAsync(faqPage);
-        await _context.SaveChangesAsync();
+        await _faqService.CreateAsync(createFaqPageVM);
         return RedirectToAction(nameof(Index));
     }
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var faqPage = await _context.FaqPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (faqPage == null)
-            return NotFound();
+        var faqPage = await _faqService.GetByIdAsync(id);
+
         return View(faqPage);
     }
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-
-        var faqPage = await _context.FaqPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (faqPage == null)
-            return View();
-
-        _context.FaqPages.Remove(faqPage);
-        await _context.SaveChangesAsync();
+        var delete = _faqService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(Index));
 
     }
@@ -86,14 +76,8 @@ public class FAQPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateFaqPageVM updateFaqPageVM)
     {
-
-        var faqPage = await _context.FaqPages.FirstOrDefaultAsync(x => x.Id == updateFaqPageVM.Id);
-        if (faqPage == null) return NotFound();
-
-        faqPage.Title = updateFaqPageVM.Title;
-        faqPage.Question = updateFaqPageVM.Question;
-        faqPage.Answer = updateFaqPageVM.Answer;
-        await _context.SaveChangesAsync();
+        var result = await _faqService.UpdateAsync(updateFaqPageVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

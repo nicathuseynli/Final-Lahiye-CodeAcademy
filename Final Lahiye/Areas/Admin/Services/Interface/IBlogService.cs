@@ -8,7 +8,7 @@ public interface IBlogService
 
     Task<Blog> GetByIdAsync(int id);
 
-    Task DeleteAsync(int id);
+    Task<bool> DeleteAsync(int id);
 
-    Task<bool> UpdateAsync(UpdateBlogPageVM updateBlogPageVM);
+    Task<Blog> UpdateAsync(UpdateBlogPageVM updateBlogPageVM);
 }

@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.Contact;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.Contact;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,13 @@ public class ContactDetailsController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<ContactDetailsController> _logger;
+    private readonly IContactDetailsService _contactDetailsService;
 
-
-    public ContactDetailsController(AppDbContext context, ILogger<ContactDetailsController> logger, IWebHostEnvironment webHostEnvironment)
+    public ContactDetailsController(AppDbContext context, ILogger<ContactDetailsController> logger, IWebHostEnvironment webHostEnvironment, IContactDetailsService contactDetailsService)
     {
         _context = context;
         _logger = logger;
+        _contactDetailsService = contactDetailsService;
     }
 
     public async Task<IActionResult> Index()
@@ -35,37 +37,21 @@ public class ContactDetailsController : Controller
     public async Task<IActionResult> Create(CreateContactDetailsVM createContactDetailsVM)
     {
         if (!ModelState.IsValid) return View();
-
-        ContactDetails details = new()
-        {
-            ByAddress = createContactDetailsVM.ByAddress,
-            ByEmail = createContactDetailsVM.ByEmail,
-            ByPhone = createContactDetailsVM.ByPhone,
-        };
-        await _context.ContactDetailss.AddAsync(details);
-        await _context.SaveChangesAsync();
+        await _contactDetailsService.CreateAsync(createContactDetailsVM);
         return RedirectToAction(nameof(Index));
     }
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var details = await _context.ContactDetailss.FirstOrDefaultAsync(x => x.Id == id);
-        if (details == null)
-            return NotFound();
+        var details = await _contactDetailsService.GetByIdAsync(id);
         return View(details);
     }
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-
-        var details = await _context.ContactDetailss.FirstOrDefaultAsync(x => x.Id == id);
-        if (details == null)
-            return View();
-
-        _context.ContactDetailss.Remove(details);
-        await _context.SaveChangesAsync();
+        var delete = _contactDetailsService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(Index));
-
     }
 
     [HttpGet]
@@ -87,16 +73,8 @@ public class ContactDetailsController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateContactDetailsVM updateContactDetailsVM)
     {
-
-        var details = await _context.ContactDetailss.FirstOrDefaultAsync(x => x.Id == updateContactDetailsVM.Id);
-        if (details == null) return NotFound();
-
-
-        details.ByAddress = updateContactDetailsVM.ByAddress;
-        details.ByEmail = updateContactDetailsVM.ByEmail;
-        details.ByPhone = updateContactDetailsVM.ByPhone;
-
-        await _context.SaveChangesAsync();
+        var result = await _contactDetailsService.UpdateAsync(updateContactDetailsVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

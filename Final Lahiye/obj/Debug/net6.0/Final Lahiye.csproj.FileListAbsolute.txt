@@ -322,3 +322,4 @@ C:\Users\user\Desktop\Final Lahiye\Final Lahiye\bin\Debug\net6.0\System.Web.WebP
 C:\Users\user\Desktop\Final Lahiye\Final Lahiye\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
 C:\Users\user\Desktop\Final Lahiye\Final Lahiye\bin\Debug\net6.0\System.Web.WebPages.dll
 C:\Users\user\Desktop\Final Lahiye\Final Lahiye\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\Final Lahiye\Final Lahiye\bin\Debug\net6.0\AutoMapper.dll

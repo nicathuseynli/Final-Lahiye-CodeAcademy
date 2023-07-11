@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.LoginPage;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.LoginPage;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,13 @@ public class LoginPageController : Controller
     private readonly AppDbContext _context;
     private readonly ILogger<LoginPageController> _logger;
     private readonly IWebHostEnvironment _webHostEnvironment;
-
-    public LoginPageController(AppDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<LoginPageController> logger)
+    private readonly ILoginPageService _loginPageService;
+    public LoginPageController(AppDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<LoginPageController> logger, ILoginPageService loginPageService)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
         _logger = logger;
+        _loginPageService = loginPageService;
     }
     public async Task<IActionResult> Index()
     {
@@ -38,47 +40,21 @@ public class LoginPageController : Controller
 
         if (createLoginVM.Photo.Length / 1024 > 500) return View();
 
-        string filename = Guid.NewGuid().ToString() + "_" + createLoginVM.Photo.FileName;
+        await _loginPageService.CreateAsync(createLoginVM);
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-        using FileStream stream = new FileStream(path, FileMode.Create);
-
-        await createLoginVM.Photo.CopyToAsync(stream);
-
-        LoginPage loginPage = new()
-        {
-            Description = createLoginVM.Description,
-            Image = filename
-        };
-        await _context.LoginPages.AddAsync(loginPage);
-        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var loginpage = await _context.LoginPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (loginpage == null)
-            return NotFound();
-        return View(loginpage);
+        var delete = await _loginPageService.GetByIdAsync(id);
+        return View(delete);
     }
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var loginpage = await _context.LoginPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (loginpage == null)
-            return View();
-
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", loginpage.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.LoginPages.Remove(loginpage);
-        await _context.SaveChangesAsync();
+        var delete = _loginPageService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(Index));
     }
 
@@ -100,36 +76,8 @@ public class LoginPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateLoginPageVM updateLoginVM)
     {
-
-        var loginpage = await _context.LoginPages.FirstOrDefaultAsync(x => x.Id == updateLoginVM.Id);
-        if (loginpage == null) return NotFound();
-
-        if (updateLoginVM.Photo != null)
-        {
-            #region Create NewImage
-            if (!updateLoginVM.Photo.ContentType.Contains("image/"))
-                return View();
-
-            if (updateLoginVM.Photo.Length / 1024 > 1000)
-                return View();
-
-            string filename = Guid.NewGuid().ToString() + " _ " + updateLoginVM.Photo.FileName;
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-            using FileStream stream = new FileStream(path, FileMode.Create);
-
-            await updateLoginVM.Photo.CopyToAsync(stream);
-            #endregion
-
-            #region DeleteOldImage
-            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", loginpage.Image);
-            if (System.IO.File.Exists(oldPath))
-                System.IO.File.Delete(oldPath);
-            loginpage.Image = filename;
-            #endregion
-        }
-        loginpage.Description = updateLoginVM.Description;
-        await _context.SaveChangesAsync();
+        var result = await _loginPageService.UpdateAsync(updateLoginVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

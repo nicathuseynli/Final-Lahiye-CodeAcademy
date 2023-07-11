@@ -42,48 +42,22 @@ public class AuthorController : Controller
 
         if (createAuthorVM.Photo.Length / 1024 > 500) return View();
 
-        string filename = Guid.NewGuid().ToString() + "_" + createAuthorVM.Photo.FileName;
-
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-        using FileStream stream = new FileStream(path, FileMode.Create);
-
-        await createAuthorVM.Photo.CopyToAsync(stream);
-        Author author = new()
-        {
-            FullName = createAuthorVM.FullName,
-            Proffesion = createAuthorVM.Proffession,
-            BlogId = createAuthorVM.Blogid,
-            Image = filename,
-        };
-        await _context.Authors.AddAsync(author);
-        await _context.SaveChangesAsync();
+        await _authorService.CreateAsync(createAuthorVM);
         return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
-        if (author == null)
-            return View();
+        var details = await _authorService.GetByIdAsync(id);
         return View(nameof(Index));
     }
 
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-
-        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.Authors.Remove(author);
-        await _context.SaveChangesAsync();
+        var delete = _authorService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(Index));
     }
 
@@ -107,37 +81,8 @@ public class AuthorController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateAuthorVM updateAuthorVM)
     {
-        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == updateAuthorVM.Id);
-        if (author == null)
-            return View();
-
-        if (updateAuthorVM.Photo != null)
-        {
-            #region Create NewImage
-            if (!updateAuthorVM.Photo.ContentType.Contains("image/"))
-                return View();
-
-            if (updateAuthorVM.Photo.Length / 1024 > 1000)
-                return View();
-
-            string filename = Guid.NewGuid().ToString() + " _ " + updateAuthorVM.Photo.FileName;
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-            using FileStream stream = new FileStream(path, FileMode.Create);
-
-            await updateAuthorVM.Photo.CopyToAsync(stream);
-            #endregion
-
-            #region DeleteOldImage
-            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
-            if (System.IO.File.Exists(oldPath))
-                System.IO.File.Delete(oldPath);
-            author.Image = filename;
-            #endregion
-        }
-        author.FullName = updateAuthorVM.FullName;
-        author.Proffesion = updateAuthorVM.Proffession;
-        await _context.SaveChangesAsync();
+        var result = await _authorService.UpdateAsync(updateAuthorVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.HeaderUp;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.HeaderUp;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +11,19 @@ public class HeaderUpController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<HeaderUpController> _logger;
+    private readonly IHeaderUpTextService _headerUpTextService;
+    private readonly IHeaderUpSocialMediaService _headerUpSocialMediaService;
     private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public HeaderUpController(AppDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<HeaderUpController> logger)
+    public HeaderUpController(AppDbContext context, IWebHostEnvironment webHostEnvironment, 
+        ILogger<HeaderUpController> logger, IHeaderUpTextService headerUpTextService,
+        IHeaderUpSocialMediaService headerUpSocialMediaService)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
         _logger = logger;
+        _headerUpTextService = headerUpTextService;
+        _headerUpSocialMediaService = headerUpSocialMediaService;
     }
     //=======================================Text Area===========================================//
     public async Task<IActionResult> TextIndex()
@@ -33,30 +40,21 @@ public class HeaderUpController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateText(CreateHeaderUpTextVM createHeaderUpTextVM)
     {
-        HeaderUpText headerupText = new()
-        {
-            Text = createHeaderUpTextVM.Text,
-        };
-        await _context.HeaderUpTexts.AddAsync(headerupText);
-        await _context.SaveChangesAsync();
+        await _headerUpTextService.CreateAsync(createHeaderUpTextVM);
         return RedirectToAction(nameof(TextIndex));
     }
     [HttpGet]
     public async Task<IActionResult> DetailsText(int id)
     {
-        var headerupText = await _context.HeaderUpTexts.FirstOrDefaultAsync(x=>x.Id == id);
-        if (headerupText == null)
-            return NotFound();
+        var headerupText = await _headerUpTextService.GetByIdAsync(id);
+
         return View(headerupText);
     }
     [HttpPost]
     public async Task<IActionResult> DeleteText(int id)
     {
-        var headerupText = await _context.HeaderUpTexts.FirstOrDefaultAsync(x => x.Id == id);
-        if (headerupText == null)
-            return View();
-        _context.HeaderUpTexts.Remove(headerupText);
-        await _context.SaveChangesAsync();
+        var delete = _headerUpTextService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(TextIndex));
     }
     [HttpGet]
@@ -76,11 +74,8 @@ public class HeaderUpController : Controller
     [HttpPost]
     public async Task<IActionResult> UpdateText(UpdateHeaderUpTextVM updateHeaderUpTextVM)
     {
-        var headerupText = await _context.HeaderUpTexts.FirstOrDefaultAsync(x => x.Id == updateHeaderUpTextVM.Id);
-        if(headerupText == null) return NotFound();
-
-        headerupText.Text = updateHeaderUpTextVM.Text;
-        await _context.SaveChangesAsync();
+        var result = await _headerUpTextService.UpdateAsync(updateHeaderUpTextVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(TextIndex));
     }
 
@@ -108,33 +103,22 @@ public class HeaderUpController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateSocialMedia(CreateHeaderUpSocialMediaVM createHeaderUpSocialMediaVM)
     {
-        HeaderUpSocialMedia headerUpSocialMedia = new()
-        {
-            FacebookLink = createHeaderUpSocialMediaVM.FacebookLink,
-            InstagramLink = createHeaderUpSocialMediaVM.InstagramLink,
-            TwitterLink = createHeaderUpSocialMediaVM.TwitterLink,
-        };
-        await _context.HeaderUpSocialMedias.AddAsync(headerUpSocialMedia);
-        await _context.SaveChangesAsync();
+        await _headerUpSocialMediaService.CreateAsync(createHeaderUpSocialMediaVM);
         return RedirectToAction(nameof(SocialMediaIndex));
     }
 
     [HttpGet]
     public async Task<IActionResult> DetailsSocialMedia (int id)
     {
-        var headerUpSocialMedia = await _context.HeaderUpSocialMedias.FirstOrDefaultAsync();
-        if (headerUpSocialMedia == null) return NotFound();
+        var headerUpSocialMedia = await _headerUpSocialMediaService.GetByIdAsync(id);
         return View(headerUpSocialMedia);
     }
 
     [HttpPost]
     public async Task<IActionResult> DeleteSocialMedia(int id)
     {
-        var headerUpSocialMedia = await _context.HeaderUpSocialMedias.FirstOrDefaultAsync(x=>x.Id==id);
-        if (headerUpSocialMedia == null) return View();
-
-        _context.HeaderUpSocialMedias.Remove(headerUpSocialMedia);
-        await _context.SaveChangesAsync();
+        var delete = _headerUpSocialMediaService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(SocialMediaIndex));
     }
 
@@ -157,14 +141,8 @@ public class HeaderUpController : Controller
     [HttpPost]
     public async Task<IActionResult> UpdateSocialMedia(UpdateHeaderUpSocialMediaVM updateHeaderUpSocialMediaVM)
     {
-        var headerUpSocialMedia = await _context.HeaderUpSocialMedias.FirstOrDefaultAsync(x => x.Id == updateHeaderUpSocialMediaVM.Id);
-        if(headerUpSocialMedia == null) return NotFound();
-
-        headerUpSocialMedia.FacebookLink= updateHeaderUpSocialMediaVM.FacebookLink;
-        headerUpSocialMedia.TwitterLink = updateHeaderUpSocialMediaVM.TwitterLink;
-        headerUpSocialMedia.InstagramLink = updateHeaderUpSocialMediaVM.InstagramLink;
-
-        await _context.SaveChangesAsync();
+        var result = await _headerUpSocialMediaService.UpdateAsync(updateHeaderUpSocialMediaVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(SocialMediaIndex));
     }
 

@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.ShopPage;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.ShopPage;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ public class ColourController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<ColourController> _logger;
+    private readonly IColourService _colourService;
 
-    public ColourController(AppDbContext context,ILogger<ColourController> logger)
+    public ColourController(AppDbContext context, ILogger<ColourController> logger, IColourService colourService)
     {
         _context = context;
         _logger = logger;
+        _colourService = colourService;
     }
 
     public async Task<IActionResult> Index()
@@ -33,36 +36,24 @@ public class ColourController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateColourVM createColourVM)
     {
-
-        Colour colour = new()
-        {
-            Name = createColourVM.Name,
-        };
-        await _context.Colours.AddAsync(colour);
-        await _context.SaveChangesAsync();
+        await _colourService.CreateAsync(createColourVM);
         return RedirectToAction(nameof(Index));
 
     }
+
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var colour = await _context.Colours.FirstOrDefaultAsync(x => x.Id == id);
-        if (colour == null)
-            return NotFound();
+        var colour = await _colourService.GetByIdAsync(id);
         return View(colour);
     }
+
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-
-        var colour = await _context.Colours.FirstOrDefaultAsync(x => x.Id == id);
-        if (colour == null)
-            return View();
-
-        _context.Colours.Remove(colour);
-        await _context.SaveChangesAsync();
+        var delete = _colourService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction("Index");
-
     }
 
     [HttpGet]
@@ -82,12 +73,8 @@ public class ColourController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateColourVM updateColourVM)
     {
-
-        var colour = await _context.Colours.FirstOrDefaultAsync(x => x.Id == updateColourVM.Id);
-        if (colour == null) return NotFound();
-
-        colour.Name = updateColourVM.Name;
-        await _context.SaveChangesAsync();
+        var result = await _colourService.UpdateAsync(updateColourVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

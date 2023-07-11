@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DDRa6r1DmZZWbAE3IM4qQ+g2DbxNU4/Sfa9Y+G9+RUs=",
+  "Hash": "pgvdr9mIydNVke7rujG0VEjwZO6gk2Df/T5EtxxSY7g=",
   "Source": "Final Lahiye",
   "BasePath": "_content/Final Lahiye",
   "Mode": "Default",
@@ -2788,23 +2788,6 @@
       "OriginalItemSpec": "wwwroot\\images\\1b10bfc8-7f9f-40de-ba8d-6df00a92fd89_bgforheader.jpg"
     },
     {
-      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\204e8a3e-f0dd-477a-a517-f1cd64a96ffc_WIN_20230108_00_08_06_Pro.jpg",
-      "SourceId": "Final Lahiye",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
-      "BasePath": "_content/Final Lahiye",
-      "RelativePath": "images/204e8a3e-f0dd-477a-a517-f1cd64a96ffc_WIN_20230108_00_08_06_Pro.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\204e8a3e-f0dd-477a-a517-f1cd64a96ffc_WIN_20230108_00_08_06_Pro.jpg"
-    },
-    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\22ac5d51-9a96-47b6-9e1b-fbcede8168a7_interior-product5.webp",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -2871,6 +2854,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\2e6b7353-338c-41b3-bccc-da82b5bc2121_blog-image-6.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\31d8192e-b1d6-482e-a245-23e895c83fff_singleblog-creator-1.webp",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/31d8192e-b1d6-482e-a245-23e895c83fff_singleblog-creator-1.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\31d8192e-b1d6-482e-a245-23e895c83fff_singleblog-creator-1.webp"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\3236051f-7dc7-4139-9376-12b8b4aadbd1_blog-image-7.jpg",
@@ -3230,6 +3230,23 @@
       "OriginalItemSpec": "wwwroot\\images\\75f1542f-eb64-4d43-9007-774a40f3b740 _ contactpagestore3.jpg"
     },
     {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\7d29590e-4384-4f4d-8945-713ae12dd911 _ review-user-null-photo.png",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/7d29590e-4384-4f4d-8945-713ae12dd911 _ review-user-null-photo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\7d29590e-4384-4f4d-8945-713ae12dd911 _ review-user-null-photo.png"
+    },
+    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\7d7c6276-b766-4c04-8c3c-0d567d8a811c_review-user-null-photo.png",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -3281,6 +3298,23 @@
       "OriginalItemSpec": "wwwroot\\images\\7dc362d5-1369-4c58-bb85-dcc96cc7ec67_blog-image-4.jpg"
     },
     {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\86017fec-736e-4eac-b6cb-7cb79c9271c4 _ bgforheader2.jpeg",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/86017fec-736e-4eac-b6cb-7cb79c9271c4 _ bgforheader2.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\86017fec-736e-4eac-b6cb-7cb79c9271c4 _ bgforheader2.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\92a9bb77-c457-497b-916a-4ed1557b1631 _ blog-image-4.jpg",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -3296,6 +3330,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\92a9bb77-c457-497b-916a-4ed1557b1631 _ blog-image-4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\95b89975-c305-4c2b-9e55-a4d9376aab29 _ blog-image-2.jpg",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/95b89975-c305-4c2b-9e55-a4d9376aab29 _ blog-image-2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\95b89975-c305-4c2b-9e55-a4d9376aab29 _ blog-image-2.jpg"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\967d590b-b559-4b8e-a379-5feb996fb57b_blog-image-7.jpg",
@@ -3330,6 +3381,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\98f1a5aa-6e3a-44a4-a4ff-d8302ac83e46_blog-image-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\9c9bf3f2-a18c-4dc5-9fc5-bcd9f7112c22_singleblog-creator-1.webp",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/9c9bf3f2-a18c-4dc5-9fc5-bcd9f7112c22_singleblog-creator-1.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\9c9bf3f2-a18c-4dc5-9fc5-bcd9f7112c22_singleblog-creator-1.webp"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\9e86d8aa-7d65-48f2-b6d3-b0e8fc48ad54_blog-image-8.jpg",
@@ -3383,23 +3451,6 @@
       "OriginalItemSpec": "wwwroot\\images\\ae1530bd-b054-40ba-9e26-54f3731d681a_review-user-null-photo.png"
     },
     {
-      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\b0e7c0c8-58aa-4bf0-82cd-3e243dc4aac6 _ wide-section-full-scaled.webp",
-      "SourceId": "Final Lahiye",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
-      "BasePath": "_content/Final Lahiye",
-      "RelativePath": "images/b0e7c0c8-58aa-4bf0-82cd-3e243dc4aac6 _ wide-section-full-scaled.webp",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\b0e7c0c8-58aa-4bf0-82cd-3e243dc4aac6 _ wide-section-full-scaled.webp"
-    },
-    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\b2284db3-c9e3-436b-9e85-6cbc815e3522_blog-image-4.jpg",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -3451,6 +3502,23 @@
       "OriginalItemSpec": "wwwroot\\images\\b6719789-dbb3-4921-82e5-6ac0162b23c4_bgforheader2.jpeg"
     },
     {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\b81dcb4b-131a-40a0-8289-f67ae96420f4 _ blog-image-5.jpg",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/b81dcb4b-131a-40a0-8289-f67ae96420f4 _ blog-image-5.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\b81dcb4b-131a-40a0-8289-f67ae96420f4 _ blog-image-5.jpg"
+    },
+    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\basket.svg",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -3466,23 +3534,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\basket.svg"
-    },
-    {
-      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\bfdeefbc-a8ae-4a0d-8788-09e970a9a691 _ bgforheader2.jpeg",
-      "SourceId": "Final Lahiye",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
-      "BasePath": "_content/Final Lahiye",
-      "RelativePath": "images/bfdeefbc-a8ae-4a0d-8788-09e970a9a691 _ bgforheader2.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\bfdeefbc-a8ae-4a0d-8788-09e970a9a691 _ bgforheader2.jpeg"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\bgforheader.jpg",
@@ -3687,23 +3738,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\c0a93212-bad3-4e75-81b2-307d5af71cf1 _ blog-image-7.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\cd16f022-b103-4239-b83d-b63f31964f8e _ blog-image-8.jpg",
-      "SourceId": "Final Lahiye",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
-      "BasePath": "_content/Final Lahiye",
-      "RelativePath": "images/cd16f022-b103-4239-b83d-b63f31964f8e _ blog-image-8.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\cd16f022-b103-4239-b83d-b63f31964f8e _ blog-image-8.jpg"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\cd208f49-02b2-46e8-8c70-c4d2720de96e _ interior-product.webp",

@@ -35,57 +35,62 @@ public class AuthorService : IAuthorService
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+        if(author == null) return false;
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
 
+        System.IO.File.Delete(path);
+        _context.Authors.Remove(author);
+        await _context.SaveChangesAsync();
+        return true;
     }
 
     public async Task<Author> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+        if (author == null)  
+            return null;
+        return author;
     }
 
-    public Task UpdateAsync(UpdateAuthorVM updateAuthorVM)
+    public async Task<Author> UpdateAsync(UpdateAuthorVM updateAuthorVM)
     {
-        throw new NotImplementedException();
+        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == updateAuthorVM.Id);
+        if (author == null) 
+            return null;
+
+        if (updateAuthorVM.Photo != null)
+        {
+            #region Create NewImage
+            if (!updateAuthorVM.Photo.ContentType.Contains("image/"))
+                return null;
+
+            if (updateAuthorVM.Photo.Length / 1024 > 1000)
+                return null;
+
+            string filename = Guid.NewGuid().ToString() + " _ " + updateAuthorVM.Photo.FileName;
+            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
+
+            using FileStream stream = new FileStream(path, FileMode.Create);
+    
+             await updateAuthorVM.Photo.CopyToAsync(stream);
+            #endregion
+    
+            #region DeleteOldImage
+            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
+            if (System.IO.File.Exists(oldPath))
+                System.IO.File.Delete(oldPath);
+            author.Image = filename;
+            #endregion
+        }
+        author.FullName = updateAuthorVM.FullName;
+        author.Proffesion = updateAuthorVM.Proffession;
+        await _context.SaveChangesAsync();
+        return author;
     }
-
-
-    //public async Task UpdateAsync(UpdateAuthorVM updateAuthorVM)
-    //{
-    //    var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == updateAuthorVM.Id);
-    //    if (author == null) 
-    //        return null;
-
-    //    if (updateAuthorVM.Photo != null)
-    //    {
-    //        #region Create NewImage
-    //        if (!updateAuthorVM.Photo.ContentType.Contains("image/"))
-    //            return null;
-
-    //        if (updateAuthorVM.Photo.Length / 1024 > 1000)
-    //            return null;
-
-    //        string filename = Guid.NewGuid().ToString() + " _ " + updateAuthorVM.Photo.FileName;
-    //        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-    //        using FileStream stream = new FileStream(path, FileMode.Create);
-
-    //        await updateAuthorVM.Photo.CopyToAsync(stream);
-    //        #endregion
-
-    //        #region DeleteOldImage
-    //        string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
-    //        if (System.IO.File.Exists(oldPath))
-    //            System.IO.File.Delete(oldPath);
-    //        author.Image = filename;
-    //        #endregion
-    //    }
-    //    author.FullName = updateAuthorVM.FullName;
-    //    author.Proffesion = updateAuthorVM.Proffession;
-    //    await _context.SaveChangesAsync();
-    //    return author;
-    //}
 
 }

@@ -8,7 +8,7 @@ public interface IAuthorService
 
     Task<Author> GetByIdAsync(int id);
 
-    Task DeleteAsync(int id);
+    Task<bool> DeleteAsync(int id);
 
-    Task UpdateAsync(UpdateAuthorVM updateAuthorVM);
+    Task<Author> UpdateAsync(UpdateAuthorVM updateAuthorVM);
 }

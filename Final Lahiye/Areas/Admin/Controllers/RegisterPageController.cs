@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.RegisterPage;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.RegisterPage;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,14 @@ public class RegisterPageController : Controller
     private readonly AppDbContext _context;
     private readonly ILogger<RegisterPageController> _logger;
     private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly IRegisterPageService _registerService;
 
-    public RegisterPageController(AppDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<RegisterPageController> logger)
+    public RegisterPageController(AppDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<RegisterPageController> logger, IRegisterPageService registerService)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
         _logger = logger;
+        _registerService = registerService;
     }
     public async Task<IActionResult> Index()
     {
@@ -38,47 +41,22 @@ public class RegisterPageController : Controller
 
         if (createRegisterPageVM.Photo.Length / 1024 > 500) return View();
 
-        string filename = Guid.NewGuid().ToString() + "_" + createRegisterPageVM.Photo.FileName;
+        await _registerService.CreateAsync(createRegisterPageVM);
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-        using FileStream stream = new FileStream(path, FileMode.Create);
-
-        await createRegisterPageVM.Photo.CopyToAsync(stream);
-
-        RegisterPage registerPage = new()
-        {
-            Description = createRegisterPageVM.Description,
-            Image = filename
-        };
-        await _context.RegisterPages.AddAsync(registerPage);
-        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var registerPage = await _context.RegisterPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (registerPage == null)
-            return NotFound();
-        return View(registerPage);
+        var delete = await _registerService.GetByIdAsync(id);
+
+        return View(delete);
     }
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var registerPage = await _context.RegisterPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (registerPage == null)
-            return View();
-
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", registerPage.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.RegisterPages.Remove(registerPage);
-        await _context.SaveChangesAsync();
+        var delete = _registerService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction(nameof(Index));
     }
 
@@ -100,36 +78,8 @@ public class RegisterPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateRegisterPageVM updateRegisterVM)
     {
-
-        var registerPage = await _context.RegisterPages.FirstOrDefaultAsync(x => x.Id == updateRegisterVM.Id);
-        if (registerPage == null) return NotFound();
-
-        if (updateRegisterVM.Photo != null)
-        {
-            #region Create NewImage
-            if (!updateRegisterVM.Photo.ContentType.Contains("image/"))
-                return View();
-
-            if (updateRegisterVM.Photo.Length / 1024 > 1000)
-                return View();
-
-            string filename = Guid.NewGuid().ToString() + " _ " + updateRegisterVM.Photo.FileName;
-            string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
-
-            using FileStream stream = new FileStream(path, FileMode.Create);
-
-            await updateRegisterVM.Photo.CopyToAsync(stream);
-            #endregion
-
-            #region DeleteOldImage
-            string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", registerPage.Image);
-            if (System.IO.File.Exists(oldPath))
-                System.IO.File.Delete(oldPath);
-            registerPage.Image = filename;
-            #endregion
-        }
-        registerPage.Description = updateRegisterVM.Description;
-        await _context.SaveChangesAsync();
+        var result = await _registerService.UpdateAsync(updateRegisterVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

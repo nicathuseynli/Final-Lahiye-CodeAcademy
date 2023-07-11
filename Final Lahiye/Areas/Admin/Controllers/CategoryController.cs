@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.ShopPage;
+﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+using Final_Lahiye.Areas.Admin.ViewModels.ShopPage;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ public class CategoryController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<CategoryController> _logger;
+    private readonly ICategoryService _categoryService;
 
-    public CategoryController(AppDbContext context, ILogger<CategoryController> logger)
+    public CategoryController(AppDbContext context, ILogger<CategoryController> logger, ICategoryService categoryService)
     {
         _context = context;
         _logger = logger;
+        _categoryService = categoryService;
     }
 
     public async Task<IActionResult> Index()
@@ -33,34 +36,23 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateCategoryVM createCategoryVM)
     {
-        Category category = new()
-        {
-            Name = createCategoryVM.Name,
-        };
-        await _context.Categories.AddAsync(category);
-        await _context.SaveChangesAsync();
+        await _categoryService.CreateAsync(createCategoryVM);
         return RedirectToAction(nameof(Index));
-
     }
+
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
-        if (category == null)
-            return NotFound();
+      var category = await _categoryService.GetByIdAsync(id);
         return View(category);
     }
+
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-
-        var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
-        if (category == null) return View();
-
-        _context.Categories.Remove(category);
-        await _context.SaveChangesAsync();
+        var delete = _categoryService.DeleteAsync(id);
+        if (delete == null) return View();
         return RedirectToAction("Index");
-
     }
 
     [HttpGet]
@@ -80,12 +72,8 @@ public class CategoryController : Controller
     [HttpPost]
     public async Task<IActionResult> Update(UpdateCategoryVM updateCategoryVM)
     {
-
-        var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == updateCategoryVM.Id);
-        if (category == null) return NotFound();
-
-        category.Name = updateCategoryVM.Name;
-        await _context.SaveChangesAsync();
+        var result = await _categoryService.UpdateAsync(updateCategoryVM);
+        if (result == null) return View();
         return RedirectToAction(nameof(Index));
     }
 }

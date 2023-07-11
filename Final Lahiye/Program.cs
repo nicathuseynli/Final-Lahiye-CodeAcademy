@@ -16,6 +16,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IBannerService, BannerService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IContactDetailsService, ContactDetailsService>();
+builder.Services.AddScoped<IElementorService, ElementorService>();
+builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+builder.Services.AddScoped<IShortInfoService, ShortInfoService>();
+builder.Services.AddScoped<IRegisterPageService, RegisterPageService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ILoginPageService,LoginPageService>();
+builder.Services.AddScoped<IRegisterPageService,RegisterPageService>();
+builder.Services.AddScoped<IHeroService,HeroService>();
+builder.Services.AddScoped<IHeaderUpTextService,HeaderUpTextService>();
+builder.Services.AddScoped<IHeaderUpSocialMediaService,HeaderUpSocialMediaService>();
+builder.Services.AddScoped<IFaqService,FaqService>();
+builder.Services.AddScoped<IErrorService,ErrorService>();
+builder.Services.AddScoped<IColourService,ColourService>();
 
 var app = builder.Build();
 
