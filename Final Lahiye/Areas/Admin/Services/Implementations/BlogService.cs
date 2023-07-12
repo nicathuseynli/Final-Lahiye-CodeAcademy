@@ -1,7 +1,9 @@
-﻿using Final_Lahiye.Areas.Admin.Services.Interface;
+﻿using AutoMapper;
+using Final_Lahiye.Areas.Admin.Services.Interface;
 using Final_Lahiye.Areas.Admin.ViewModels.Blog;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
+using Final_Lahiye.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Web.Mvc;
 
@@ -10,11 +12,13 @@ public class BlogService : IBlogService
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly AppDbContext _context;
+    private readonly IMapper _mapper;
 
-    public BlogService(AppDbContext context, IWebHostEnvironment webHostEnvironment)
+    public BlogService(AppDbContext context, IWebHostEnvironment webHostEnvironment, IMapper mapper)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
+        _mapper = mapper;
     }
 
     public async Task CreateAsync(CreateBlogPageVM createBlogPageVM)
@@ -35,69 +39,69 @@ public class BlogService : IBlogService
         await createBlogPageVM.Photo.CopyToAsync(stream);
         await createBlogPageVM.ApplyInfoLeftPhoto.CopyToAsync(applyleftstream);
         await createBlogPageVM.ApplyInfoRightPhoto.CopyToAsync(applyrightstream);
-        Blog blog = new()
-        {
-            Title = createBlogPageVM.Title,
+        //Blog blog = new()
+        //{
+        //    Title = createBlogPageVM.Title,
 
-            HeaderUp = createBlogPageVM.HeaderUp,
+        //    HeaderUp = createBlogPageVM.HeaderUp,
 
-            InformationUp = createBlogPageVM.InformationUp,
+        //    InformationUp = createBlogPageVM.InformationUp,
 
-            HeaderMiddle = createBlogPageVM.HeaderMiddle,
+        //    HeaderMiddle = createBlogPageVM.HeaderMiddle,
 
-            InformationMiddle = createBlogPageVM.InformationMiddle,
+        //    InformationMiddle = createBlogPageVM.InformationMiddle,
 
-            MiddleTextFirst = createBlogPageVM.MiddleTextFirst,
+        //    MiddleTextFirst = createBlogPageVM.MiddleTextFirst,
 
-            MiddleTextSecond = createBlogPageVM.MiddleTextSecond,
+        //    MiddleTextSecond = createBlogPageVM.MiddleTextSecond,
 
-            MiddleTextThird = createBlogPageVM.MiddleTextThird,
+        //    MiddleTextThird = createBlogPageVM.MiddleTextThird,
 
-            MiddleTextFourth = createBlogPageVM.MiddleTextFourth,
+        //    MiddleTextFourth = createBlogPageVM.MiddleTextFourth,
 
-            MiddleDescription = createBlogPageVM.MiddleDescription,
+        //    MiddleDescription = createBlogPageVM.MiddleDescription,
 
-            HeaderEnd = createBlogPageVM.HeaderEnd,
+        //    HeaderEnd = createBlogPageVM.HeaderEnd,
 
-            InformationEnd = createBlogPageVM.InformationEnd,
+        //    InformationEnd = createBlogPageVM.InformationEnd,
 
-            ServiceInfo = createBlogPageVM.ServiceInfo,
+        //    ServiceInfo = createBlogPageVM.ServiceInfo,
 
-            ServiceNameFirst = createBlogPageVM.ServiceNameFirst,
+        //    ServiceNameFirst = createBlogPageVM.ServiceNameFirst,
 
-            ServicePriceFirst = createBlogPageVM.ServicePriceFirst,
+        //    ServicePriceFirst = createBlogPageVM.ServicePriceFirst,
 
-            ServiceDescriptionFirst = createBlogPageVM.ServiceDescriptionFirst,
+        //    ServiceDescriptionFirst = createBlogPageVM.ServiceDescriptionFirst,
 
-            ServiceNameSecond = createBlogPageVM.ServiceNameSecond,
+        //    ServiceNameSecond = createBlogPageVM.ServiceNameSecond,
 
-            ServicePriceSecond = createBlogPageVM.ServicePriceSecond,
+        //    ServicePriceSecond = createBlogPageVM.ServicePriceSecond,
 
-            ServiceDescriptionSecond = createBlogPageVM.ServiceDescriptionSecond,
+        //    ServiceDescriptionSecond = createBlogPageVM.ServiceDescriptionSecond,
 
-            ServiceNameThird = createBlogPageVM.ServiceNameThird,
+        //    ServiceNameThird = createBlogPageVM.ServiceNameThird,
 
-            ServicePriceThird = createBlogPageVM.ServicePriceThird,
+        //    ServicePriceThird = createBlogPageVM.ServicePriceThird,
 
-            ServiceDescriptionThird = createBlogPageVM.ServiceDescriptionThird,
+        //    ServiceDescriptionThird = createBlogPageVM.ServiceDescriptionThird,
 
-            ServiceNameFourth = createBlogPageVM.ServiceNameFourth,
+        //    ServiceNameFourth = createBlogPageVM.ServiceNameFourth,
 
-            ServicePriceFourth = createBlogPageVM.ServicePriceFourth,
+        //    ServicePriceFourth = createBlogPageVM.ServicePriceFourth,
 
-            ServiceDescriptionFourth = createBlogPageVM.ServiceDescriptionFourth,
+        //    ServiceDescriptionFourth = createBlogPageVM.ServiceDescriptionFourth,
 
-            ApplyInfo = createBlogPageVM.ApplyInfo,
+        //    ApplyInfo = createBlogPageVM.ApplyInfo,
 
-            ApplyInfoLeftImage = applyleft,
+        //    ApplyInfoLeftImage = applyleft,
 
-            ApplyInfoRightImage = applyright,
+        //    ApplyInfoRightImage = applyright,
 
-            Image = filename,
+        //    Image = filename,
 
-            AuthorId = createBlogPageVM.AuthorId,
-        };
-        await _context.Blogs.AddAsync(blog);
+        //    AuthorId = createBlogPageVM.AuthorId,
+        //};
+        await _context.Blogs.AddAsync(_mapper.Map<Blog>(createBlogPageVM));
         await _context.SaveChangesAsync();
 
     }

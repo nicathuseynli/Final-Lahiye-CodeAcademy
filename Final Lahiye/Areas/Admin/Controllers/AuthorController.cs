@@ -1,4 +1,5 @@
-﻿using Final_Lahiye.Areas.Admin.ViewModels.Blog;
+﻿using AutoMapper;
+using Final_Lahiye.Areas.Admin.ViewModels.Blog;
 using Final_Lahiye.Areas.Services.Interface;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
@@ -12,12 +13,14 @@ public class AuthorController : Controller
     private readonly AppDbContext _context;
     private readonly IAuthorService _authorService;
     private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly IMapper _mapper;
 
-    public AuthorController(AppDbContext context, IWebHostEnvironment webHostEnvironment, IAuthorService authorService)
+    public AuthorController(AppDbContext context, IWebHostEnvironment webHostEnvironment, IAuthorService authorService, IMapper mapper)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
         _authorService = authorService;
+        _mapper = mapper;
     }
 
     public async Task<IActionResult> Index()
