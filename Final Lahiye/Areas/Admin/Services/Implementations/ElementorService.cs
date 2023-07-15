@@ -43,25 +43,11 @@ public class ElementorService : IElementorService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var elementor = await _context.Elementors.FirstOrDefaultAsync(x => x.Id == id);
-        if (elementor == null)
-            return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string pathUp = Path.Combine(_webHostEnvironment.WebRootPath, "images", elementor.ElementorUpImage);
-        string pathDown = Path.Combine(_webHostEnvironment.WebRootPath, "images", elementor.ElementorDownImage);
-
-        if (System.IO.File.Exists(pathUp)) System.IO.File.Delete(pathUp);
-        if (System.IO.File.Exists(pathDown)) System.IO.File.Delete(pathDown);
-
-        System.IO.File.Delete(pathUp);
-        System.IO.File.Delete(pathDown);
-
-        _context.Elementors.Remove(elementor);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<Elementor> GetByIdAsync(int id)
     {

@@ -8,7 +8,7 @@ public interface IProductService
  
     Task<HomeProduct> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<HomeProduct> UpdateAsync(UpdateHomeProductVM updateHomeProductVM);
 }

@@ -9,7 +9,7 @@ public interface IHeaderUpSocialMediaService
 
     Task<HeaderUpSocialMedia> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<HeaderUpSocialMedia> UpdateAsync(UpdateHeaderUpSocialMediaVM updateHeaderUpSocialMediaVM);
 }

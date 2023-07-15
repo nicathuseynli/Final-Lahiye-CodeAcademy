@@ -37,22 +37,11 @@ public class ContactService : IContactService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var contact = await _context.Contacts.FirstOrDefaultAsync(x => x.Id == id);
-        if (contact == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", contact.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.Contacts.Remove(contact);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<Contact> GetByIdAsync(int id)
     {

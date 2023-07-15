@@ -34,22 +34,11 @@ public class ErrorService : IErrorService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var errorPage = await _context.ErrorPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (errorPage == null)  return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", errorPage.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.ErrorPages.Remove(errorPage);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<ErrorPage> GetByIdAsync(int id)
     {

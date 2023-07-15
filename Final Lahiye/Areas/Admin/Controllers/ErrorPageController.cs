@@ -13,7 +13,6 @@ public class ErrorPageController : Controller
     private readonly ILogger<ErrorPageController> _logger;
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IErrorService _errorPageService;
-    private string? errorPage;
 
     public ErrorPageController(AppDbContext context, ILogger<ErrorPageController> logger, IWebHostEnvironment webHostEnvironment, IErrorService errorPageService)
     {
@@ -58,8 +57,18 @@ public class ErrorPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _errorPageService.DeleteAsync(id);
-        if (delete == null) return View();
+        var errorPage = await _context.ErrorPages.FirstOrDefaultAsync(x => x.Id == id);
+        if (errorPage == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", errorPage.Image);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.ErrorPages.Remove(errorPage);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

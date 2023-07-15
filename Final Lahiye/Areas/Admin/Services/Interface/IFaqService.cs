@@ -7,7 +7,7 @@ public interface IFaqService
 
     Task<FaqPage> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<FaqPage> UpdateAsync(UpdateFaqPageVM updateFaqPageVM);
 }

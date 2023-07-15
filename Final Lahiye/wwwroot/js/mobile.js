@@ -1,56 +1,26 @@
-var $offcanvasNav = $('.mobile-menu, .offcanvas-minicart_menu'),
-$offcanvasNavWrap = $(
-    '.mobile-menu_wrapper, .offcanvas-minicart_wrapperm, .offcanvas-search_wrapper'
-),
-$offcanvasNavSubMenu = $offcanvasNav.find('.sub-menu'),
-$menuToggle = $('.menu-btn'),
-$menuClose = $('.button-close');
-
-$offcanvasNavSubMenu.slideUp();
-
-$offcanvasNav.on('click', 'li a, li .menu-expand', function (e) {
-var $this = $(this);
-if (
-    $this
-        .parent()
-        .attr('class')
-        .match(
-            /\b(menu-item-has-children|has-children|has-sub-menu)\b/
-        ) &&
-    ($this.attr('href') === '#' ||
-        $this.attr('href') === '' ||
-        $this.hasClass('menu-expand'))
-) {
-    e.preventDefault();
-    if ($this.siblings('ul:visible').length) {
-        $this.siblings('ul').slideUp('slow');
-    } else {
-        $this
-            .closest('li')
-            .siblings('li')
-            .find('ul:visible')
-            .slideUp('slow');
-        $this.closest('li').siblings('li').removeClass('menu-open');
-        $this.siblings('ul').slideDown('slow');
-        $this.parent().siblings().children('ul').slideUp();
+function Nav() {
+    var width = document.getElementById("mySidenav").style.width;
+    if (width === "0px" || width == "") {
+        document.getElementById("mySidenav").style.width = "250px";
+        $('.animated-icon').toggleClass('open');
+    }
+    else {
+        document.getElementById("mySidenav").style.width = "0px";
+        $('.animated-icon').toggleClass('open');
     }
 }
-if (
-    $this.is('a') ||
-    $this.is('span') ||
-    $this.attr('class').match(/\b(menu-expand)\b/)
-) {
-    $this.parent().toggleClass('menu-open');
-} else if (
-    $this.is('li') &&
-    $this.attr('class').match(/\b('menu-item-has-children')\b/)
-) {
-    $this.toggleClass('menu-open');
-}
-});
 
-$('.button-close').on('click', function (e) {
-e.preventDefault();
-$('.mobile-menu .sub-menu').slideUp();
-$('.mobile-menu .menu-item-has-children').removeClass('menu-open');
-});
+window.onscroll = function () {
+    myFunction();
+};
+
+var mob = document.getElementById("mob");
+var sticky = mob.offsetTop;
+
+function myFunction() {
+    if (window.pageYOffset >= sticky) {
+        mob.classList.add("sticky");
+    } else {
+        mob.classList.remove("sticky");
+    }
+}

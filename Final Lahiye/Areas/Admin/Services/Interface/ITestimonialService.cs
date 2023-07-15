@@ -7,7 +7,7 @@ public interface ITestimonialService
 
     Task<Testimonial> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<Testimonial> UpdateAsync(UpdateTestimonialVM updateTestimonialVM);
 }

@@ -35,23 +35,11 @@ public class ShortInfoService :IShortInfoService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var shortInfo = await _context.ShortInformations.FirstOrDefaultAsync(x => x.Id == id);
-        if (shortInfo == null)
-            return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", shortInfo.Icon);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.ShortInformations.Remove(shortInfo);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<ShortInformation> GetByIdAsync(int id)
     {

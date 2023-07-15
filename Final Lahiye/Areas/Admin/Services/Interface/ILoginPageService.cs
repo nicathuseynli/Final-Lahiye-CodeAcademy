@@ -7,7 +7,7 @@ public interface ILoginPageService
 
     Task<LoginPage> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<LoginPage> UpdateAsync(UpdateLoginPageVM updateLoginVM);
 }

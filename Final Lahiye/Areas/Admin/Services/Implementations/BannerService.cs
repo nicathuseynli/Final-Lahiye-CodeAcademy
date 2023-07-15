@@ -3,7 +3,6 @@ using Final_Lahiye.Areas.Admin.ViewModels.Home;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Web.Mvc;
 
 namespace Final_Lahiye.Areas.Admin.Services.Implementations;
 public class BannerService:IBannerService
@@ -36,21 +35,11 @@ public class BannerService:IBannerService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var banner = await _context.Banners.FirstOrDefaultAsync(x => x.Id == id);
-        if (banner == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", banner.BannerImage);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-        _context.Banners.Remove(banner);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<Banner> GetByIdAsync(int id)
     {

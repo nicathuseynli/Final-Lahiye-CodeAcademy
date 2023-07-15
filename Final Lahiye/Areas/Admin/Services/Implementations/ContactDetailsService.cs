@@ -28,15 +28,11 @@ public class ContactDetailsService : IContactDetailsService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var details = await _context.ContactDetailss.FirstOrDefaultAsync(x => x.Id == id);
-        if (details == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        _context.ContactDetailss.Remove(details);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<ContactDetails> GetByIdAsync(int id)
     {

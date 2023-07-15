@@ -1,0 +1,412 @@
+﻿ @model ProductVM
+@*@{
+    int Count = Model.Product.Count();
+}*@
+  <section id="ProductAndSidebar">
+      <div class="container mt-5 mb-5 pt-5 pb-5">
+        <div class="sideBarHeader">
+          <span class="singlePageBarHeader"><a id="sideBarHeaderClick" name="Path"asp-controller="Home" asp-action="Index" >Home</a><span
+              class="category"> /
+              @Model.Product?.Category.Name /</span><span class="categprodname"> @Model.Product?.Name </span></span>
+        </div>
+        <div class="row gy-5 m-auto">
+          <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 pe-lg-5">
+            <div class="row gy-4 flex-wrap-reverse">
+              <div class='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12' id='thumb_container'>
+                <div class="row gy-4">
+                  <div class='col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4' id='thumb_container'>
+                    <img  class="primary-img"
+                      src="~/images/@Model.Product?.Image"
+                       onClick='sendimg(this);'>
+                  </div>
+                  <div class='col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-4 col-4' id='thumb_container'>
+                    <img class="primary-img"
+                      src="~/images/@Model.Product?.Image"
+                       onClick='sendimg(this);'>
+                  </div>
+                </div>
+              </div>
+              <div class='col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12'>
+                <div id="main_image">
+                  <img id='mainimg' class="primary-img"
+                    src="~/images/@Model.Product?.Image"
+                    onClick='sendimg(this);'>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 ps-5">
+            <div class="shopDetailsProductTitle">
+              <h4>@Model.Product?.Name</h4>
+            </div>
+            <div class="shopDetailsProductReting d-flex align-items-center flex-wrap">
+              <ul class="d-flex mt-3">
+                  @for (int i = 0; i < Model.Product?.Rating ; i++)
+                  {
+                    <li class="shopDetailsProductRetingItem">
+                        <i class="fa-solid fa-star"></i>
+                     </li>
+                  }
+                <li class="shopDetailsProductRetingItem"><i class="fa-regular fa-star"></i></li>
+              </ul>
+              <span class="shopDetailsProductReview mt-3 ms-3">(1 Review)</span>
+            </div>
+            <div class="shopDetailsProductPrice mt-4">
+              <del>$@Model.Product?.LastPrice</del>
+              <span class="singleproductPrice">$@Model.Product?.CurrentPrice</span><span class="singleproduct-discount ms-3">-@Model.Product?.SalePercent%</span>
+            </div>
+            <div class="shopDetailsProduct shopDetailsProductDesc">
+              <i class="fa-solid fa-circle-check mt-1"></i>
+              <p class="shopDetailsProductDescItem ms-1"> Hurry up!! only <span class="singleproductleftitem">@Model.Product?.PackCount</span>
+                items left</p>
+            </div>
+            <div class="product-count">
+            </div>
+            <span class="quantity" for="size">Quantity</span>
+            <form action="#">
+              <div class="row">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 mt-2">
+                  <div class="quantity input-group">
+                    <div class="quantity-decrase input-group-addon d-flex">
+                      <input type="number" step="1" min="1" max="100" name="quantity" value="1" title="qty"
+                        class="input-text qty text t form-control" inputmode="numeric">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9 mb-2">
+                  <input type="submit" value="Add to Card" class="singleprod-button-add-to-cart">
+                </div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2">
+                  <input type="submit" value="Buy Now" class="singleprod-button-buy">
+                </div>
+              </div>
+            </form>
+            <div class="prod-info d-flex flex-column order">
+              <div class="delivery-time mt-3 me-5">
+                <i class="fa-solid fa-truck-fast"></i><span class="estimated-delivery">Estimated Delivery:</span><span
+                  class="delivery-time">@Model.Product?.DeliveryInfo</span>
+              </div>
+              <div class="free-shipping mt-1 me-4">
+                <i class="fa-solid fa-cart-shopping"></i><span class="free-shipping">Free shipping:</span><span
+                  class="order-price">@Model.Product?.ShippingInfo</span>
+              </div>
+            </div>
+            <div class="product-datas d-flex justify-content-between align-items-center">
+              <span class="sku_wrapper mt-3">
+                SKU : <span class="sku"> @Model.Product?.SKUCode</span>
+              </span>
+              <span class="categories_wrapper mt-3">
+                Categories : <span class="categories">
+                  <a class="category_type" href="#">@Model.Product.Category.Name</a>
+@*                  <a class="category_type" href="#">Furniture</a></span>
+*@              </span>
+            </div>
+            <div class="payment-product mt-5">
+              <p>Online Payment options</p>
+              <img src="~/images/product-online-Payment.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="product-all-informations">
+        <section id="FaqSection">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-xsm-12 col-12 mb-4 mt-5">
+                      <div class=" d-flex justify-content-start">
+                          <ul class="nav faqSection tab-style-1" id="myTab" role="tablist">
+                              <li class="nav-item-tab  mb-4 me-4" role="presentation">
+                                  <a class="OneBtn active" id="Description-tab" data-bs-toggle="tab" href="#Description"
+                                      role="tab" aria-controls="Description" aria-selected="true">
+                                      Description
+                                  </a>
+                              </li>
+                              <li class="nav-item-tab  me-4" role="presentation">
+                                  <a id="Additional_information-tab" class="SecondBtn disable" data-bs-toggle="tab"
+                                      href="#Additional_information" role="tab" aria-controls="Additional_information" aria-selected="false">
+                                      Additional information
+                                  </a>
+                              </li>
+                              <li class="nav-item-tab " role="presentation">
+                                  <a id="Reviews-tab" class="ThirdBtn disable" data-bs-toggle="tab"
+                                      href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">
+                                      Reviews
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="row justify-content-center gy-4 mb-5">
+                  <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+                        <div class="row">
+                          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 mt-4">
+                            <img src="~/images/@Model.Product.Image" width="90%" height="90%" alt="">
+                          </div>
+                          <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7 mt-5 d-flex  flex-column">
+                            <h5 class="desc-product-header mb-4">Product Details</h5>
+            
+                            <p class="desc-product-details-up mb-5">@Model.Product.Description
+                            </p>
+                            <p class="desc-product-details-down mt-2">
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="Additional_information" role="tabpanel" aria-labelledby="Additional_information-tab">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 mt-4">
+                                <p>Type</p>
+                                <p>Meterial</p>
+                                <p>Ideal For</p>
+                                <p>Pack Of</p>
+                                <p>Seating Capacity</p>
+                                <p>Shape</p>
+                                <p>Color</p>
+                              </div>
+                              <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 mt-4">
+                                <p>@Model.Product?.Style</p>
+                                <p>@Model.Product?.RoomType</p>
+                                <p>@Model.Product?.PackCount</p>
+                                <p>@Model.Product?.IdealFor</p>
+                                <p>@Model.Product?.Capacity</p>
+                                <p>@Model.Product?.Shape</p>
+                                <p>@Model.Product.Colour?.Name</p>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 mt-4">
+                                <div class="container  d-flex align-items-center mt-4 pb-4">
+                                  <div class="authors_photo mb-3 me-2">
+                                    <img src="~/images/review-user-null-photo.png" alt="creater-image" class="creator-image">
+                                  </div>
+                                  <div class="creator-info d-flex flex-column  me-5">
+                                    <span class="creator-name mt-4">
+                                      <ul class="d-flex ">
+                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                        <li class="shopDetailsProductRetingItem"><i class="fa-regular fa-star"></i></li>
+                                      </ul>
+                                    </span>
+                                    <div class="row">
+                                      <p class="creator-profession mt-2">cs7d8cnvdku :<span class="creator-name ms-2">February 17,
+                                          2023</span>
+                                      </p>
+                                      <div class="d-flex flex-column">
+                                        <p class="creator-profession ms-1">Very good product</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12 mt-5">
+                                <h5 class="singleblog-header-first mb-3">Add A Review</h5>
+                                <p class="singleblog-text "> Your email address will not be published. Required fields are marked
+                                  <span class="singleblog-reply">*</span>
+                                </p>
+                                <div class="shopDetailsProductReting d-flex align-items-center mb-3">
+                                  <ul class="d-flex ">
+                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
+                                  </ul>
+                                </div>
+                                <form action="#">
+                                  <div class="row gy-2">
+                                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 mb-4">
+                                      <div class="contactItem">
+                                        <textarea placeholder="Your Comment *" name="#" id="#" cols="30" rows="10"></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                        <div class="contactItem">
+                                          <input placeholder="Name *" type="text">
+                                        </div>
+                                      </div>
+                                      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                        <div class="contactItem">
+                                          <input placeholder="Email *" type="email">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <p class="singleblog-text mt-4">
+                                      <input type="checkbox" name="save" id="Save Data">
+                                      Save my name, email, and website in this browser for the next time I comment.
+                                    </p>
+                                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                      <a href="#" class="btn-header-singleblog mb-3">Submit</a>
+                                    </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+    </section>
+
+
+    <section id="Realeted Products">
+      <div class="container">
+        <div class="row">
+          <h4 class="realeted mb-3">Realeted Products</h4>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="home-product">
+              <div class="home-product-content">
+                <div class="home-product-item">
+                  <div class="home-product-img">
+                    <span class="home-product-discount">-16%</span>
+                    <div class="home-product-icon">
+                      <div class="home-product-icon-item">
+                        <a href="#"></a>
+                      </div>
+                      <a href="" class="home-product-icon-two"></a>
+                      <a href="" class="home-product-icon-three">
+                      </a>
+                    </div>
+                    <a href="#">
+                      <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                        src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
+                        srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
+                        height="auto" width="800">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="home-product-desc">
+                <div class="home-product-desc-item">
+                  <h5 class="home-produtc-title">
+                    <a href="#">Green Armchair</a>
+                  </h5>
+                  <h6 class="home-product-price">
+                    <del class="home-product-oldPrice">$200</del>
+                    <span class="home-product-newPrice">$450</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="home-product">
+              <div class="home-product-content">
+                <div class="home-product-item">
+                  <div class="home-product-img">
+                    <span class="home-product-discount">-14%</span>
+                    <div class="home-product-icon">
+                      <div class="home-product-icon-item">
+                        <a href="#"></a>
+                      </div>
+                      <a href="" class="home-product-icon-two"></a>
+                      <a href="" class="home-product-icon-three">
+                      </a>
+                    </div>
+                    <a href="#">
+                      <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                        src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Bamboo-Lamp.webp"
+                        srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Bamboo-Lamp.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Bamboo-Lamp.webp 2x"
+                        height="auto" width="800">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="home-product-desc">
+                <div class="home-product-desc-item">
+                  <h5 class="home-produtc-title">
+                    <a href="#">Bamboo Lamp</a>
+                  </h5>
+                  <h6 class="home-product-price">
+                    <del class="home-product-oldPrice">$86</del>
+                    <span class="home-product-newPrice">$74</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="home-product">
+              <div class="home-product-content">
+                <div class="home-product-item">
+                  <div class="home-product-img">
+                    <span class="home-product-discount">0%</span>
+                    <div class="home-product-icon">
+                      <div class="home-product-icon-item">
+                        <a href="#"></a>
+                      </div>
+                      <a href="" class="home-product-icon-two"></a>
+                      <a href="" class="home-product-icon-three">
+                      </a>
+                    </div>
+                    <a href="#">
+                      <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                        src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Slider-image-02.webp"
+                        srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Slider-image-02.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Slider-image-02.webp 2x">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="home-product-desc">
+                <div class="home-product-desc-item">
+                  <h5 class="home-produtc-title">
+                    <a href="#">Velvet Armchair</a>
+                  </h5>
+                  <h6 class="home-product-price">
+                    <del class="home-product-oldPrice"></del>
+                    <span class="home-product-newPrice">$560</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="home-product">
+              <div class="home-product-content">
+                <div class="home-product-item">
+                  <div class="home-product-img">
+                    <span class="home-product-discount">-11%</span>
+                    <div class="home-product-icon">
+                      <div class="home-product-icon-item">
+                        <a href="#"></a>
+                      </div>
+                      <a href="" class="home-product-icon-two"></a>
+                      <a href="" class="home-product-icon-three">
+                      </a>
+                    </div>
+                    <a href="#">
+                      <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                        src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Metal-Pendant-Light.webp"
+                        srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Metal-Pendant-Light.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/Metal-Pendant-Light.webp 2x">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="home-product-desc">
+                <div class="home-product-desc-item">
+                  <h5 class="home-produtc-title">
+                    <a href="#">Metal Pendant Light</a>
+                  </h5>
+                  <h6 class="home-product-price">
+                    <del class="home-product-oldPrice">$270</del>
+                    <span class="home-product-newPrice">$240</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

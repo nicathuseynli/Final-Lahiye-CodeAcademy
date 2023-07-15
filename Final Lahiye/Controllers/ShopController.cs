@@ -37,4 +37,29 @@ public class ShopController : Controller
         };
         return View(shopVM);
     }
+    public async Task<IActionResult> Product(int id) 
+    {
+        var homeproduct = await _context.Products.Include(c => c.Category).FirstOrDefaultAsync(x => x.Id == id);
+        var newproduct = await _context.Products.ToListAsync();
+
+        ProductVM productVM = new()
+        {
+            Product = homeproduct,
+            Products = newproduct,
+        };
+        return View(productVM);
+    }
+
+    public async Task<IActionResult> Wishlist()
+    {
+        return View();
+    }
+    public async Task<IActionResult> Basket()
+    {
+        return View();
+    }
+    public async Task<IActionResult> Checkout()
+    {
+        return View();
+    }
 }

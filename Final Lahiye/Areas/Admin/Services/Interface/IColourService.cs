@@ -7,7 +7,7 @@ public interface IColourService
 
     Task<Colour> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<Colour> UpdateAsync(UpdateColourVM updateColourVM);
 }

@@ -53,8 +53,10 @@ public class HeaderUpController : Controller
     [HttpPost]
     public async Task<IActionResult> DeleteText(int id)
     {
-        var delete = _headerUpTextService.DeleteAsync(id);
-        if (delete == null) return View();
+        var headerupText = await _context.HeaderUpTexts.FirstOrDefaultAsync(x => x.Id == id);
+        if (headerupText == null) return View();
+        _context.HeaderUpTexts.Remove(headerupText);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(TextIndex));
     }
     [HttpGet]
@@ -117,8 +119,11 @@ public class HeaderUpController : Controller
     [HttpPost]
     public async Task<IActionResult> DeleteSocialMedia(int id)
     {
-        var delete = _headerUpSocialMediaService.DeleteAsync(id);
-        if (delete == null) return View();
+        var headerUpSocialMedia = await _context.HeaderUpSocialMedias.FirstOrDefaultAsync(x => x.Id == id);
+        if (headerUpSocialMedia == null) return View();
+
+        _context.HeaderUpSocialMedias.Remove(headerUpSocialMedia);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(SocialMediaIndex));
     }
 

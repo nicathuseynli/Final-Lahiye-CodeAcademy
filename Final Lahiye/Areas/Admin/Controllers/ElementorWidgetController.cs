@@ -63,8 +63,21 @@ public class ElementorWidgetController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _elementorService.DeleteAsync(id);
-        if (delete == null) return View();
+        var elementor = await _context.Elementors.FirstOrDefaultAsync(x => x.Id == id);
+        if (elementor == null)
+            return View();
+
+        string pathUp = Path.Combine(_webHostEnvironment.WebRootPath, "images", elementor.ElementorUpImage);
+        string pathDown = Path.Combine(_webHostEnvironment.WebRootPath, "images", elementor.ElementorDownImage);
+
+        if (System.IO.File.Exists(pathUp)) System.IO.File.Delete(pathUp);
+        if (System.IO.File.Exists(pathDown)) System.IO.File.Delete(pathDown);
+
+        System.IO.File.Delete(pathUp);
+        System.IO.File.Delete(pathDown);
+
+        _context.Elementors.Remove(elementor);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

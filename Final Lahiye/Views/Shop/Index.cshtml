@@ -83,7 +83,7 @@
                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12  col-xsm-12 col-12">
                       <div class=" d-flex justify-content-between">
                         <div class="shop-product-count">
-                          <p>Showing all @* @Model.Products.Count()*@</p>
+                          <p>Showing all @Model.Products.Count() results</p>
                         </div>
                         <ul class="nav faqSection tab-style-1" id="myTab" role="tablist">
                           <li class="nav-item mb-4" role="presentation">
@@ -119,11 +119,11 @@
                                       <div class="home-product-icon-item">
                                         <a href="wishlist.html"></a>
                                       </div>
-                                      <a asp-controller="Product" asp-action="Index" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
+                                      <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
                                       <a href="basket.html" class="home-product-icon-three">
                                       </a>
                                     </div>
-                                    <a  asp-controller="Product" asp-action="Index" asp-route-id="@shopProduct.Id"  >
+                                    <a  asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id"  >
                                       <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
                                         src="~/images/@shopProduct.Image"
                                         height="auto" width="800">
@@ -153,366 +153,47 @@
                             <div class="tab-pane fade show active" id="Description" role="tabpanel"
                               aria-labelledby="Description-tab">
                               <div class="row">
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                  <div class="home-product">
-                                    <div class="home-product-content">
-                                      <div class="home-product-item">
-                                        <div class="home-product-img">
-                                          <span class="home-product-discount">-16%</span>
-                                          <div class="home-product-icon">
-                                            <div class="home-product-icon-item">
-                                              <a href="wishlist.html"></a>
-                                            </div>
-                                            <a href="quickview.html" class="home-product-icon-two"></a>
-                                            <a href="basket.html" class="home-product-icon-three">
-                                            </a>
-                                          </div>
-                                          <a href="singleproduct.html">
-                                            <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                              src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                              srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                              height="auto" width="800">
-                                          </a>
-                                        </div>
+                        <div class="row">
+                            @foreach (var shopProduct in Model.Products)
+                            {
+                             <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
+                            <div class="home-product">
+                              <div class="home-product-content">
+                                <div class="home-product-item">
+                                  <div class="home-product-img">
+                                    <span class="home-product-discount">-@shopProduct.SalePercent%</span>
+                                    <div class="home-product-icon">
+                                      <div class="home-product-icon-item">
+                                        <a href="wishlist.html"></a>
                                       </div>
+                                      <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
+                                      <a href="basket.html" class="home-product-icon-three">
+                                      </a>
                                     </div>
-                                    <div class="home-product-desc">
-                                      <div class="home-product-desc-item">
-                                        <h5 class="home-produtc-title">
-                                          <a href="singleproduct.html">Green Armchair</a>
-                                        </h5>
-                                        <h6 class="home-product-price">
-                                          <del class="home-product-oldPrice">$200</del>
-                                          <span class="home-product-newPrice">$450</span>
-                                        </h6>
-                                      </div>
-                                    </div>
+                                    <a  asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id"  >
+                                      <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                                        src="~/images/@shopProduct.Image"
+                                        height="auto" width="800">
+                                    </a>
                                   </div>
                                 </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
+                              </div>
+                              <div class="home-product-desc">
+                                <div class="home-product-desc-item">
+                                  <h5 class="home-produtc-title">
+                                    <a href="singleproduct.html">@shopProduct.Name</a>
+                                  </h5>
+                                  <h6 class="home-product-price">
+                                    <del class="home-product-oldPrice">$@shopProduct.LastPrice</del>
+                                    <span class="home-product-newPrice">$@shopProduct.CurrentPrice</span>
+                                  </h6>
                                 </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                                    <div class="home-product">
-                                      <div class="home-product-content">
-                                        <div class="home-product-item">
-                                          <div class="home-product-img">
-                                            <span class="home-product-discount">-16%</span>
-                                            <div class="home-product-icon">
-                                              <div class="home-product-icon-item">
-                                                <a href="#"></a>
-                                              </div>
-                                              <a href="" class="home-product-icon-two"></a>
-                                              <a href="" class="home-product-icon-three">
-                                              </a>
-                                            </div>
-                                            <a href="#">
-                                              <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                                                src="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp"
-                                                srcset="https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 1x, https://emart.wpthemedemos.com/interior/wp-content/uploads/sites/9/2022/12/slider-image-01.webp 2x"
-                                                height="auto" width="800">
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="home-product-desc">
-                                        <div class="home-product-desc-item">
-                                          <h5 class="home-produtc-title">
-                                            <a href="#">Green Armchair</a>
-                                          </h5>
-                                          <h6 class="home-product-price">
-                                            <del class="home-product-oldPrice">$200</del>
-                                            <span class="home-product-newPrice">$450</span>
-                                          </h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div> 
+                              </div>
+                            </div>
+                          </div>
+                            }
+                        </div>
+
                               </div>
                             </div>
                           </div>

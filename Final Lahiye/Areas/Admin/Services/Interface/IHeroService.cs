@@ -7,7 +7,7 @@ public interface IHeroService
 
     Task<Hero> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<Hero> UpdateAsync(UpdateHeroVM updateHeroVM);
 }

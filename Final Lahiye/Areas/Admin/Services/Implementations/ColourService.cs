@@ -27,11 +27,7 @@ public class ColourService:IColourService
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var colour = await _context.Colours.FirstOrDefaultAsync(x => x.Id == id);
-        if (colour == null) return false;
 
-        _context.Colours.Remove(colour);
-        await _context.SaveChangesAsync();
         return true;
     }
 

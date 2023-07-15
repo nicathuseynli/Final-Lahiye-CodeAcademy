@@ -40,7 +40,7 @@
             <div class="elementer-widget-content">
               <div class="elementor-widget">
                 <div class="elementor-widget-left">
-                  <div class="elementor-widget-left-Content">
+                  <div class="elementor-widget-left-Content d-none d-xl-block d-lg-block">
                     <img src="~/images/@Model?.Elementor.ElementorUpImage" width="640" alt="">
                   </div>
                 </div>
@@ -123,13 +123,13 @@
                     <span class="home-product-discount">-@item.SalePercent%</span>
                     <div class="home-product-icon">
                       <div class="home-product-icon-item">
-                        <a href="#"></a>
-                      </div>
-                      <a href="" class="home-product-icon-two"></a>
-                      <a href="" class="home-product-icon-three">
+                        <a asp-controller="Product" asp-action="Index"  asp-route-Id="@item.Id"></a>
+                    </div>
+                      <a asp-controller="Product" asp-action="Index"  asp-route-Id="@item.Id" class="home-product-icon-two"></a>
+                      <a asp-controller="Product" asp-action="Index"  asp-route-Id="@item.Id" class="home-product-icon-three">
                       </a>
                     </div>
-                    <a href="#">
+                    <a asp-controller="Product" asp-action="Index"  asp-route-Id="@item.Id">
                       <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
                         src="~/images/@item.Image"
                         height="auto" width="800">
@@ -151,6 +151,11 @@
             </div>
           </div>
           }
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5 mt-5">
+            <div class="text-center">
+              <a asp-action="Index" asp-controller="Shop" class="home-products-btn text-center">More Collection</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

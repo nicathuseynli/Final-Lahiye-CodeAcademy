@@ -7,7 +7,7 @@ public interface IHeaderUpTextService
 
     Task<HeaderUpText> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<HeaderUpText> UpdateAsync(UpdateHeaderUpTextVM updateHeaderUpTextVM);
 }

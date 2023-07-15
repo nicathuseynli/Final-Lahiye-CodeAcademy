@@ -67,8 +67,15 @@ public class ProductController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var homeproduct = _productService.DeleteAsync(id);
+        var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
         if (homeproduct == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", homeproduct.Image);
+
+        if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
+
+        _context.Products.Remove(homeproduct);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

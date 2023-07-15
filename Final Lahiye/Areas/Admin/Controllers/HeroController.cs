@@ -56,8 +56,18 @@ public class HeroController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _heroService.DeleteAsync(id);
-        if (delete == null) return View();
+        var hero = await _context.Heros.FirstOrDefaultAsync(x => x.Id == id);
+        if (hero == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", hero.HeroImage);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.Heros.Remove(hero);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

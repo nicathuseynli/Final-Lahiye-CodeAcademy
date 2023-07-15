@@ -35,19 +35,10 @@ public class AuthorService : IAuthorService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
-        if(author == null) return false;
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-        _context.Authors.Remove(author);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //public async Task<bool> DeleteAsync(int id)
+    //{
+    //    return true;
+    //}
 
     public async Task<Author> GetByIdAsync(int id)
     {

@@ -18,7 +18,6 @@ public class FaqService : IFaqService
     {
         FaqPage faqPage = new()
         {
-            Title = createFaqPageVM.Title,
             Question = createFaqPageVM.Question,
             Answer = createFaqPageVM.Answer,
         };
@@ -28,12 +27,7 @@ public class FaqService : IFaqService
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var faqPage = await _context.FaqPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (faqPage == null)
-            return false;
 
-        _context.FaqPages.Remove(faqPage);
-        await _context.SaveChangesAsync();
         return true;
     }
 
@@ -49,7 +43,6 @@ public class FaqService : IFaqService
         var faqPage = await _context.FaqPages.FirstOrDefaultAsync(x => x.Id == updateFaqPageVM.Id);
         if (faqPage == null) return null;
 
-        faqPage.Title = updateFaqPageVM.Title;
         faqPage.Question = updateFaqPageVM.Question;
         faqPage.Answer = updateFaqPageVM.Answer;
         await _context.SaveChangesAsync();

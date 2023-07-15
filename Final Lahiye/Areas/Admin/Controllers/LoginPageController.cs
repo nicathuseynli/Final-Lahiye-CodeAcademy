@@ -53,8 +53,18 @@ public class LoginPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _loginPageService.DeleteAsync(id);
-        if (delete == null) return View();
+        var loginpage = await _context.LoginPages.FirstOrDefaultAsync(x => x.Id == id);
+        if (loginpage == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", loginpage.Image);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.LoginPages.Remove(loginpage);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

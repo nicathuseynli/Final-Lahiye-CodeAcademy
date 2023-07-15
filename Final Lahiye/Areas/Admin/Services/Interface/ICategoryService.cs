@@ -8,7 +8,7 @@ public interface ICategoryService
 
     Task<Category> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<Category> UpdateAsync(UpdateCategoryVM updateCategoryVM);
 }

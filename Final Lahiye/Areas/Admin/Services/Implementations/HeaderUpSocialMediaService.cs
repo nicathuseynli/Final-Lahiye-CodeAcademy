@@ -26,15 +26,11 @@ public class HeaderUpSocialMediaService :IHeaderUpSocialMediaService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var headerUpSocialMedia = await _context.HeaderUpSocialMedias.FirstOrDefaultAsync(x => x.Id == id);
-        if (headerUpSocialMedia == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        _context.HeaderUpSocialMedias.Remove(headerUpSocialMedia);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<HeaderUpSocialMedia> GetByIdAsync(int id)
     {

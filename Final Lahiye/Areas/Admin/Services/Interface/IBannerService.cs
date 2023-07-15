@@ -8,7 +8,7 @@ public interface IBannerService
 
     Task<Banner> UpdateAsync(UpdateBannerVM updatebannerVM);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<Banner> GetByIdAsync(int id);
 

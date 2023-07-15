@@ -36,22 +36,11 @@ public class RegisterPageService : IRegisterPageService
         
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var registerPage = await _context.RegisterPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (registerPage == null)  return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", registerPage.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.RegisterPages.Remove(registerPage);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<RegisterPage> GetByIdAsync(int id)
     {

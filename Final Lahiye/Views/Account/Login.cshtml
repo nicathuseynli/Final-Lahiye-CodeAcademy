@@ -1,0 +1,68 @@
+﻿@model LoginRegisterVM  
+  <main>
+        <div class="breadcrumb-header mb-5">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                <h1>Login</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-controller="Account" asp-action="Login" >Login</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">All</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-xxl-6 col-xl-6 col-lg-6  d-lg-block d-none">
+                        <img src="~/images/@Model.LoginPage.Image" width="100%" alt="">
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="login">
+                        <div class="loginContent">
+                            <h2 class="loginTitle">Sign In Your Account</h2>
+                            <p class="loginDesc">@Model.LoginPage.Description .</p>
+                        </div>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="Email">Email Address</label>
+                                        <input type="email" name="Email" id="Email" placeholder="Email Address">
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
+                                    <div class="accountTitle d-flex flex-column">
+                                        <label for="Password">Password</label>
+                                        <div class="accountTitleItem">
+                                            <input type="password" name="password" id="password" placeholder="Password">
+                                            <i class="eyes fa-solid fa-eye-slash icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center ">
+                                        <div class="remember d-flex">
+                                            <input class="accented" type="checkbox" name="Remember" id="Remember">
+                                            <label for="Remember">Remember me</label>
+                                        </div>
+                                        <div class="forgotPassword">
+                                            <a class="forgotPasswordArea">Forgot Your Password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                                    <input class="loginBtn" type="submit" value="Sign In">
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
+                                    <div class="SignUp">
+                                        <span>Don't Have An Account? <a class="loginRegister"
+                                          asp-controller="Account" asp-action="Register">Create Account</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

@@ -47,6 +47,7 @@ public class ShortInfoController : Controller
         await _shortInfoService.CreateAsync(createshortInfoVM);
         return RedirectToAction(nameof(Index));
     }
+
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
@@ -58,8 +59,19 @@ public class ShortInfoController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _shortInfoService.DeleteAsync(id);
-        if (delete == null) return View();
+        var shortInfo = await _context.ShortInformations.FirstOrDefaultAsync(x => x.Id == id);
+        if (shortInfo == null)
+            return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", shortInfo.Icon);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.ShortInformations.Remove(shortInfo);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

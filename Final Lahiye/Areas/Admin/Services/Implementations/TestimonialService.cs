@@ -36,22 +36,11 @@ public class TestimonialService : ITestimonialService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var testimonial = await _context.Testimonials.FirstOrDefaultAsync(x => x.Id == id);
-        if (testimonial == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", testimonial.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.Testimonials.Remove(testimonial);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<Testimonial> GetByIdAsync(int id)
     {

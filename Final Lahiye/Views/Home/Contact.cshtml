@@ -1,0 +1,107 @@
+﻿ @model ContactVM 
+  <main class="main-content">
+         <section id="Contact">
+            <div class="container-fluid">
+                <div class="row gy-5">
+                    <div
+                        class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-left d-flex justify-content-center align-items-center ">
+                        <div class="reach-to-Us">
+                            <div class="reach-to-Us-info mt-5">
+                                <h2 class="reach-to-Us-info-header ">Reach Out To Us</h2>
+                                <div class="by-address">
+                                    <span class="by-contact-header"><b>By Address</b></span>
+                                    <p class="by-contact-desc mt-2">@Model.ContactDetails?.ByAddress</p>
+                                </div>
+                                <div class="by-email mt-4">
+                                    <span class="by-contact-header mt-2">By email</span>
+                                    <p class="by-contact-desc">Please email us and we'll get back to you within 24
+                                        hours: @Model.ContactDetails?.ByEmail</p>
+                                </div>
+                                <div class="by-phone mt-4">
+                                    <span class="by-contact-header mt-2"><b>By phone</b></span>
+                                    <p class="by-contact-desc">Call our store: @Model.ContactDetails?.ByPhone</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-right ">
+                        <div class="Send-your-request d-flex flex-column ">
+                            <h1 class="send-your-request-header"><b>Send Your Request</b></h1>
+                            <form action="#">
+                                <div class="row gy-2">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="contactItem">
+                                            <input placeholder="Name" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="contactItem">
+                                            <input placeholder="Email" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="contactItem">
+                                            <input placeholder="Phone" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                                        <div class="contactItem">
+                                            <textarea placeholder="Message" name="#" id="#" cols="30"
+                                                rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <input type="submit" value="Send Message" class="contact-button-wrap">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       <section id="Stores">
+            <h3 class="store-header d-flex justify-content-center align-items-center mt-5 mb-5">Our Stores</h3>
+          <div class="container">
+            <div class="row">
+                @foreach (var item in @Model.Contacts)
+                {
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="store-product">
+                        <div class="store-product-content">
+                            <div class="store-product-item">
+                                <div class="store-product-img">
+                                    <img class="primary-img" src="~/images/@item.Image" height="auto"
+                                        width="800">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="store-product-desc">
+                        <div class="store-product-desc-item">
+                            <h5 class="store-produtc-title">
+                                @item.City
+                            </h5>
+                            <h3 class="store-product-name">
+                                <span class="store-product-text">@item.City</span>
+                            </h3>
+                            <p class="store-desc">@item.Description <span>
+                                </span></p>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+          </div>
+        </section>
+        <div class="contact-with-map mt-5">
+            <div class="contact-map">
+                <iframe class="contact-map-size"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12157.71469426235!2d49.8539455!3d40.3771909!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc20aa51a5f0b5e01!2sCode%20Academy!5e0!3m2!1str!2saz!4v1686948573485!5m2!1str!2saz"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div> 
+    </main>
+    

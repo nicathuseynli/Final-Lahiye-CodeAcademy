@@ -7,7 +7,7 @@ public interface IShortInfoService
 
     Task<ShortInformation> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<ShortInformation> UpdateAsync(UpdateShortInfoVM updateshortInfoVM);
 }

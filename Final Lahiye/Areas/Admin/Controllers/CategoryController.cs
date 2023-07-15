@@ -50,8 +50,11 @@ public class CategoryController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _categoryService.DeleteAsync(id);
-        if (delete == null) return View();
+        var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+        if (category == null) return View();
+
+        _context.Categories.Remove(category);
+        await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
 

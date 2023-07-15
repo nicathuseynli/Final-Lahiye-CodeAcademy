@@ -36,22 +36,11 @@ public class HeroService:IHeroService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var hero = await _context.Heros.FirstOrDefaultAsync(x => x.Id == id);
-        if (hero == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", hero.HeroImage);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.Heros.Remove(hero);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<Hero> GetByIdAsync(int id)
     {

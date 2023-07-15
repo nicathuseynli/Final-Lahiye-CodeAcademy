@@ -55,8 +55,18 @@ public class RegisterPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _registerService.DeleteAsync(id);
-        if (delete == null) return View();
+        var registerPage = await _context.RegisterPages.FirstOrDefaultAsync(x => x.Id == id);
+        if (registerPage == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", registerPage.Image);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.RegisterPages.Remove(registerPage);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

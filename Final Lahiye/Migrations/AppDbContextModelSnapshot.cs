@@ -346,13 +346,30 @@ namespace Final_Lahiye.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.HasKey("Id");
+
+                    b.ToTable("FaqPages");
+                });
+
+            modelBuilder.Entity("Final_Lahiye.Models.FaqPayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Answer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FaqPages");
+                    b.ToTable("FaqPaymentPages");
                 });
 
             modelBuilder.Entity("Final_Lahiye.Models.HeaderUpSocialMedia", b =>

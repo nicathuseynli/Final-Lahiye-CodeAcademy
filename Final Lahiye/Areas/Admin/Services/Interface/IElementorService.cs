@@ -7,7 +7,7 @@ public interface IElementorService
 
     Task<Elementor> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
     
     Task<Elementor> UpdateAsync(UpdateElementorWidgetVM updateElementorWidgetVM);
 }

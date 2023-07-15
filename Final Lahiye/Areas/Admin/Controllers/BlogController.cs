@@ -65,8 +65,24 @@ public class BlogController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _blogService.DeleteAsync(id);
-        if (delete == null) return View();
+        var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == id);
+        if (blog == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.Image);
+        string applyleftpath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.ApplyInfoLeftImage);
+        string applyrightpath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.ApplyInfoRightImage);
+
+        if (System.IO.File.Exists(path) && System.IO.File.Exists(applyleftpath) && System.IO.File.Exists(applyrightpath))
+        {
+            System.IO.File.Delete(path);
+            System.IO.File.Delete(applyleftpath);
+            System.IO.File.Delete(applyrightpath);
+        }
+
+        System.IO.File.Delete(path);
+
+        _context.Blogs.Remove(blog);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

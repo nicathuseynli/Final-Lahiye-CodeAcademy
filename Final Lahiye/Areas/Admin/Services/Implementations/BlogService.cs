@@ -1,24 +1,23 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 using Final_Lahiye.Areas.Admin.Services.Interface;
 using Final_Lahiye.Areas.Admin.ViewModels.Blog;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
 using Final_Lahiye.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System.Web.Mvc;
 
 namespace Final_Lahiye.Areas.Admin.Services.Implementations;
 public class BlogService : IBlogService
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
+    //private readonly IMapper _mapper;
     private readonly AppDbContext _context;
-    private readonly IMapper _mapper;
 
-    public BlogService(AppDbContext context, IWebHostEnvironment webHostEnvironment, IMapper mapper)
+    public BlogService(AppDbContext context, IWebHostEnvironment webHostEnvironment /* ,IMapper mapper*/)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
-        _mapper = mapper;
+        //_mapper = mapper;
     }
 
     public async Task CreateAsync(CreateBlogPageVM createBlogPageVM)
@@ -39,98 +38,82 @@ public class BlogService : IBlogService
         await createBlogPageVM.Photo.CopyToAsync(stream);
         await createBlogPageVM.ApplyInfoLeftPhoto.CopyToAsync(applyleftstream);
         await createBlogPageVM.ApplyInfoRightPhoto.CopyToAsync(applyrightstream);
-        //Blog blog = new()
-        //{
-        //    Title = createBlogPageVM.Title,
 
-        //    HeaderUp = createBlogPageVM.HeaderUp,
+        //var blog = _mapper.Map<Blog>(createBlogPageVM);
 
-        //    InformationUp = createBlogPageVM.InformationUp,
-
-        //    HeaderMiddle = createBlogPageVM.HeaderMiddle,
-
-        //    InformationMiddle = createBlogPageVM.InformationMiddle,
-
-        //    MiddleTextFirst = createBlogPageVM.MiddleTextFirst,
-
-        //    MiddleTextSecond = createBlogPageVM.MiddleTextSecond,
-
-        //    MiddleTextThird = createBlogPageVM.MiddleTextThird,
-
-        //    MiddleTextFourth = createBlogPageVM.MiddleTextFourth,
-
-        //    MiddleDescription = createBlogPageVM.MiddleDescription,
-
-        //    HeaderEnd = createBlogPageVM.HeaderEnd,
-
-        //    InformationEnd = createBlogPageVM.InformationEnd,
-
-        //    ServiceInfo = createBlogPageVM.ServiceInfo,
-
-        //    ServiceNameFirst = createBlogPageVM.ServiceNameFirst,
-
-        //    ServicePriceFirst = createBlogPageVM.ServicePriceFirst,
-
-        //    ServiceDescriptionFirst = createBlogPageVM.ServiceDescriptionFirst,
-
-        //    ServiceNameSecond = createBlogPageVM.ServiceNameSecond,
-
-        //    ServicePriceSecond = createBlogPageVM.ServicePriceSecond,
-
-        //    ServiceDescriptionSecond = createBlogPageVM.ServiceDescriptionSecond,
-
-        //    ServiceNameThird = createBlogPageVM.ServiceNameThird,
-
-        //    ServicePriceThird = createBlogPageVM.ServicePriceThird,
-
-        //    ServiceDescriptionThird = createBlogPageVM.ServiceDescriptionThird,
-
-        //    ServiceNameFourth = createBlogPageVM.ServiceNameFourth,
-
-        //    ServicePriceFourth = createBlogPageVM.ServicePriceFourth,
-
-        //    ServiceDescriptionFourth = createBlogPageVM.ServiceDescriptionFourth,
-
-        //    ApplyInfo = createBlogPageVM.ApplyInfo,
-
-        //    ApplyInfoLeftImage = applyleft,
-
-        //    ApplyInfoRightImage = applyright,
-
-        //    Image = filename,
-
-        //    AuthorId = createBlogPageVM.AuthorId,
-        //};
-        await _context.Blogs.AddAsync(_mapper.Map<Blog>(createBlogPageVM));
-        await _context.SaveChangesAsync();
-
-    }
-
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var blog = await _context.Blogs.FirstOrDefaultAsync(x => x.Id == id);
-        if (blog == null) return false;
-
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.Image);
-        string applyleftpath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.ApplyInfoLeftImage);
-        string applyrightpath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.ApplyInfoRightImage);
-
-        if (System.IO.File.Exists(path) && System.IO.File.Exists(applyleftpath) && System.IO.File.Exists(applyrightpath))
+        Blog blog = new()
         {
-            System.IO.File.Delete(path);
-            System.IO.File.Delete(applyleftpath);
-            System.IO.File.Delete(applyrightpath);
-        }
+            Title = createBlogPageVM.Title,
 
+            HeaderUp = createBlogPageVM.HeaderUp,
 
+            InformationUp = createBlogPageVM.InformationUp,
 
-        System.IO.File.Delete(path);
+            HeaderMiddle = createBlogPageVM.HeaderMiddle,
 
+            InformationMiddle = createBlogPageVM.InformationMiddle,
 
-        _context.Blogs.Remove(blog);
+            MiddleTextFirst = createBlogPageVM.MiddleTextFirst,
+
+            MiddleTextSecond = createBlogPageVM.MiddleTextSecond,
+
+            MiddleTextThird = createBlogPageVM.MiddleTextThird,
+
+            MiddleTextFourth = createBlogPageVM.MiddleTextFourth,
+
+            MiddleDescription = createBlogPageVM.MiddleDescription,
+
+            HeaderEnd = createBlogPageVM.HeaderEnd,
+
+            InformationEnd = createBlogPageVM.InformationEnd,
+
+            ServiceInfo = createBlogPageVM.ServiceInfo,
+
+            ServiceNameFirst = createBlogPageVM.ServiceNameFirst,
+
+            ServicePriceFirst = createBlogPageVM.ServicePriceFirst,
+
+            ServiceDescriptionFirst = createBlogPageVM.ServiceDescriptionFirst,
+
+            ServiceNameSecond = createBlogPageVM.ServiceNameSecond,
+
+            ServicePriceSecond = createBlogPageVM.ServicePriceSecond,
+
+            ServiceDescriptionSecond = createBlogPageVM.ServiceDescriptionSecond,
+
+            ServiceNameThird = createBlogPageVM.ServiceNameThird,
+
+            ServicePriceThird = createBlogPageVM.ServicePriceThird,
+
+            ServiceDescriptionThird = createBlogPageVM.ServiceDescriptionThird,
+
+            ServiceNameFourth = createBlogPageVM.ServiceNameFourth,
+
+            ServicePriceFourth = createBlogPageVM.ServicePriceFourth,
+
+            ServiceDescriptionFourth = createBlogPageVM.ServiceDescriptionFourth,
+
+            ApplyInfo = createBlogPageVM.ApplyInfo,
+
+            ApplyInfoLeftImage = applyleft,
+
+            ApplyInfoRightImage = applyright,
+
+            Image = filename,
+
+            AuthorId = createBlogPageVM.AuthorId,
+        };
+        //await _context.Blogs.AddAsync(_mapper.Map<Blog>(createBlogPageVM));
+        await _context.Blogs.AddAsync(blog);
         await _context.SaveChangesAsync();
-        return true;
+
     }
+
+    //public async Task<bool> DeleteAsync(int id)
+    //{
+
+    //    return true;
+    //}
 
     public async Task<Blog> GetByIdAsync(int id)
     {

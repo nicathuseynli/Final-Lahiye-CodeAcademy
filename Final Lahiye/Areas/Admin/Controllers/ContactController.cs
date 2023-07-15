@@ -56,8 +56,18 @@ public class ContactController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _contactService.DeleteAsync(id);
-        if (delete == null) return View();
+        var contact = await _context.Contacts.FirstOrDefaultAsync(x => x.Id == id);
+        if (contact == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", contact.Image);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.Contacts.Remove(contact);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

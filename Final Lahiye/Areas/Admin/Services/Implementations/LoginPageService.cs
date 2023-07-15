@@ -35,22 +35,11 @@ public class LoginPageService : ILoginPageService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var loginpage = await _context.LoginPages.FirstOrDefaultAsync(x => x.Id == id);
-        if (loginpage == null)  return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", loginpage.Image);
-
-        if (System.IO.File.Exists(path))
-            System.IO.File.Delete(path);
-
-        System.IO.File.Delete(path);
-
-        _context.LoginPages.Remove(loginpage);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<LoginPage> GetByIdAsync(int id)
     {

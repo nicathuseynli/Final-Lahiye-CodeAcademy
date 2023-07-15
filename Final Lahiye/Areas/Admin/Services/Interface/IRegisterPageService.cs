@@ -7,7 +7,7 @@ public interface IRegisterPageService
 
     Task<RegisterPage> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<RegisterPage> UpdateAsync(UpdateRegisterPageVM updateRegisterVM);
 }

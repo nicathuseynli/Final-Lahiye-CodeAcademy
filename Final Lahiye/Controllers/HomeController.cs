@@ -39,5 +39,38 @@ public class HomeController : Controller
             Product = product,
         };
         return View(homeVM);
+
     }
+    public async Task<IActionResult> Error()
+    {
+        var errorPage = await _context.ErrorPages.FirstOrDefaultAsync();
+        ErrorVM errorVM = new()
+        {
+            ErrorPages = errorPage,
+        };
+        return View(errorVM);
+    }
+    public async Task<IActionResult> FAQ()
+    {
+        var question = await _context.FaqPages.ToListAsync();
+        FAQVM faqVM = new()
+        {
+            Faqs = question,
+        };
+        return View(faqVM);
+    }
+    public async Task<IActionResult> Contact()
+    {
+        var contacts = await _context.Contacts.ToListAsync();
+        var details = await _context.ContactDetailss.FirstOrDefaultAsync();
+
+        ContactVM contactVM = new()
+        {
+            Contacts = contacts,
+            ContactDetails = details,
+        };
+        return View(contactVM);
+    }
+
+
 }

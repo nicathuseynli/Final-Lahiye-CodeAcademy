@@ -24,15 +24,11 @@ public class CategoryService : ICategoryService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
-        if (category == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        _context.Categories.Remove(category);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<Category> GetByIdAsync(int id)
     {

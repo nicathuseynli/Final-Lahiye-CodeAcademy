@@ -57,8 +57,18 @@ public class TestimonialController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _testimonialService.DeleteAsync(id);
-        if (delete == null) return View();
+        var testimonial = await _context.Testimonials.FirstOrDefaultAsync(x => x.Id == id);
+        if (testimonial == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", testimonial.Image);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+
+        _context.Testimonials.Remove(testimonial);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

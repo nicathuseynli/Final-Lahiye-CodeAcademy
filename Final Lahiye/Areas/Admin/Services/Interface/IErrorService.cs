@@ -8,7 +8,7 @@ public interface IErrorService
 
     Task<ErrorPage> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<ErrorPage> UpdateAsync(UpdateErrorPageVM updateErrorPageVM);
 }

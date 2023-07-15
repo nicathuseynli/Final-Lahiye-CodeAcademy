@@ -24,14 +24,11 @@ public class HeaderUpTextService : IHeaderUpTextService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var headerupText = await _context.HeaderUpTexts.FirstOrDefaultAsync(x => x.Id == id);
-        if (headerupText == null) return false;
-        _context.HeaderUpTexts.Remove(headerupText);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //public async Task<bool> DeleteAsync(int id)
+    //{
+  
+    //    return true;
+    //}
 
     public async Task<HeaderUpText> GetByIdAsync(int id)
     {

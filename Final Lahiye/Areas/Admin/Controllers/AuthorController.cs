@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Final_Lahiye.Areas.Admin.ViewModels.Blog;
+﻿using Final_Lahiye.Areas.Admin.ViewModels.Blog;
 using Final_Lahiye.Areas.Services.Interface;
 using Final_Lahiye.Data;
 using Final_Lahiye.Models;
@@ -13,14 +12,12 @@ public class AuthorController : Controller
     private readonly AppDbContext _context;
     private readonly IAuthorService _authorService;
     private readonly IWebHostEnvironment _webHostEnvironment;
-    private readonly IMapper _mapper;
 
-    public AuthorController(AppDbContext context, IWebHostEnvironment webHostEnvironment, IAuthorService authorService, IMapper mapper)
+    public AuthorController(AppDbContext context, IWebHostEnvironment webHostEnvironment, IAuthorService authorService)
     {
         _context = context;
         _webHostEnvironment = webHostEnvironment;
         _authorService = authorService;
-        _mapper = mapper;
     }
 
     public async Task<IActionResult> Index()
@@ -59,8 +56,16 @@ public class AuthorController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _authorService.DeleteAsync(id);
-        if (delete == null) return View();
+        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+        if (author == null) return 
+                View();
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+        _context.Authors.Remove(author);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

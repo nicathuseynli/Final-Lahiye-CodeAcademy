@@ -48,9 +48,9 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
-            "Microsoft.AspNet.Mvc": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[5.2.9, )"
+              "version": "[12.0.1, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

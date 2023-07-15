@@ -10,6 +10,8 @@ const username = document.getElementById("username");
 const password = document.getElementById("password");
 const confirm_password = document.getElementById("confirm_password");
 
+if (icon)
+{
 icon.addEventListener("click", () => {
   if (password.getAttribute("type") === "password") {
     password.setAttribute("type", "text");
@@ -19,7 +21,9 @@ icon.addEventListener("click", () => {
     icon.classList.replace("fa-eye", "fa-eye-slash");
   }
 });
+}
 
+if (confirm_icon) {
 confirm_icon.addEventListener("click", () => {
   if (confirm_password.getAttribute("type") === "password") {
     confirm_password.setAttribute("type", "text");
@@ -29,4 +33,5 @@ confirm_icon.addEventListener("click", () => {
     confirm_icon.classList.replace("fa-eye", "fa-eye-slash");
   }
 });
+}
 //------------------------------------ Eye End

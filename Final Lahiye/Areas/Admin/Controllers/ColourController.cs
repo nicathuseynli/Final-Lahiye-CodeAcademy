@@ -51,8 +51,11 @@ public class ColourController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _colourService.DeleteAsync(id);
-        if (delete == null) return View();
+        var colour = await _context.Colours.FirstOrDefaultAsync(x => x.Id == id);
+        if (colour == null) return View();
+
+        _context.Colours.Remove(colour);
+        await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
 

@@ -51,8 +51,12 @@ public class FAQPageController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _faqService.DeleteAsync(id);
-        if (delete == null) return View();
+        var faqPage = await _context.FaqPages.FirstOrDefaultAsync(x => x.Id == id);
+        if (faqPage == null)
+            return View();
+
+        _context.FaqPages.Remove(faqPage);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
 
     }
@@ -66,7 +70,6 @@ public class FAQPageController : Controller
         var updateFaqPageVM = new UpdateFaqPageVM()
         {
             Id = faqPage.Id,
-            Title = faqPage.Title,
             Question = faqPage.Question,
             Answer = faqPage.Answer,
         };

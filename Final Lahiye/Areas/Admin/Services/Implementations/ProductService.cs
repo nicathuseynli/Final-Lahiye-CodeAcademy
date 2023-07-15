@@ -53,19 +53,11 @@ public class ProductService : IProductService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var homeproduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
-        if (homeproduct == null) return false;
+    //public async Task<bool> DeleteAsync(int id)
+    //{
 
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", homeproduct.Image);
-
-        if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
-
-        _context.Products.Remove(homeproduct);
-        await _context.SaveChangesAsync();
-        return true;
-    }
+    //    return true;
+    //}
 
     public async Task<HomeProduct> GetByIdAsync(int id)
     {

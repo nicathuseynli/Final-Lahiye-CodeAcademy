@@ -7,7 +7,7 @@ public interface IContactService
 
     Task<Contact> GetByIdAsync(int id);
 
-    Task<bool> DeleteAsync(int id);
+    //Task<bool> DeleteAsync(int id);
 
     Task<Contact> UpdateAsync(UpdateContactVM updateContactVM);
 }

@@ -57,8 +57,17 @@ public class BannerController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _bannerService.DeleteAsync(id);
-        if (delete == null) return View();
+        var banner = await _context.Banners.FirstOrDefaultAsync(x => x.Id == id);
+        if (banner == null) return View();
+
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", banner.BannerImage);
+
+        if (System.IO.File.Exists(path))
+            System.IO.File.Delete(path);
+
+        System.IO.File.Delete(path);
+        _context.Banners.Remove(banner);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 

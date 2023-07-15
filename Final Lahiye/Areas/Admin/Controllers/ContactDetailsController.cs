@@ -49,8 +49,11 @@ public class ContactDetailsController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-        var delete = _contactDetailsService.DeleteAsync(id);
-        if (delete == null) return View();
+        var details = await _context.ContactDetailss.FirstOrDefaultAsync(x => x.Id == id);
+        if (details == null) return View();
+
+        _context.ContactDetailss.Remove(details);
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
