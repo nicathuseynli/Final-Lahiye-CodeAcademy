@@ -10,10 +10,10 @@ namespace Final_Lahiye.Areas.Admin.Controllers;
 public class HeroController : Controller
 {
     private readonly AppDbContext _context;
-    private readonly ILogger<HeaderUpController> _logger;
+    private readonly ILogger<BioController> _logger;
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IHeroService _heroService;
-    public HeroController(AppDbContext context, ILogger<HeaderUpController> logger, IWebHostEnvironment webHostEnvironment, IHeroService heroService)
+    public HeroController(AppDbContext context, ILogger<BioController> logger, IWebHostEnvironment webHostEnvironment, IHeroService heroService)
     {
         _context = context;
         _logger = logger;

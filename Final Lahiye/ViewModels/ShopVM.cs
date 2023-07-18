@@ -1,4 +1,5 @@
 ﻿using Final_Lahiye.Models;
+using Final_Lahiye.Utilities.Pagination;
 
 namespace Final_Lahiye.ViewModels;
 public class ShopVM
@@ -12,4 +13,6 @@ public class ShopVM
     public HomeProduct Product { get; set; }
 
     public Category Category { get; set; }
+
+    public Pagination<HomeProduct> Paginations { get; set; }
 }

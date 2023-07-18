@@ -1,0 +1,82 @@
+﻿@model  RegisterFormModel
+<div class="contact-header mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center h-100">
+        <h1>My Account</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a  href="account.html">Account</a></li>
+                <li class="breadcrumb-item active" aria-current="page">All</li>
+            </ol>
+        </nav>
+    </div>
+
+</div>
+  <main class="main account">
+    <div class="page-content mt-4 mb-10 pb-6">
+        <div class="container">
+            <div class="tab tab-vertical gutter-lg">
+                <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-linkd isable"  data-bs-toggle="tab" href="#Address" role="tab"
+                        aria-controls="Address" aria-selected="false">Address</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  asp-controller="Account" asp-action="Logout">Logout</a>
+                    </li>
+                </ul>
+                <div class="tab-content col-lg-9 col-md-8">
+                    <div class="tab-pane active" id="dashboard" role="dashboard"
+                    aria-labelledby="dashboard-tab">
+                    @if(@User.Identity.IsAuthenticated)
+                    {
+                        <p class="mb-0">
+                            Hello @User.GetPrincipalName() <a asp-controller="Account" asp-action="Logout"
+                                class="text-primary">Log out</a>)
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="mb-0">
+                            Hello <span>User</span> (not <span>User</span>? <a href="#"
+                                class="text-primary">Log out</a>)
+                        </p>
+                    }
+                        <p class="mb-8">
+                            From your account dashboard you can view your <a href="#orders"
+                                class="link-to-tab text-primary">recent orders</a>, manage your shipping and billing
+                                addresses,<br>and edit your password and account details</a>.
+                        </p>
+                      </div>
+                    <div class="tab-pane" id="Address" role="tabpanel" aria-labelledby="Address-tab">
+                        <p class="mb-2">The following addresses will be used on the checkout page by default.
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-6 mb-4">
+                                <div class="card card-address">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase">Billing Address <span>*</span></h5>
+                                        <p>@Model?.Name<br>
+                                            @Model?.UserName<br>
+                                            @Model?.Email<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-4">
+                                <div class="card card-address">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase">Shipping Address<span>*</span></h5>
+                                        <p>Baku , Azerbaijan.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

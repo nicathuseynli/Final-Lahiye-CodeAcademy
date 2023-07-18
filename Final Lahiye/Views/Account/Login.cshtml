@@ -1,4 +1,4 @@
-﻿@model LoginRegisterVM  
+﻿@model LoginFormModel
   <main>
         <div class="breadcrumb-header mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center h-100">
@@ -14,27 +14,36 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-xxl-6 col-xl-6 col-lg-6  d-lg-block d-none">
-                        <img src="~/images/@Model.LoginPage.Image" width="100%" alt="">
-                </div>
+@*                       <img src="~/images/@Model.LoginPage?.Image" width="100%" alt="">
+*@                </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="login">
                         <div class="loginContent">
                             <h2 class="loginTitle">Sign In Your Account</h2>
-                            <p class="loginDesc">@Model.LoginPage.Description .</p>
-                        </div>
-                        <form action="#">
+@*                            <p class="loginDesc">@Model.LoginPage?.Description</p>
+*@                        </div>
+                        <form method="post">
+                            @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+                        {
+                            <div class="mt-3">
+                                <div class="alert alert-danger text-black" role="alert">
+                                    @ViewBag.Message
+                                </div>
+                            </div>
+                        }
                             <div class="row">
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2">
                                     <div class="accountTitle d-flex flex-column">
                                         <label for="Email">Email Address</label>
-                                        <input type="email" name="Email" id="Email" placeholder="Email Address">
+                                        <input asp-for="Email" id="Email" placeholder="Email Address">
+
                                     </div>
                                 </div>
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
                                     <div class="accountTitle d-flex flex-column">
                                         <label for="Password">Password</label>
                                         <div class="accountTitleItem">
-                                            <input type="password" name="password" id="password" placeholder="Password">
+                                            <input asp-for="Password" id="password" placeholder="Password">
                                             <i class="eyes fa-solid fa-eye-slash icon"></i>
                                         </div>
                                     </div>

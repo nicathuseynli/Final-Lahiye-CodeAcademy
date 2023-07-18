@@ -1,4 +1,4 @@
-﻿@model HeaderVM
+﻿@model Bio
 
 <header>
  <section id="mob">
@@ -6,13 +6,12 @@
  <div class="row">
     <div class="col-1 d-flex justify-content-center">
         <div id="mySidenav" class="sidenav">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
-            <a href="wishlist.html">Wishlist</a>
-            <a href="basket.html">Basket</a>
-            <a href="login.html">User</a>
+            <a asp-controller="Home" asp-action="Index" >Home</a>
+            <a asp-controller="Shop" asp-action="Index">Shop</a>
+            <a asp-controller="Blog" asp-action="Index" >Blog</a>
+            <a asp-controller="Home" asp-action="Contact">Contact</a>
+            <a asp-controller="Home" asp-action="Basket" >Basket</a>
+            <a asp-controller="Account" asp-action="Login" >User</a>
         </div>
     </div>
 </div>
@@ -35,20 +34,20 @@
                   <div class="row align-items-center">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                       <div class="up-header-top-left">
-                        <span class="up-header-text">@Model.HeaderUpTexts?.Text</span>
+                        <span class="up-header-text">@Model?.Text</span>
                       </div>
                     </div>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                       <div class="up-header-top-right">
                         <ul class="up-header-socialmedia-menu d-flex justify-content-end">
                           <li><a class="navigation-socialmediadresses"
-                              href="@Model.HeaderUpSocialMedias?.FacebookLink"><i
+                              href="@Model?.FacebookLink"><i
                                 class="fa-brands fa-facebook"></i></a></li>
                           <li><a class="navigation-socialmediadresses"
-                              href="@Model.HeaderUpSocialMedias?.InstagramLink"><i
+                              href="@Model?.InstagramLink"><i
                                 class="fa-brands fa-instagram"></i></a></li>
                           <li><a class="navigation-socialmediadresses"
-                              href="@Model.HeaderUpSocialMedias?.TwitterLink"><i
+                              href="@Model?.TwitterLink"><i
                                 class="fa-brands fa-twitter"></i></a></li>
                         </ul>
                       </div>
@@ -62,7 +61,7 @@
         <div class="row headerWidthNone">
           <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
             <div class="headerLogo">
-              <a href="#"><img src="~/images/interior-logo.webp" class="logo" alt="website-logo" /></a>
+              <a asp-controller="Home" asp-action="Index" ><img src="~/images/interior-logo.webp" class="logo" alt="website-logo" /></a>
             </div>
           </div>
           <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
@@ -71,21 +70,23 @@
                 <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li class="navigation-item"><a class="navigation-item-area" asp-controller="Shop" asp-action="Index">Shop</a></li>
                 <li class="navigation-item"><a class="navigation-item-area" asp-controller="Blog" asp-action="Index">Blog</a></li>
-                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="FAQ">FAQ</a></li>
-@*                <li class="navigation-item"><a class="navigation-item-area  navigationpages">pages <i
+@*                <li class="navigation-item"><a class="navigation-item-area  navigationpages">Pages <i
                       class="fa-solid fa-chevron-down"></i></a>
                   <ul class="submenu">
-                    <li class="submenuItem"><a class="submenuItem-area" asp-controller="Error" asp-action="Index">Error Page</a></li>
+                    <li class="submenuItem"><a class="submenuItem-area" asp-controller="Home" asp-action="FAQ">FAQ</a></li>
+                    <li class="submenuItem"><a class="submenuItem-area" asp-controller="Account" asp-action="Account">My Account</a></li>
                   </ul>
                 </li>*@
+                <li class="navigation-item"><a class="navigation-item-area  navigationPages" href="#">Pages <i
+                      class="fa-solid fa-chevron-down"></i></a>
+                  <ul class="submenu">
+                    <li class="submenuItem"><a class="submenuItem-area"  asp-controller="Home" asp-action="FAQ">FAQ</a></li>
+                    <li class="submenuItem"><a class="submenuItem-area"  asp-controller="Account" asp-action="Account">Account</a></li>
+                  </ul>
+                </li>
                 <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Contact" >Contact</a></li>
-                <li class="navigation-item ">
-                  <i class="navigation-item-area-icon-serach fa-solid fa-magnifying-glass"></i>
-                </li>
-                <li class="basketCartRegister-header"><a asp-controller="Shop" asp-action="Wishlist" ><i class="fa-regular fa-heart"></i></a>
-                </li>
-                <li class="basketCartRegister-header"><a asp-controller="Shop" asp-action="Basket" class="cartCount"><span
-                      class="cartCountItem">12</span><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="basketCartRegister-header"><a asp-controller="Home" asp-action="Basket" class="cartCount"><span
+                      class="cartCountItem">@ViewBag.BasketCount</span><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <li class="basketCartRegister-header"><a asp-controller="Account" asp-action="Login"><i class="fa-regular fa-user"></i></a></li>
               </ul>
             </nav>

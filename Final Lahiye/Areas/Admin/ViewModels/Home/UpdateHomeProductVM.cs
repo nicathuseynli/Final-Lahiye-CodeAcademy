@@ -13,8 +13,6 @@ public class UpdateHomeProductVM
 
     public decimal LastPrice { get; set; }
 
-    public bool InStock { get; set; }
-
     public decimal CurrentPrice { get; set; }
 
     public int Rating { get; set; }
@@ -42,6 +40,8 @@ public class UpdateHomeProductVM
     public int CategoryId { get; set; }
 
     public int ColourId { get; set; }
+
+    public int Count { get; set; }
 
     [AllowNull]
     public IFormFile Photo { get; set; }

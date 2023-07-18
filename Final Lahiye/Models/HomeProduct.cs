@@ -36,9 +36,9 @@ public class HomeProduct :BaseEntity<int>
 
     public decimal CurrentPrice { get; set; }
 
-    public string Image { get; set; }
+    public int Count { get; set; }
 
-    public bool InStock { get; set; }
+    public string Image { get; set; }
 
     [NotMapped]
     public IFormFile Photo { get; set; }
@@ -52,5 +52,6 @@ public class HomeProduct :BaseEntity<int>
     public int CategoryId { get; set; }
 
     public int ColourId { get; set; }
+    public virtual ICollection<Comment> Comments { get; set; }
 
 }

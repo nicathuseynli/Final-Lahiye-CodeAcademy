@@ -45,10 +45,10 @@ public class CreateHomeProductVM
     [Required]
     public string Shape { get; set; }   
 
-    public bool InStock { get; set; }
-
     [Required]
     public decimal CurrentPrice { get; set; }
+
+    public int Count { get; set; }
 
     public int CategoryId { get; set; }
 

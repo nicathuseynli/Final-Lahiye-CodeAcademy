@@ -1,7 +1,21 @@
 ﻿ @model ProductVM
 @*@{
     int Count = Model.Product.Count();
-}*@
+}
+*@
+@{
+        IEnumerable<Comment> GetComments(Comment parent)
+    {
+        if (parent.ParentId != null)
+            yield return parent;
+
+        foreach (var item in parent.Children.SelectMany(c => GetComments(c)))
+        {
+            yield return item;
+        }
+
+    }
+}
   <section id="ProductAndSidebar">
       <div class="container mt-5 mb-5 pt-5 pb-5">
         <div class="sideBarHeader">
@@ -183,72 +197,83 @@
                       <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                           <div class="container">
                             <div class="row">
-                              <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 mt-4">
-                                <div class="container  d-flex align-items-center mt-4 pb-4">
-                                  <div class="authors_photo mb-3 me-2">
+                                @foreach (var comment in Model.Product.Comments.Where(c => c.ParentId == null))
+                                {
+                                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 mt-4">
+                                <div class=" container  d-flex align-items-center mt-4 pb-4">
+                                    <div class="comment" data-comment-id="@comment.Id">
+                                            <div class="authors_photo mb-3 me-2">
                                     <img src="~/images/review-user-null-photo.png" alt="creater-image" class="creator-image">
                                   </div>
-                                  <div class="creator-info d-flex flex-column  me-5">
-                                    <span class="creator-name mt-4">
-                                      <ul class="d-flex ">
-                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                        <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                        <li class="shopDetailsProductRetingItem"><i class="fa-regular fa-star"></i></li>
-                                      </ul>
-                                    </span>
+                                  <div class="creator-info d-flex flex-column  me-5">                                
                                     <div class="row">
-                                      <p class="creator-profession mt-2">cs7d8cnvdku :<span class="creator-name ms-2">February 17,
+                                      <p class="creator-profession mt-2">    @comment.User.Name :<span class="creator-name ms-2">February 17,
                                           2023</span>
                                       </p>
+                                      
                                       <div class="d-flex flex-column">
-                                        <p class="creator-profession ms-1">Very good product</p>
+                                        <p class="creator-profession ms-1">@comment.Description</p>
+                                           <a class=" btn-comment-reply">
+                                           Reply
+                                           <span>
+                                               <i class="fa-solid fa-angle-right"></i>
+                                           </span>
+                                       </a>
                                       </div>
                                     </div>
                                   </div>
+                                    </div>
                                 </div>
                               </div>
-                              <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12 mt-5">
+                                    @foreach (var subComment in GetComments(comment))
+                                    {
+                                          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 mt-4">
+                                <div class=" container  d-flex align-items-center mt-4 pb-4">
+                                    <div class="comment" id="c-@subComment.Id" data-comment-id="@comment.Id">
+                                            <div class="authors_photo mb-3 me-2">
+                                    <img src="~/images/review-user-null-photo.png" alt="creater-image" class="creator-image">
+                                  </div>
+                                  <div class="creator-info d-flex flex-column  me-5">
+                                    <div class="row">
+                                      <p class="creator-profession mt-2">@comment.User.Name :<span class="creator-name ms-2">February 17,
+                                          2023</span>
+                                      </p>
+                                      
+                                      <div class="d-flex flex-column">
+                                        <p class="creator-profession ms-1">@comment.Description</p>
+                                           <a class=" btn-comment-reply">
+                                           Reply
+                                           <span>
+                                               <i class="fa-solid fa-angle-right"></i>
+                                           </span>
+                                       </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                    </div>
+                                </div>
+                              </div>
+                                    }
+                                }
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12 mt-5">
                                 <h5 class="singleblog-header-first mb-3">Add A Review</h5>
                                 <p class="singleblog-text "> Your email address will not be published. Required fields are marked
                                   <span class="singleblog-reply">*</span>
                                 </p>
-                                <div class="shopDetailsProductReting d-flex align-items-center mb-3">
-                                  <ul class="d-flex ">
-                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                    <li class="shopDetailsProductRetingItem"><i class="fa-solid fa-star"></i></li>
-                                  </ul>
-                                </div>
-                                <form action="#">
+
+                                <form method="post" asp-controller="Shop" asp-action="Comments" id="replyForm" >
+                                    <div id="replyToComment"></div>
                                   <div class="row gy-2">
                                     <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 mb-4">
                                       <div class="contactItem">
                                         <textarea placeholder="Your Comment *" name="#" id="#" cols="30" rows="10"></textarea>
                                       </div>
+                                      <input type="hidden" name="blogId" value="@Model.Product.Id" />
                                     </div>
-                                    <div class="row">
-                                      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="contactItem">
-                                          <input placeholder="Name *" type="text">
-                                        </div>
-                                      </div>
-                                      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="contactItem">
-                                          <input placeholder="Email *" type="email">
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <p class="singleblog-text mt-4">
-                                      <input type="checkbox" name="save" id="Save Data">
-                                      Save my name, email, and website in this browser for the next time I comment.
-                                    </p>
                                     <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                                      <a href="#" class="btn-header-singleblog mb-3">Submit</a>
+                                      <input type="submit" value="Submit"  class="btn-header-singleblog mb-3">
                                     </div>
+                                  </div>
                                 </form>
                               </div>
                             </div>
@@ -273,7 +298,7 @@
                     <span class="home-product-discount">-16%</span>
                     <div class="home-product-icon">
                       <div class="home-product-icon-item">
-                        <a href="#"></a>
+                        <a asp-controller="Shop" asp-action="Product" asp-route-id="@Model.Product.Id" ></a>
                       </div>
                       <a href="" class="home-product-icon-two"></a>
                       <a href="" class="home-product-icon-three">
@@ -410,3 +435,60 @@
         </div>
       </div>
     </section>
+
+
+
+ @section addjs{
+    <script>
+        $(document).ready(function () {
+            $('.btn-comment-reply').click(function (e) {
+                e.preventDefault();
+                $('#replyToComment').html('<a href="javascript:removeReplySelected(this)" class="remove-selected-comment">&times;</a>').append($(e.currentTarget).closest('.comment').clone());
+            });
+
+            $('#replyForm').submit(function (e) {
+                e.preventDefault();
+
+                let formData = new FormData(e.currentTarget);
+
+                let toCommentId = $('#replyToComment div.comment').data('comment-id')
+
+                console.log(toCommentId)
+                if (toCommentId != undefined || toCommentId != null) {
+                 formData.set("commentId", toCommentId);
+                }
+                
+                console.log(formData)
+                $.ajax
+                ({
+                    url: '@Url.Action("Comments")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log("success: ",response);
+                    },
+                    error: function (response) {
+                        if (response.statusText == "parsererror") {
+                            if (toCommentId != undefined)
+                             {
+                                $(response.responseText).inserAfter($('#c-${toCommentId}'));
+                                $('#replyToComment').html('').
+                                e.currentTarget.reset();
+                             }
+                             else{
+                                $("div.comments ul").append($(response.responseText))
+                             }
+                        }
+                        console.warn("error: ", response);
+                    }
+                })
+            });
+        });
+        function removeReplySelected() {
+            $('#replyToComment').html('');
+        }
+     </script>
+   }

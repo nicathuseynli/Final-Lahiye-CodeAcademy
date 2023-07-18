@@ -74,6 +74,209 @@ a {
   color: white;
   cursor: pointer;
 }
+/*Account Start*/
+/*Account Start*/
+.accountBtn {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 20px 35px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+    .accountBtn:hover {
+        cursor: pointer;
+        transform: translateY(-1em);
+        transition: 0.4s;
+        background-color: black;
+        color: white !important;
+    }
+
+.account {
+    line-height: 2.15;
+}
+
+    .account .title {
+        font-size: 3rem;
+        /* letter-spacing: -.35em; */
+    }
+
+.title.title-center {
+    justify-content: center;
+}
+
+.title {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-family: var(--body-font);
+    line-height: 1;
+    color: #222;
+}
+
+.tab-vertical {
+    display: flex;
+}
+
+.gutter-lg {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.account .nav-tabs {
+    width: auto;
+    border-right: none;
+}
+
+.nav-tabs {
+    display: flex;
+}
+.home-search{
+    border-radius:15px;
+
+}
+
+@media (min-width: 992px) {
+    .col-lg-3 {
+        max-width: 25%;
+        flex: 0 0 25%;
+    }
+}
+
+.gutter-lg > * {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.account .nav-tabs {
+    width: auto;
+    border-right: none;
+}
+
+.tab-vertical .nav-tabs {
+    flex-flow: column nowrap;
+    border: 0;
+}
+
+.nav-tabs {
+    display: flex;
+}
+
+.account .nav-item {
+    border-bottom: 1px solid #eee;
+}
+
+.tab-vertical .nav-item {
+    margin-right: 0;
+}
+
+.account .nav-item a {
+    display: block;
+    padding: 1.7rem 0.8rem 1.6rem;
+    margin: 0;
+    font-weight: 600;
+    font-family: var(--body-font);
+    line-height: 1;
+    text-transform: none;
+}
+
+.tab-vertical .nav-link {
+    position: relative;
+    width: calc(100%+2px);
+    border: 0;
+    text-align: left;
+}
+
+.nav-link {
+    transition-duration: .35s,.35s,.35s;
+    transition-timing-function: ease,ease,ease;
+    transition-delay: 0s,0s,0s;
+    transition-property: border, color, background-color;
+}
+
+    .nav-link::after {
+        box-sizing: inherit;
+    }
+
+.tab-vertical .tab-content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--body-font);
+}
+
+.card {
+    --bs-card-border-color: none;
+}
+
+.tab-content {
+    background-color: #fff;
+}
+
+    .tab-content > .tab-pane:not(.active) {
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+.account .tab-pane {
+    padding: .8rem 0 0 0;
+}
+
+.tab-pane {
+    line-height: 1.72;
+    color: #666;
+}
+
+.account #dashboard p {
+    color: #777;
+}
+
+.account p {
+    font-family: var(--body-font);
+    font-size: 15px;
+}
+
+    .account p span {
+        color: #333;
+    }
+
+.text-primary {
+    color: rgb(34, 56, 90) !important;
+}
+
+.card-body {
+    padding: 1.3rem 0.5rem;
+}
+
+.text-uppercas {
+    text-transform: uppercase;
+}
+
+.card-address p {
+    margin-bottom: 1rem;
+}
+/* .nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+} */
+/* @media (max-width: 767px) {
+  .col-md-4{
+    padding: 45.1px 10px;
+  }
+} */
+/*Account End*/
+/*Account End*/
 /*Mobile Menu Start*/
 .hamburger {
     display: none;
@@ -485,7 +688,7 @@ a {
 
 .navigation-item-area {
   display: inline-block;
-  padding: 41px 20px 40px 0;
+  padding: 41px 20px 32px 0;
   color: black !important;
   font-size: 18px;
   font-weight: 500;
@@ -511,7 +714,28 @@ a {
   max-height: 300px;
   border: 1px solid hsl(var(--black) / 0.3);
 }
+.submenu {
+    position: absolute;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s;
+    background-color: white;
+}
 
+.submenuItem-area {
+    font-size: 17px;
+    padding: 7px 50px 0 20px;
+    font-weight: 400;
+    color: black !important;
+}
+
+.submenuItem {
+    border-bottom: 1px solid hsl(var(--black) / 0.08);
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 #Navigation {
   position: relative;
   height: 100px;

@@ -1,15 +1,17 @@
-﻿using Final_Lahiye.Models;
+﻿using Final_Lahiye.Membership;
+using Final_Lahiye.Models;
+using Final_Lahiye.Models.Membership;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Final_Lahiye.Data;
-public class AppDbContext :DbContext
+public class AppDbContext : IdentityDbContext<MUser,MRole,int,MUserClaim,MUserRole,MUserLogin,MRoleClaim,MUserToken>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
 
     }
-    public DbSet<HeaderUpSocialMedia> HeaderUpSocialMedias { get; set; }
-    public DbSet<HeaderUpText> HeaderUpTexts { get; set; }
+    public DbSet<Bio> Bios { get; set; }
     public DbSet<Hero> Heros { get; set; }
     public DbSet<Banner> Banners { get; set; }
     public DbSet<Elementor> Elementors { get; set; }
@@ -27,4 +29,44 @@ public class AppDbContext :DbContext
     public DbSet<HomeProduct> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Colour> Colours { get; set; }
+    public DbSet<Comment> Comments { get; set; }
+
+    public DbSet<MUser> Users { get; set; }
+    public DbSet<MRole> Roles { get; set; }
+    public DbSet<MUserClaim> UserClaims { get; set; }
+    public DbSet<MRoleClaim> RoleClaims { get; set; }
+    public DbSet<MUserToken> UserTokens { get; set; }
+    public DbSet<MUserLogin> UserLogins { get; set; }
+    public DbSet<MUserRole> UserRoles { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.Entity<MUser>(e =>
+        {
+            e.ToTable("Roles", "MemberShip");
+        });
+        builder.Entity<MRoleClaim>(e =>
+        {
+            e.ToTable("RoleClaims", "Membership");
+        });
+        builder.Entity<MUserClaim>(e =>
+        {
+            e.ToTable("UserClaims", "Membership");
+        });
+        builder.Entity<MUserToken>(e =>
+        {
+            e.ToTable("UserTokens", "Membership");
+        });
+        builder.Entity<MUserLogin>(e =>
+        {
+            e.ToTable("UserLogins", "Membership");
+        });
+        builder.Entity<MUserRole>(e =>
+        {
+            e.ToTable("UserRoles", "Membership");
+        });
+
+    }
+
 }

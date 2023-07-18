@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Final_Lahiye.Areas.Admin.Controllers;
 [Area("Admin")]
+
 public class AuthorController : Controller
 {
     private readonly AppDbContext _context;

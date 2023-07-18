@@ -44,7 +44,6 @@ public class ProductController : Controller
         {
             ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
             ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
-
             return View();
         }
 
@@ -93,7 +92,6 @@ public class ProductController : Controller
             Id = id,
             CategoryId = homeproduct.CategoryId,
             ColourId = homeproduct.ColourId,
-            InStock = homeproduct.InStock,
             Name = homeproduct.Name,
             Header = homeproduct.Header,
             Rating = homeproduct.Rating,

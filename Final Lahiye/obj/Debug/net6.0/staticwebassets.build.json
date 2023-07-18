@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JtepYKBm01jW0iP7O2YmjwVkbBjd8GlMHhAlMguYF3g=",
+  "Hash": "pEELqMY9Ib+HrQP0z7VvmVxSL9B5GP2a/f693nSnOOo=",
   "Source": "Final Lahiye",
   "BasePath": "_content/Final Lahiye",
   "Mode": "Default",
@@ -3485,6 +3485,23 @@
       "OriginalItemSpec": "wwwroot\\images\\92a9bb77-c457-497b-916a-4ed1557b1631 _ blog-image-4.jpg"
     },
     {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\94aa3a0a-3381-47d9-b8b1-8c558cf5c45f _ truck.svg",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/94aa3a0a-3381-47d9-b8b1-8c558cf5c45f _ truck.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\94aa3a0a-3381-47d9-b8b1-8c558cf5c45f _ truck.svg"
+    },
+    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\95b89975-c305-4c2b-9e55-a4d9376aab29 _ blog-image-2.jpg",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -3585,6 +3602,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\a5421deb-b49d-45eb-a84c-1064954ba473_bgforheader2.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\a7fc936d-73e4-4c1d-8ee8-b726a5b2f00e_eye-color-black.svg",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/a7fc936d-73e4-4c1d-8ee8-b726a5b2f00e_eye-color-black.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a7fc936d-73e4-4c1d-8ee8-b726a5b2f00e_eye-color-black.svg"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\ae1530bd-b054-40ba-9e26-54f3731d681a_review-user-null-photo.png",

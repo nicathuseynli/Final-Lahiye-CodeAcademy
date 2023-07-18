@@ -17,7 +17,9 @@
                     @foreach (var category in Model.Categories)
                     {
                       <div class="sideBarForm">
-                          <a asp-route-categoryId="@category.Id" name="@category.Name" class="sidebarCat">@category.Name <span>(@category.Products?.Count())</span></a>
+                          <a asp-route-categoryId="@category.Id" class="sidebarCat">
+                              @category.Name <span>(@category.Products?.Count())</span>
+                          </a>
                       </div>
                     }
                 </div>
@@ -57,21 +59,13 @@
                   @foreach (var colour in Model.Colours)
                   {                         
                     <div class="sideBarForm">
-                     <input type="checkbox" asp-route-colourId="@colour.Id" name="@colour.Name">
-                     <label for="Copper Red">@colour.Name <span>(@colour.Products?.Count())</span</label>
+                             <a asp-route-colourId="@colour.Id" class="sidebarCat">
+                              @colour.Name <span>(@colour.Products?.Count())</span>
+                          </a>
+    @*                 <input type="checkbox" asp-route-colourId="@colour.Id" name="@colour.Name">
+                     <label for="Copper Red">@colour.Name <span>(@colour.Products?.Count())</span</label>*@
                     </div>
                   }
-              </div>
-            </div>
-            <div class="col-xxl-11 col-xl-11 col-lg-11 col-md-11 col-xsm-11 col-12 m-auto">
-              <div class="titleShop">
-                <h6>Stock Status</h6>
-              </div>
-              <div class="sideBarItem">
-                <div class="sideBarForm">
-                  <input type="checkbox" name="In Stock" id="In Stock">
-                  <label for="In Stock">In Stock (8)</label>
-                </div>
               </div>
             </div>
           </div>
@@ -120,7 +114,7 @@
                                         <a href="wishlist.html"></a>
                                       </div>
                                       <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
-                                      <a href="basket.html" class="home-product-icon-three">
+                                      <a asp-controller="Home" asp-action="Basket" class="home-product-icon-three">
                                       </a>
                                     </div>
                                     <a  asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id"  >
@@ -134,7 +128,7 @@
                               <div class="home-product-desc">
                                 <div class="home-product-desc-item">
                                   <h5 class="home-produtc-title">
-                                    <a href="singleproduct.html">@shopProduct.Name</a>
+                                    <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" >@shopProduct.Name</a>
                                   </h5>
                                   <h6 class="home-product-price">
                                     <del class="home-product-oldPrice">$@shopProduct.LastPrice</del>
@@ -167,7 +161,7 @@
                                         <a href="wishlist.html"></a>
                                       </div>
                                       <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
-                                      <a href="basket.html" class="home-product-icon-three">
+                                      <a asp-controller="Home" asp-action="Basket" class="home-product-icon-three">
                                       </a>
                                     </div>
                                     <a  asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id"  >
@@ -181,7 +175,7 @@
                               <div class="home-product-desc">
                                 <div class="home-product-desc-item">
                                   <h5 class="home-produtc-title">
-                                    <a href="singleproduct.html">@shopProduct.Name</a>
+                                    <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" >@shopProduct.Name</a>
                                   </h5>
                                   <h6 class="home-product-price">
                                     <del class="home-product-oldPrice">$@shopProduct.LastPrice</del>
@@ -205,8 +199,21 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>@*
+                          <div class="pagination-area">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
 
+                      <li class="page-item" @(Model.Paginations.CuurentPage ==1? "disabled":"") ><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginations.CuurentPage-1)"  aria-label="Previus">Prev</a></li>
+                          @for (int i = 1; i < Model.Paginations.TotalPage; i++)
+                          {
+                               <li class="page-item" @(Model.Paginations.CuurentPage ==i? "disabled":"")><a class="page-link"asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+                          }
+                      <li class="page-item" @(Model.Paginations.CuurentPage == Model.Paginations.TotalPage ? "disabled":"") ><a class="page-link"  asp-action="Index" asp-route-currentPage="@(Model.Paginations.CuurentPage-1)" aria-label="Next">Next</a></li>
+
+                    </ul>
+                  </nav>
+                </div>*@
         </div>
       </div>
     </section>

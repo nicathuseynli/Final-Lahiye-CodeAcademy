@@ -22,8 +22,8 @@ public static class AdminPanelDI
         services.AddScoped<ILoginPageService, LoginPageService>();
         services.AddScoped<IRegisterPageService, RegisterPageService>();
         services.AddScoped<IHeroService, HeroService>();
-        services.AddScoped<IHeaderUpTextService, HeaderUpTextService>();
-        services.AddScoped<IHeaderUpSocialMediaService, HeaderUpSocialMediaService>();
+        services.AddScoped<IBioService, BioService>();
+        services.AddScoped<IBioService, BioService>();
         services.AddScoped<IFaqService, FaqService>();
         services.AddScoped<IFaqPaymentService, FaqPaymentService>();
         services.AddScoped<IColourService, ColourService>();

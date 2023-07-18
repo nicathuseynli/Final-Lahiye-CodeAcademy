@@ -26,11 +26,10 @@ public class ProductService : IProductService
 
         await createhomeproductVm.Photo.CopyToAsync(stream);
 
-        HomeProduct homeproduct = new()
+        HomeProduct  homeproduct = new()
         {
             Name = createhomeproductVm.Name,
             LastPrice = createhomeproductVm.LastPrice,
-            InStock = createhomeproductVm.InStock,
             CurrentPrice = createhomeproductVm.CurrentPrice,
             SalePercent = createhomeproductVm.SalePercent,
             Header = createhomeproductVm.Header,
@@ -47,6 +46,7 @@ public class ProductService : IProductService
             Shape = createhomeproductVm.Shape,
             CategoryId = createhomeproductVm.CategoryId,
             ColourId = createhomeproductVm.ColourId,
+            Count = createhomeproductVm.Count,
             Image = filename,
         };
         await _context.Products.AddAsync(homeproduct);
@@ -108,10 +108,10 @@ public class ProductService : IProductService
         homeproduct.IdealFor = updateHomeProductVM.IdealFor;
         homeproduct.Capacity = updateHomeProductVM.Capacity;
         homeproduct.Shape = updateHomeProductVM.Shape;
-        homeproduct.InStock = updateHomeProductVM.InStock;
         homeproduct.SalePercent = updateHomeProductVM.SalePercent;
         homeproduct.CategoryId = updateHomeProductVM.CategoryId;
         homeproduct.ColourId = updateHomeProductVM.ColourId;
+        homeproduct.Count = updateHomeProductVM.Count;
         await _context.SaveChangesAsync();
         return homeproduct;
     }

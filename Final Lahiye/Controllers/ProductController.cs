@@ -1,5 +1,6 @@
-﻿using Final_Lahiye.Data;
+﻿/*using Final_Lahiye.Data;
 using Final_Lahiye.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ public class ProductController : Controller
     {
         _context = context;
     }
+    [AllowAnonymous]
 
     public async Task<IActionResult> Index (int id)
     {
@@ -26,3 +28,4 @@ public class ProductController : Controller
         return View(productVM);
     }
 }
+*/
