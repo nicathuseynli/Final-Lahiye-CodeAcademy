@@ -13,13 +13,11 @@ public class HomeController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<HomeController> _logger;
-    //private readonly UserManager<AppUser> _userManager;
 
-    public HomeController(ILogger<HomeController> logger, AppDbContext context) //UserManager<AppUser> userManager)
+    public HomeController(ILogger<HomeController> logger, AppDbContext context) 
     {
         _logger = logger;
         _context = context;
-        //_userManager = userManager;
     }
     [AllowAnonymous]
     public async Task<IActionResult> Index()
@@ -88,6 +86,7 @@ public class HomeController : Controller
         return View(contactVM);
     }
 
+
     [AllowAnonymous]
     public async Task<IActionResult> AddBasket(int? id)
     {
@@ -113,6 +112,7 @@ public class HomeController : Controller
             {
                 Id = product.Id,
                 Image = product.Image,
+                Name=product.Name,
                 Price = product.CurrentPrice,
                 Count = 1,
             };
@@ -130,7 +130,18 @@ public class HomeController : Controller
     [AllowAnonymous]
     public IActionResult Basket()
     {
-        return Content(Request.Cookies["basket"]);
+        string existBasket = Request.Cookies["basket"];
+        if (existBasket != null)
+        {
+            List<ProductBasketVM> products = JsonConvert.DeserializeObject<List<ProductBasketVM>>(existBasket);
+            return View(products);
+        }
+        else
+        {
+            // Eğer sepet boşsa, boş bir liste oluşturun.
+            List<ProductBasketVM> products = new List<ProductBasketVM>();
+            return View(products);
+        }
     }
 /*    [AllowAnonymous]
     public IActionResult Search(string search)

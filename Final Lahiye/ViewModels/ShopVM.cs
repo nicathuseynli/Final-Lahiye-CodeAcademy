@@ -14,5 +14,5 @@ public class ShopVM
 
     public Category Category { get; set; }
 
-    public Pagination<HomeProduct> Paginations { get; set; }
+    public Paginate<HomeProduct> Paginates{ get; set; }
 }
