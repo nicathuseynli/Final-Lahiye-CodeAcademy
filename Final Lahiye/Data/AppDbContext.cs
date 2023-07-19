@@ -1,6 +1,7 @@
 ﻿using Final_Lahiye.Membership;
 using Final_Lahiye.Models;
 using Final_Lahiye.Models.Membership;
+//using Final_Lahiye.Utilities.Pagination;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,7 @@ public class AppDbContext : IdentityDbContext<MUser,MRole,int,MUserClaim,MUserRo
     public DbSet<Category> Categories { get; set; }
     public DbSet<Colour> Colours { get; set; }
     public DbSet<Comment> Comments { get; set; }
+    //public DbSet<Pagination<HomeProduct>> Paginations { get; set; }
 
     public DbSet<MUser> Users { get; set; }
     public DbSet<MRole> Roles { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿//using Final_Lahiye.Utilities.Pagination;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Final_Lahiye.Models;
@@ -43,7 +44,6 @@ public class HomeProduct :BaseEntity<int>
     [NotMapped]
     public IFormFile Photo { get; set; }
 
-
     //Navigation
     public virtual Category Category { get; set; }
 
@@ -52,6 +52,10 @@ public class HomeProduct :BaseEntity<int>
     public int CategoryId { get; set; }
 
     public int ColourId { get; set; }
+
     public virtual ICollection<Comment> Comments { get; set; }
+
+    //public ICollection<Pagination<HomeProduct>> Paginations { get; set; }
+
 
 }

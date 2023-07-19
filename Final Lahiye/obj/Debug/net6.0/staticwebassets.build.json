@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pEELqMY9Ib+HrQP0z7VvmVxSL9B5GP2a/f693nSnOOo=",
+  "Hash": "PkZByBcTpZVk+vanagYkW1tne7P93mkYtLNusxaufFA=",
   "Source": "Final Lahiye",
   "BasePath": "_content/Final Lahiye",
   "Mode": "Default",
@@ -3944,23 +3944,6 @@
       "OriginalItemSpec": "wwwroot\\images\\c4e419ba-aaa4-455b-a076-9236acd1013a_elementor-widget-left.webp"
     },
     {
-      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\cd208f49-02b2-46e8-8c70-c4d2720de96e _ interior-product.webp",
-      "SourceId": "Final Lahiye",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
-      "BasePath": "_content/Final Lahiye",
-      "RelativePath": "images/cd208f49-02b2-46e8-8c70-c4d2720de96e _ interior-product.webp",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\cd208f49-02b2-46e8-8c70-c4d2720de96e _ interior-product.webp"
-    },
-    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\ce0c961c-892c-47cd-bedb-523fa66ff3a4_blog-image-3.jpg",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -5166,6 +5149,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\mobile.js"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\lib\\sweetalert\\sweetalert.min.js",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "lib/sweetalert/sweetalert.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\sweetalert\\sweetalert.min.js"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\style\\style.css",

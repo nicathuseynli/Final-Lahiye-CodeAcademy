@@ -1,7 +1,7 @@
 ﻿using Final_Lahiye.Data;
 using Final_Lahiye.Helpers;
 using Final_Lahiye.Models;
-using Final_Lahiye.Utilities.Pagination;
+//using Final_Lahiye.Utilities.Pagination;
 using Final_Lahiye.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +11,14 @@ namespace Final_Lahiye.Controllers;
 public class ShopController : Controller
 {
     private readonly AppDbContext _context;
-
-    public ShopController(AppDbContext context)
+    private readonly IWebHostEnvironment _webHostEnvironment;
+    public ShopController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
     {
         _context = context;
+        _webHostEnvironment = webHostEnvironment;
     }
     [AllowAnonymous]
-    public async Task<IActionResult> Index(int? categoryId, int? colourId,int id,int currentPage = 1, int totalPageTake = 5)
+    public async Task<IActionResult> Index(int? categoryId, int? colourId, int id) /*,,int currentPage = 1, int totalPageTake = 5)*/
     {
         HomeProduct? product = await _context.Products
             .Include(x => x.Comments)
@@ -43,13 +44,13 @@ public class ShopController : Controller
 
         var singCat = await _context.Categories.FirstOrDefaultAsync();
 
-        var Pagproducts = await _context.Products
-            .Skip((currentPage - 1) * totalPageTake)
-            .Take(totalPageTake)
-            .ToListAsync();
-        int pageCount = await GetPageCount(totalPageTake);
+        //var Pagproducts = await _context.Products
+        //    .Skip((currentPage - 1) * totalPageTake)
+        //    .Take(totalPageTake)
+        //    .ToListAsync();
+        //int pageCount = await GetPageCount(totalPageTake);
 
-        Paginate<HomeProduct> pagination = new(Pagproducts, currentPage, pageCount);
+        //Pagination<HomeProduct> pagination = new(Pagproducts, currentPage, pageCount);
 
         ShopVM shopVM = new()
         {
@@ -58,7 +59,7 @@ public class ShopController : Controller
             Colours = colour,
             Products = products,
             Product = product,
-            Paginates = pagination,
+            //Paginations = pagination,
         };
 
         return View(shopVM);
@@ -103,7 +104,7 @@ public class ShopController : Controller
             return Json(new
             {
                 error = true,
-                message = "Serh bos buraxila bilmez"
+                message = "You should write something"
             });
         }
         if (blogId < 1)
@@ -154,4 +155,5 @@ public class ShopController : Controller
 
         return Json(products);
     }
+
 }

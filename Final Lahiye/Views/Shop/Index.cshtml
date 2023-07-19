@@ -113,11 +113,7 @@
                                                                     <div class="home-product-img">
                                                                         <span class="home-product-discount">-@shopProduct.SalePercent%</span>
                                                                         <div class="home-product-icon">
-                                                                            <div class="home-product-icon-item">
-                                                                                <a href="wishlist.html"></a>
-                                                                            </div>
-                                                                            <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
-                                                                            <a asp-controller="Home" asp-action="AddBasket"  asp-route-id="@shopProduct.Id" class="home-product-icon-three">
+                                                                            <a data-id="@shopProduct.Id" class="home-product-icon-three add-to-basket">
                                                                             </a>
                                                                         </div>
                                                                         <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id">
@@ -161,10 +157,11 @@
                                                                                         <span class="home-product-discount">-@shopProduct.SalePercent%</span>
                                                                                         <div class="home-product-icon">
                                                                                             <div class="home-product-icon-item">
-                                                                                                <a href="wishlist.html"></a>
+                                                                                                @*                                                                                                not bura wishlist yoxdur silinmelidir
+                                                                                            *@                                                                                                <a href="wishlist.html"></a>
                                                                                             </div>
                                                                                             <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
-                                                                                            <a asp-controller="Home" asp-action="AddBasket" asp-route-id="@shopProduct.Id" class="home-product-icon-three">
+                                                                                            <a data-id="@shopProduct.Id" class="home-product-icon-three add-to-basket">
                                                                                             </a>
                                                                                         </div>
                                                                                         <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id">
@@ -203,20 +200,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="pagination-area">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
+                @*                <div class="pagination-area">
+                <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
 
-                            <li class="page-item" @(Model.Paginates.CurrentPage ==1? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginates.CurrentPage-1)" aria-label="Previus">1</a></li>
-                            @for (int i = 1; i < Model.Paginates.TotalPage; i++)
-                            {
-                                <li class="page-item" @(Model.Paginates.CurrentPage ==i? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
-                            }
-                            <li class="page-item" @(Model.Paginates.CurrentPage == Model.Paginates.TotalPage ? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginates.CurrentPage-1)" aria-label="Next">Next</a></li>
+                <li class="page-item" @(Model.Paginates.CurrentPage ==1? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginates.CurrentPage-1)" aria-label="Previus">1</a></li>
+                @for (int i = 1; i < Model.Paginates.TotalPage; i++)
+                {
+                <li class="page-item" @(Model.Paginates.CurrentPage ==i? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+                }
+                <li class="page-item" @(Model.Paginates.CurrentPage == Model.Paginates.TotalPage ? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginates.CurrentPage-1)" aria-label="Next">Next</a></li>
 
-                        </ul>
-                    </nav>
-                </div>
+                </ul>
+                </nav>
+                </div>*@
+                @*                <div class="pagination-area">
+                <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+
+                <li class="page-item" @(Model.Paginations.CuurentPage ==1? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginations.CuurentPage-1)" aria-label="Previus">1</a></li>
+                @for (int i = 1; i < Model.Paginations.TotalPage; i++)
+                {
+                <li class="page-item" @(Model.Paginations.CuurentPage ==i? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+                }
+                <li class="page-item" @(Model.Paginations.CuurentPage == Model.Paginations.TotalPage ? "disabled":"")><a class="page-link" asp-action="Index" asp-route-currentPage="@(Model.Paginations.CuurentPage-1)" aria-label="Next">Next</a></li>
+
+                </ul>
+                </nav>
+                </div>*@
             </div>
         </div>
     </section>
@@ -224,8 +235,24 @@
 
 @section scripts{
     <script>
-        $(document).ready(function () {
-            $('#lower, #upper').on('input', function () {
+        $(document).ready(function() {
+            $(".add-to-basket").click(function(e) {
+                e.preventDefault();
+                var productId = $(this).attr("id");
+                $.ajax({
+                    url: '/Home/AddBasket',
+                    type: 'POST',
+                    data: { id: productId },
+                    success: function(response) {
+                        if (!response.error) {
+                            console.log("Ürün başarıyla sepete eklendi.");
+                        } else {
+                            console.log("Hata: " + response.message);
+                        }
+                    }
+                });
+            });
+            $('#lower, #upper').on('input', function() {
                 var lowerValue = $('#lower').val();
                 var upperValue = $('#upper').val();
                 $('#one').val(lowerValue);
@@ -241,36 +268,33 @@
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(filterData),
-                    success: function (response) {
+                    success: function(response) {
                         var productListHtml = '';
-                        console.log(response);
+
                         for (var i = 0; i < response.length; i++) {
+                            console.log(response[i].id);
                             var productHtml = '<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">';
                             productHtml += '<div class="home-product">';
                             productHtml += '<div class="home-product-content">';
                             productHtml += '<div class="home-product-item">';
                             productHtml += '<div class="home-product-img">';
-                            productHtml += '<span class="home-product-discount">-' +response[i].SalePercent + '%</span>';
+                            productHtml += '<span class="home-product-discount">-' + response[i].salePercent + '%</span>';
                             productHtml += '<div class="home-product-icon">';
-                            productHtml += '<div class="home-product-icon-item">';
-                            productHtml += '<a href="wishlist.html"></a>';
+                            productHtml += '<a data-id='+ response[i].id +'  class="home-product-icon-three add-to-basket"></a>';
                             productHtml += '</div>';
-                            productHtml += '<a href="' + response[i].ProductUrl + '" class="home-product-icon-two"></a>';
-                            productHtml += '<a href="basket.html" class="home-product-icon-three"></a>';
-                            productHtml += '</div>';
-                            productHtml += '<a href="' + response[i].ProductUrl + '">';
-                            productHtml += '<img decoding="async" loading="lazy" alt="custom-image" class="primary-img" src="~/images/' + response[i].Image + '" height="auto" width="800">';
+                            productHtml += '<a href="#">';
+                            productHtml += '<img decoding="async" loading="lazy" alt="custom-image" class="primary-img" src="/images/' + response[i].image + '" height="auto" width="800">';
                             productHtml += '</a>';
                             productHtml += '</div>';
                             productHtml += '</div>';
                             productHtml += '<div class="home-product-desc">';
                             productHtml += '<div class="home-product-desc-item">';
                             productHtml += '<h5 class="home-produtc-title">';
-                            productHtml += '<a href="' + response[i].ProductUrl + '">' + response[i].Name + '</a>';
+                            productHtml += '<a href="#">' + response[i].name + '</a>';
                             productHtml += '</h5>';
                             productHtml += '<h6 class="home-product-price">';
-                            productHtml += '<del class="home-product-oldPrice">$' + response[i].LastPrice + '</del>';
-                            productHtml += '<span class="home-product-newPrice">$' + response[i].CurrentPrice + '</span>';
+                            productHtml += '<del class="home-product-oldPrice">$' + response[i].lastPrice + '</del>';
+                            productHtml += '<span class="home-product-newPrice">$' + response[i].currentPrice + '</span>';
                             productHtml += '</h6>';
                             productHtml += '</div>';
                             productHtml += '</div>';
@@ -283,7 +307,7 @@
 
                         $('#productList').html(productListHtml);
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         console.log(xhr.responseText);
                     }
                 });

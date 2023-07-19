@@ -13,11 +13,12 @@ public class HomeController : Controller
 {
     private readonly AppDbContext _context;
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger, AppDbContext context) 
+    private readonly IWebHostEnvironment _webHostEnvironment;
+    public HomeController(ILogger<HomeController> logger, AppDbContext context, IWebHostEnvironment webHostEnvironment)
     {
         _logger = logger;
         _context = context;
+        _webHostEnvironment = webHostEnvironment;
     }
     [AllowAnonymous]
     public async Task<IActionResult> Index()
@@ -123,9 +124,13 @@ public class HomeController : Controller
             checkProduct.Count++;
 
         }
-        string basket = JsonConvert.SerializeObject(products);
+        string basket =  JsonConvert.SerializeObject(products);
         Response.Cookies.Append("basket", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
-        return RedirectToAction(nameof(Index));
+        return Json(new
+        {
+            error = false,
+            message = "ok",
+        });
     }
     [AllowAnonymous]
     public IActionResult Basket()
@@ -143,11 +148,44 @@ public class HomeController : Controller
             return View(products);
         }
     }
-/*    [AllowAnonymous]
-    public IActionResult Search(string search)
+    [AllowAnonymous]
+    public decimal CalculateTotalPrice(List<ProductBasketVM> products)
     {
-        var model = _context.Products.Where(p => p.Name.Contains(search)).OrderByDescending(p => p.Id).Take(10).ToList();
-        return PartialView("_SearchPartial", model);
-    }*/
-    
+        decimal totalPrice = 0;
+        foreach (var product in products)
+        {
+            totalPrice += product.Price * product.Count;
+        }
+        return totalPrice;
+    }
+    [AllowAnonymous]
+    [HttpPost]
+    public async Task<IActionResult> Remove(int id)
+    {
+        string existBasket = Request.Cookies["basket"];
+        if (existBasket == null)
+        {
+            return NotFound();
+        }
+        var prod = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        if (prod == null) return NotFound();
+        List<ProductBasketVM> products = JsonConvert.DeserializeObject<List<ProductBasketVM>>(existBasket);
+        ProductBasketVM productToRemove = products.FirstOrDefault(p => p.Id == id);
+        if (productToRemove == null)
+        {
+            return NotFound();
+        }
+        products.Remove(productToRemove);
+        string basket = JsonConvert.SerializeObject(products);
+        Response.Cookies.Append("basket", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+        return RedirectToAction("Basket");
+    }
+
+    /*    [AllowAnonymous]
+        public IActionResult Search(string search)
+        {
+            var model = _context.Products.Where(p => p.Name.Contains(search)).OrderByDescending(p => p.Id).Take(10).ToList();
+            return PartialView("_SearchPartial", model);
+        }*/
+
 }
