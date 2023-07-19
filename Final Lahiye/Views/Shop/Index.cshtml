@@ -2,7 +2,7 @@
 
 <main>
     <section>
-        <div class="container">
+        <div class="container top">
             <div class="row mt-5">
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-xsm-3 col-3 leftSidebar">
                     <div id="sidebar" class="left_aside">
@@ -19,6 +19,11 @@
                                 <h6 class="sideBarCategory">Categories</h6>
                             </div>
                             <div class="sideBarItem">
+                                     <li>
+                                            <a asp-route-categoryId="" class="sidebarCat"> 
+                                                All
+                                            </a>
+                                    </li>
                                 @foreach (var category in Model.Categories)
                                 {
                                     <div class="sideBarForm">
@@ -113,7 +118,7 @@
                                                                     <div class="home-product-img">
                                                                         <span class="home-product-discount">-@shopProduct.SalePercent%</span>
                                                                         <div class="home-product-icon">
-                                                                            <a data-id="@shopProduct.Id" class="home-product-icon-three add-to-basket">
+                                                                            <a  data-id="@shopProduct.Id" class="home-product-icon-three add-to-basket">
                                                                             </a>
                                                                         </div>
                                                                         <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id">
@@ -157,11 +162,10 @@
                                                                                         <span class="home-product-discount">-@shopProduct.SalePercent%</span>
                                                                                         <div class="home-product-icon">
                                                                                             <div class="home-product-icon-item">
-                                                                                                @*                                                                                                not bura wishlist yoxdur silinmelidir
-                                                                                            *@                                                                                                <a href="wishlist.html"></a>
+        
                                                                                             </div>
                                                                                             <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id" class="home-product-icon-two"></a>
-                                                                                            <a data-id="@shopProduct.Id" class="home-product-icon-three add-to-basket">
+                                                                                            <a  data-id="@shopProduct.Id" class="home-product-icon-three add-to-basket">
                                                                                             </a>
                                                                                         </div>
                                                                                         <a asp-controller="Shop" asp-action="Product" asp-route-id="@shopProduct.Id">
@@ -238,14 +242,17 @@
         $(document).ready(function() {
             $(".add-to-basket").click(function(e) {
                 e.preventDefault();
-                var productId = $(this).attr("id");
+                var productId = $(this).data("id");
                 $.ajax({
                     url: '/Home/AddBasket',
                     type: 'POST',
                     data: { id: productId },
                     success: function(response) {
                         if (!response.error) {
-                            console.log("Ürün başarıyla sepete eklendi.");
+                            var currentProductCount = parseInt($("#basketCount").text());
+                            var updateProductCount = currentProductCount + 1;
+                            $("#basketCount").text(updateProductCount);
+                            console.log("Ürün başarıyla sepete eklendi."); //turkceni deyis
                         } else {
                             console.log("Hata: " + response.message);
                         }

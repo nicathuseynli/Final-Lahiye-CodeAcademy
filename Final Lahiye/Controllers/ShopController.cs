@@ -91,6 +91,8 @@ public class ShopController : Controller
         };
         return View(productVM);
     }
+    [AllowAnonymous]
+    [HttpPost]
     public async Task<IActionResult> Checkout()
     {
         return View();

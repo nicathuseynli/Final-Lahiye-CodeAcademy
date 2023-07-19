@@ -18,4 +18,5 @@ public class HomeVM
     public List<Testimonial> Testimonials { get; set; }
 
     public List<HomeProduct> Products { get; set; }
+
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pdUO8seijJH6gwsmd2j/K/qbKs4uRLTsDe3969ql+BVRWTouZ9IDJwFFAS99DZo9RgaVErMgERTLxyi3m5L6Yw==",
+  "dgSpecHash": "1eVrmc78yKdrCMakQG5LB2q7LpQqb9dvC7QIWJUwDCblfRMJQfbAqZ+PPEmi6FYc3SoFD3d0uuZr03sKlvTAUw==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\Final Lahiye.csproj",
   "expectedPackageFiles": [
@@ -120,7 +120,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\nuget.common\\6.3.1\\nuget.common.6.3.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\nuget.configuration\\6.3.1\\nuget.configuration.6.3.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\nuget.dependencyresolver.core\\6.3.1\\nuget.dependencyresolver.core.6.3.1.nupkg.sha512",

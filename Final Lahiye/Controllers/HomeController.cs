@@ -113,7 +113,7 @@ public class HomeController : Controller
             {
                 Id = product.Id,
                 Image = product.Image,
-                Name=product.Name,
+                Name = product.Name,
                 Price = product.CurrentPrice,
                 Count = 1,
             };
@@ -122,16 +122,17 @@ public class HomeController : Controller
         else
         {
             checkProduct.Count++;
-
         }
-        string basket =  JsonConvert.SerializeObject(products);
+        string basket = JsonConvert.SerializeObject(products);
         Response.Cookies.Append("basket", basket, new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
         return Json(new
         {
             error = false,
-            message = "ok",
+            message = "ok"
         });
+        /*    return RedirectToAction(nameof(Index));*/
     }
+
     [AllowAnonymous]
     public IActionResult Basket()
     {
@@ -143,7 +144,6 @@ public class HomeController : Controller
         }
         else
         {
-            // Eğer sepet boşsa, boş bir liste oluşturun.
             List<ProductBasketVM> products = new List<ProductBasketVM>();
             return View(products);
         }
