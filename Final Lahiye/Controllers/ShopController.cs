@@ -18,6 +18,7 @@ public class ShopController : Controller
         _context = context;
         _webHostEnvironment = webHostEnvironment;
     }
+
     [AllowAnonymous]
     public async Task<IActionResult> Index(int? categoryId, int? colourId, int id ,int pageNumber = 1, int pageSize = 5)
     {
