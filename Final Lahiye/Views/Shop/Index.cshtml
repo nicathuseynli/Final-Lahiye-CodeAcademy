@@ -168,7 +168,7 @@
 @section scripts{
     <script>
         $(document).ready(function() {
-            $(".add-to-basket").click(function(e) {
+            $(document).on("click", ".add-to-basket", function(e) {
                 e.preventDefault();
                 var productId = $(this).data("id");
                 $.ajax({
