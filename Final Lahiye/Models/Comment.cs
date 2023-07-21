@@ -11,9 +11,9 @@ namespace Final_Lahiye.Models
         public Comment Parent { get; set; }
         public virtual ICollection<Comment> Children { get; set; }
 
-        public int BlogId { get; set; }
+        //public int BlogId { get; set; }
         public int ProductId { get; set; }
-        public virtual Blog Blog { get; set; }
+        //public virtual Blog Blog { get; set; }
         public virtual HomeProduct Product { get; set; }
         public virtual MUser User { get; set; }
     }

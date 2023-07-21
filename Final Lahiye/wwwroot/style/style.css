@@ -678,8 +678,12 @@ a {
     font-family: var(--body-font);
 }
 
+.alert-success {
+    background-color: #D1E7DD !important
+    color():white
+}
+
 .alert {
-    background: #f8d7da;
     padding: 5px 10px;
     border-radius: 8px;
 }

@@ -462,9 +462,6 @@ namespace Final_Lahiye.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -479,8 +476,6 @@ namespace Final_Lahiye.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
 
                     b.HasIndex("ParentId");
 
@@ -627,6 +622,56 @@ namespace Final_Lahiye.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FaqPaymentPages");
+                });
+
+            modelBuilder.Entity("Final_Lahiye.Models.FormModel.CheckoutFormModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Apartment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Email")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheckOutFormModels");
                 });
 
             modelBuilder.Entity("Final_Lahiye.Models.FormModel.ContactFormModel", b =>
@@ -926,12 +971,6 @@ namespace Final_Lahiye.Migrations
 
             modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
                 {
-                    b.HasOne("Final_Lahiye.Models.Blog", "Blog")
-                        .WithMany("Comments")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Final_Lahiye.Models.Comment", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
@@ -947,8 +986,6 @@ namespace Final_Lahiye.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blog");
 
                     b.Navigation("Parent");
 
@@ -994,11 +1031,6 @@ namespace Final_Lahiye.Migrations
             modelBuilder.Entity("Final_Lahiye.Models.Author", b =>
                 {
                     b.Navigation("Blogs");
-                });
-
-            modelBuilder.Entity("Final_Lahiye.Models.Blog", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Final_Lahiye.Models.Category", b =>

@@ -1,172 +1,157 @@
-﻿ @model ContactVM 
-  <main class="main-content">
-         <section id="Contact">
-            <div class="container-fluid">
-                <div class="row gy-5">
-                    <div
-                        class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-left d-flex justify-content-center align-items-center ">
-                        <div class="reach-to-Us">
-                            <div class="reach-to-Us-info mt-5">
-                                <h2 class="reach-to-Us-info-header ">Reach Out To Us</h2>
-                                <div class="by-address">
-                                    <span class="by-contact-header"><b>By Address</b></span>
-                                    <p class="by-contact-desc mt-2">@Model.ContactDetails?.ByAddress</p>
-                                </div>
-                                <div class="by-email mt-4">
-                                    <span class="by-contact-header mt-2">By email</span>
-                                    <p class="by-contact-desc">Please email us and we'll get back to you within 24
-                                        hours: @Model.ContactDetails?.ByEmail</p>
-                                </div>
-                                <div class="by-phone mt-4">
-                                    <span class="by-contact-header mt-2"><b>By phone</b></span>
-                                    <p class="by-contact-desc">Call our store: @Model.ContactDetails?.ByPhone</p>
-                                </div>
+﻿@model ContactVM
+<main class="main-content">
+    <section id="Contact">
+        <div class="container-fluid">
+            <div class="row gy-5">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-left d-flex justify-content-center align-items-center ">
+                    <div class="reach-to-Us">
+                        <div class="reach-to-Us-info mt-5">
+                            <h2 class="reach-to-Us-info-header ">Reach Out To Us</h2>
+                            <div class="by-address">
+                                <span class="by-contact-header"><b>By Address</b></span>
+                                <p class="by-contact-desc mt-2">@Model.ContactDetails?.ByAddress</p>
+                            </div>
+                            <div class="by-email mt-4">
+                                <span class="by-contact-header mt-2">By email</span>
+                                <p class="by-contact-desc">
+                                    Please email us and we'll get back to you within 24
+                                    hours: @Model.ContactDetails?.ByEmail
+                                </p>
+                            </div>
+                            <div class="by-phone mt-4">
+                                <span class="by-contact-header mt-2"><b>By phone</b></span>
+                                <p class="by-contact-desc">Call our store: @Model.ContactDetails?.ByPhone</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-right ">
-                        <div class="Send-your-request d-flex flex-column ">
-                            <h1 class="send-your-request-header"><b>Send Your Request</b></h1>
-                            <form  id="contactform" asp-controller="Home" asp-action="Create" method="post">
-                                <div class="row gy-2">
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="contactItem">
-                                              <input asp-for="contactFormModel.Name" id="contact-name">
-                                              <span asp-validation-for="contactFormModel.Name" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="contactItem">
-                                              <input asp-for="contactFormModel.Email" id="contact-email">
-                                              <span asp-validation-for="contactFormModel.Email" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="contactItem">
-                                              <input asp-for="contactFormModel.Phone" id="contact-phone">
-                                              <span asp-validation-for="contactFormModel.Phone" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                                        <div class="contactItem">
-                                          <textarea id="contact-message" cols="30" asp-for="contactFormModel.Message" rows="10"></textarea>
-                                           <span asp-validation-for="contactFormModel.Message" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <input type="submit" value="Send Message" class="contact-button-wrap">
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-right ">
+                    <div class="Send-your-request d-flex flex-column ">
+                        <h1 class="send-your-request-header"><b>Send Your Request</b></h1>
+                        <form id="contactform" asp-controller="Home" asp-action="Create" method="post">
+                            <div class="row gy-2">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="contactItem">
+                                        <input asp-for="contactFormModel.Name" id="contact-name" autocomplete="off"
+                                               placeholder="Name">
+                                        <span asp-validation-for="contactFormModel.Name" class="text-danger"></span>
                                     </div>
                                 </div>
-                            </form>
-                          <div id="alertMessage" class="alert" style="display: none;"></div>
-                        </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="contactItem">
+                                        <input asp-for="contactFormModel.Email" id="contact-email" autocomplete="off"
+                                               placeholder="Email">
+                                        <span asp-validation-for="contactFormModel.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="contactItem">
+                                        <input asp-for="contactFormModel.Phone" id="contact-phone" autocomplete="off"
+                                               placeholder="Phone">
+                                        <span asp-validation-for="contactFormModel.Phone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                                    <div class="contactItem">
+                                        <textarea id="contact-message" cols="30" asp-for="contactFormModel.Message" autocomplete="off"
+                                                  rows="10"></textarea>
+                                        <span asp-validation-for="contactFormModel.Message" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div id="alertMessage" class="alert" style="display: none;"></div>
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <input type="submit" value="Send Message" class="contact-button-wrap">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
-       <section id="Stores">
-            <h3 class="store-header d-flex justify-content-center align-items-center mt-5 mb-5">Our Stores</h3>
-          <div class="container">
+        </div>
+    </section>
+    <section id="Stores">
+        <h3 class="store-header d-flex justify-content-center align-items-center mt-5 mb-5">Our Stores</h3>
+        <div class="container">
             <div class="row">
                 @foreach (var item in @Model.Contacts)
                 {
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="store-product">
-                        <div class="store-product-content">
-                            <div class="store-product-item">
-                                <div class="store-product-img">
-                                    <img class="primary-img" src="~/images/@item.Image" height="auto"
-                                        width="800">
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="store-product">
+                            <div class="store-product-content">
+                                <div class="store-product-item">
+                                    <div class="store-product-img">
+                                        <img class="primary-img" src="~/images/@item.Image" height="auto"
+                                         width="800">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="store-product-desc">
-                        <div class="store-product-desc-item">
-                            <h5 class="store-produtc-title">
-                                @item.City
-                            </h5>
-                            <h3 class="store-product-name">
-                                <span class="store-product-text">@item.City</span>
-                            </h3>
-                            <p class="store-desc">@item.Description <span>
-                                </span></p>
+                        <div class="store-product-desc">
+                            <div class="store-product-desc-item">
+                                <h5 class="store-produtc-title">
+                                    @item.City
+                                </h5>
+                                <h3 class="store-product-name">
+                                    <span class="store-product-text">@item.City</span>
+                                </h3>
+                                <p class="store-desc">
+                                    @item.Description <span>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 }
             </div>
-          </div>
-        </section>
-        <div class="contact-with-map mt-5">
-            <div class="contact-map">
-                <iframe class="contact-map-size"
+        </div>
+    </section>
+    <div class="contact-with-map mt-5">
+        <div class="contact-map">
+            <iframe class="contact-map-size"
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12157.71469426235!2d49.8539455!3d40.3771909!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc20aa51a5f0b5e01!2sCode%20Academy!5e0!3m2!1str!2saz!4v1686948573485!5m2!1str!2saz"
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div> 
-    </main>
+            </iframe>
+        </div>
+    </div>
+</main>
 
-    
+
 @section addjs{
     <script>
-        $(document).ready(function () {
-            // Обработчик события отправки формы через AJAX
-            $('#contactForm').submit(function (event) {
-                event.preventDefault(); // Предотвращаем обычное поведение формы (перезагрузку страницы)
-
-                // Собираем данные формы
-                var formData = $(this).serialize();
-
-                // Отправляем AJAX-запрос
+        $(document).ready(function() {
+            $('#contactForm input[type="text"],#contactForm input[type="number"], #contactForm input[type="email"], #contactForm textarea').val('');
+        });
+        $(document).ready(function() {
+            $('#contactform').on('submit', function(e) {
+                e.preventDefault();
                 $.ajax({
-                    url: $(this).attr('action'), // URL для отправки запроса, в данном случае "Create" метод в "HomeController"
-                    type: 'POST', // Метод запроса, POST для отправки данных
-                    data: formData, // Данные формы
-                    dataType: 'json', // Ожидаем JSON-ответ от сервера
-                    beforeSend: function () {
-                        // Добавляем загрузочный индикатор или блокируем форму перед отправкой
-                        // Пример: $('#loadingIndicator').show();
-                        // Пример: $('#contactForm :input').prop('disabled', true);
-                    },
-                    success: function (response) {
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        var alertMessage = $('#alertMessage');
                         if (response.success) {
-
-                            $('#contactForm')[0].reset();
-
-                            showAlertMessage('Форма успешно отправлена!', 'success');
+                           $('#contactForm input[type="text"],#contactForm input[type="number"], #contactForm input[type="email"], #contactForm textarea').val('');
+                            alertMessage.text('Your message successfully sended ,We will call you soon');
+                            alertMessage.removeClass();
+                            alertMessage.addClass('alert alert-success');
                         } else {
-
-                            showAlertMessage('Ошибка при обработке формы: ' + response.message, 'error');
+                            alertMessage.text('Something went wrong: ' + response.message);
+                            alertMessage.removeClass();
+                            alertMessage.addClass('alert alert-danger');
                         }
+                        alertMessage.show();
                     },
-                    error: function (xhr, status, error) {
-
-                        showAlertMessage('Ошибка при отправке AJAX-запроса: ' + error, 'error');
-                    },
-                    complete: function () {
-
-                        Пример: $('#loadingIndicator').hide();
+                    error: function() {
+                        var alertMessage = $('#alertMessage');
+                        alertMessage.text('Upps : Your contact informations are not done.');
+                        alertMessage.removeClass();
+                        alertMessage.addClass('alert alert-danger');
+                        alertMessage.show();
                     }
                 });
             });
-
-            // Функция для отображения надписи
-            function showAlertMessage(message, type) {
-                var alertMessage = $('#alertMessage');
-                alertMessage.text(message);
-                alertMessage.removeClass(); 
-
-                if (type === 'success') {
-                    alertMessage.addClass('alert alert-success');
-                } else if (type === 'error') {
-                    alertMessage.addClass('alert alert-danger');
-                }
-
-                alertMessage.show(); // Показываем элемент
-            }
         });
     </script>
 

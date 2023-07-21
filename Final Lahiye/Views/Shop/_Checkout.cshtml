@@ -1,0 +1,121 @@
+﻿@*@using Final_Lahiye.Models.FormModel
+@model CheckoutFormModel 
+
+<div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xsm-12 mt-5 billing">
+    <div class="checkOut-Content">
+        <h5 class="billing-header-first ms-1 mt-3 mb-4"> Billing Details </h5>
+        <form id="checkoutPage" asp-controller="Shop" asp-action="Create" method="post">
+            <div class="row gy-3">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="contactItem">
+                        <input asp-for="model.FirstName" id="contact-name" placeholder="FirstName">
+                        <span asp-validation-for="checkOutFormModel.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ======= -->
+                <span class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <!---->
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.LastName" id="contact-name" placeholder="LastName">
+                        <span asp-validation-for="checkOutFormModel.LastName" class="text-danger"></span>
+                    </div>
+                </span>
+                <!-- ======= -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.Address" id="checkOut-firstname" placeholder="Address">
+                        <span asp-validation-for="checkOutFormModel.Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ======== -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.Apartment" id="checkOut-lastname" placeholder="Apartment">
+                        <span asp-validation-for="checkOutFormModel.Apartment" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ========== -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.City" id="checkOut-city" placeholder="City">
+                        <span asp-validation-for="checkOutFormModel.City" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ======== -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.CompanyName" id="checkOut-companyname" placeholder="CompanyName">
+                        <span asp-validation-for="checkOutFormModel.CompanyName" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- =========== -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.ZipCode" id="checkOut-zipcode" placeholder="ZipCode">
+                        <span asp-validation-for="checkOutFormModel.ZipCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ================ -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.PhoneNumber" id="checkOut-phonenumber" placeholder="PhoneNumber">
+                        <span asp-validation-for="checkOutFormModel.PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ======= -->
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="checkOutFormModel.Email" id="checkOut-email" placeholder="Email">
+                        <span asp-validation-for="checkOutFormModel.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- ======= -->
+                <div class="checkout_text">
+                    <textarea id="checkOut-message" cols="30" asp-for="checkOutFormModel.Message" rows="10"></textarea>
+                    <span asp-validation-for="checkOutFormModel.Message" class="text-danger"></span>
+
+                </div>
+                <div id="alertMessage" class="alert" style="display: none;"></div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <input type="submit" value="Save" class="contact-button-wrap">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $("#checkoutPage").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = {
+                fullName: $("#fullName").val(),
+                email: $("#email").val(),
+                phoneNumber: $("#phoneNumber").val(),
+                address: $("#address").val(),
+                note: $("#note").val()
+            };
+
+            $.ajax({
+                url: '/Shop/Create',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        alert("Data saved successfully!");
+                    } else {
+                        alert("Failed to save data: " + response.message);
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
+*@
