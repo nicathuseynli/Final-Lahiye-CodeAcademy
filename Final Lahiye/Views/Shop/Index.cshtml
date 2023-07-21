@@ -101,7 +101,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a id="Review-tab" class="SecondBtn disable" data-bs-toggle="tab" href="#Review" role="tab"
                                                        aria-controls="Review" aria-selected="false">
-                                                   </a>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -143,16 +143,16 @@
                                         }
                                     </div>
                                     <div class="pagination-area">
-                                            <nav aria-label="Page navigation example">
-                                                <ul class="pagination justify-content-center">
-                                                     <li class="page-item @(Model.ProductPagination.CuurentPage ==1? "disabled":"")" ><a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.ProductPagination.CuurentPage-1)" aria-label="Previus">Prev</a></li>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item @(Model.ProductPagination.CuurentPage ==1? "disabled":"")"><a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.ProductPagination.CuurentPage-1)" aria-label="Previus">Prev</a></li>
                                                 @for (int i = 1; i <= Model.ProductPagination.TotalPage; i++)
                                                 {
-                                                <li class="page-item " ><a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a></li>
+                                                    <li class="page-item "><a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a></li>
                                                 }
-                                                <li class="page-item @(Model.ProductPagination.CuurentPage == Model.ProductPagination.TotalPage ? "disabled":"")" ><a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.ProductPagination.CuurentPage+1)" aria-label="Next">Next</a></li>
-                                                </ul>
-                                            </nav>
+                                                <li class="page-item @(Model.ProductPagination.CuurentPage == Model.ProductPagination.TotalPage ? "disabled":"")"><a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.ProductPagination.CuurentPage+1)" aria-label="Next">Next</a></li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -187,6 +187,10 @@
                     }
                 });
             });
+            $("#lower").val(60);
+            $("#upper").val(560);
+            $('#one').val($("#lower").val());
+            $('#two').val($("#upper").val());
             $('#lower, #upper').on('input', function() {
                 var lowerValue = $('#lower').val();
                 var upperValue = $('#upper').val();
