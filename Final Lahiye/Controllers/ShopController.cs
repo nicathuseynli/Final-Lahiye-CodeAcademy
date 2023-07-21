@@ -1,11 +1,12 @@
 ﻿using Final_Lahiye.Data;
 using Final_Lahiye.Helpers;
 using Final_Lahiye.Models;
-//using Final_Lahiye.Utilities.Pagination;
+using Final_Lahiye.Utilities.Pagination;
 using Final_Lahiye.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Final_Lahiye.Controllers;
 public class ShopController : Controller
@@ -18,7 +19,7 @@ public class ShopController : Controller
         _webHostEnvironment = webHostEnvironment;
     }
     [AllowAnonymous]
-    public async Task<IActionResult> Index(int? categoryId, int? colourId, int id) /*,,int currentPage = 1, int totalPageTake = 5)*/
+    public async Task<IActionResult> Index(int? categoryId, int? colourId, int id ,int pageNumber = 1, int pageSize = 5)
     {
         HomeProduct? product = await _context.Products
             .Include(x => x.Comments)
@@ -34,41 +35,30 @@ public class ShopController : Controller
 
         if (categoryId.HasValue && categoryId.Value > 0 || colourId.HasValue && colourId.Value > 0)
         {
-            query = query.Where(x => x.CategoryId == categoryId
-                                || x.ColourId == colourId);
+            query = query.Where(x => x.CategoryId == categoryId || x.ColourId == colourId);
         }
-        var products = await query.ToListAsync();
+
+        var paginatedProducts = await query
+               .Skip((pageNumber - 1) * pageSize)
+               .Take(pageSize)
+             .ToListAsync();
+
+        var totalCount = await query.CountAsync();
+        var totalPages = (int)Math.Ceiling((double) totalCount / pageSize);
 
         var category = await _context.Categories.Include(x => x.Products).ToListAsync();
         var colour = await _context.Colours.Include(x => x.Products).ToListAsync();
 
-        var singCat = await _context.Categories.FirstOrDefaultAsync();
-
-        //var Pagproducts = await _context.Products
-        //    .Skip((currentPage - 1) * totalPageTake)
-        //    .Take(totalPageTake)
-        //    .ToListAsync();
-        //int pageCount = await GetPageCount(totalPageTake);
-
-        //Pagination<HomeProduct> pagination = new(Pagproducts, currentPage, pageCount);
-
         ShopVM shopVM = new()
         {
-            Category = singCat,
+            Category = await _context.Categories.FirstOrDefaultAsync(),
             Categories = category,
             Colours = colour,
-            Products = products,
-            Product = product,
-            //Paginations = pagination,
+            Products = paginatedProducts,
+            ProductPagination = new Pagination<HomeProduct>(paginatedProducts, pageNumber, totalPages)
         };
 
         return View(shopVM);
-    }
-
-    private async Task<int> GetPageCount(int take)
-    {
-        int dataCount = await _context.Products.CountAsync();
-        return (int)Math.Ceiling((decimal)dataCount / take);
     }
     
     [AllowAnonymous]
@@ -91,12 +81,36 @@ public class ShopController : Controller
         };
         return View(productVM);
     }
+
     [AllowAnonymous]
-    [HttpPost]
     public async Task<IActionResult> Checkout()
     {
-        return View();
+        string existBasket = Request.Cookies["basket"];
+        if (existBasket != null)
+        {
+            List<ProductBasketVM> products = JsonConvert.DeserializeObject<List<ProductBasketVM>>(existBasket);
+            ViewBag.TotalPrice = CalculateTotalPrice(products);
+            return View(products);
+        }
+        else
+        {
+            List<ProductBasketVM> products = new List<ProductBasketVM>();
+            ViewBag.TotalPrice = 0;
+            return View(products);
+        }
     }
+
+    [AllowAnonymous]
+    public decimal CalculateTotalPrice(List<ProductBasketVM> products)
+    {
+        decimal totalPrice = 0;
+        foreach (var product in products)
+        {
+            totalPrice += product.TotalPrice;
+        }
+        return totalPrice;
+    }
+
     [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Comments(int? commentId, int blogId, string comment)
@@ -114,7 +128,7 @@ public class ShopController : Controller
             return Json(new
             {
                 error = true,
-                message = "Blog not found !"
+                message = "Product Review not found !"
             });
         }
 
@@ -125,7 +139,7 @@ public class ShopController : Controller
             return Json(new
             {
                 error = true,
-                message = "Blog not found !"
+                message = "Product Review not found !"
             });
         }
 
@@ -147,6 +161,7 @@ public class ShopController : Controller
      
         return PartialView("_Comment", commentModel);
     }
+
     [AllowAnonymous]
     [HttpPost]
     public JsonResult GetProducts([FromBody] FilterPrice value)

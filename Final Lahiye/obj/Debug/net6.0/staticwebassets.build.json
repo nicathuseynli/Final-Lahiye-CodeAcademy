@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PkZByBcTpZVk+vanagYkW1tne7P93mkYtLNusxaufFA=",
+  "Hash": "9DIMGzN/9nDl8YWmyGnXlD6u1LWJLX2K2ItYG2w0Izk=",
   "Source": "Final Lahiye",
   "BasePath": "_content/Final Lahiye",
   "Mode": "Default",
@@ -2888,6 +2888,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\2f2d2678-cd31-44f0-8e1c-8b1851ecb9f4 _ interior-slider.webp"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\31329c78-ed7b-47ff-a49f-a5da18caebf1_interior-slider-product2.webp",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/31329c78-ed7b-47ff-a49f-a5da18caebf1_interior-slider-product2.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\31329c78-ed7b-47ff-a49f-a5da18caebf1_interior-slider-product2.webp"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\31d8192e-b1d6-482e-a245-23e895c83fff_singleblog-creator-1.webp",

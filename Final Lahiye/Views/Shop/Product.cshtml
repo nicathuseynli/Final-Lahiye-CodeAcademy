@@ -88,7 +88,7 @@
                   </div>
                 </div>
                 <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9 mb-2">
-                  <input type="submit" value="Add to Card" class="singleprod-button-add-to-cart" onclick="addToCart()">
+                  <input type="button" id="addToBasketButton" value="Add to Card" class="singleprod-button-add-to-cart">
                 </div>
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2">
                   <input type="submit" value="Buy Now" class="singleprod-button-buy">
@@ -180,7 +180,6 @@
                                 <p>Pack Of</p>
                                 <p>Seating Capacity</p>
                                 <p>Shape</p>
-                                <p>Color</p>
                               </div>
                               <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 mt-4">
                                 <p>@Model.Product?.Style</p>
@@ -189,7 +188,7 @@
                                 <p>@Model.Product?.IdealFor</p>
                                 <p>@Model.Product?.Capacity</p>
                                 <p>@Model.Product?.Shape</p>
-                                <p>@Model.Product.Colour?.Name</p>
+                                <p>@Model.Product?.Colour?.Name</p>
                               </div>
                             </div>
                           </div>
@@ -297,10 +296,8 @@
                   <div class="home-product-img">
                     <span class="home-product-discount">-16%</span>
                     <div class="home-product-icon">
-                      <div class="home-product-icon-item">
-                        <a asp-controller="Shop" asp-action="Product" asp-route-id="@Model.Product.Id" ></a>
-                      </div>
-                      <a href="" class="home-product-icon-two"></a>
+@*                        <a asp-controller="Shop" asp-action="Product" asp-route-id="@Model.Product.Id" ></a>
+                      </div>*@
                       <a href="" class="home-product-icon-three">
                       </a>
                     </div>
@@ -333,10 +330,6 @@
                   <div class="home-product-img">
                     <span class="home-product-discount">-14%</span>
                     <div class="home-product-icon">
-                      <div class="home-product-icon-item">
-                        <a href="#"></a>
-                      </div>
-                      <a href="" class="home-product-icon-two"></a>
                       <a href="" class="home-product-icon-three">
                       </a>
                     </div>
@@ -369,10 +362,6 @@
                   <div class="home-product-img">
                     <span class="home-product-discount">0%</span>
                     <div class="home-product-icon">
-                      <div class="home-product-icon-item">
-                        <a href="#"></a>
-                      </div>
-                      <a href="" class="home-product-icon-two"></a>
                       <a href="" class="home-product-icon-three">
                       </a>
                     </div>
@@ -403,11 +392,7 @@
                 <div class="home-product-item">
                   <div class="home-product-img">
                     <span class="home-product-discount">-11%</span>
-                    <div class="home-product-icon">
-                      <div class="home-product-icon-item">
-                        <a href="#"></a>
-                      </div>
-                      <a href="" class="home-product-icon-two"></a>
+                    <div class="home-product-icon">                 
                       <a href="" class="home-product-icon-three">
                       </a>
                     </div>
@@ -438,7 +423,7 @@
 
 
 
-@* @section addjs{
+@section addjs{
     <script>
         $(document).ready(function () {
             $('.btn-comment-reply').click(function (e) {
@@ -490,5 +475,23 @@
         function removeReplySelected() {
             $('#replyToComment').html('');
         }
+              $(document).ready(function() {
+            $("#addToBasketButton").click(function(e) {
+                e.preventDefault();
+                var productId = $("#productId").val();
+
+                $.ajax({
+                    url: '/Home/AddToBasket',
+                    type: 'POST',
+                    data: { id: productId },
+                    success: function(response) {
+                        if (!response.error) {
+                            alert("Product successfully added to the basket.");
+                        } else {
+                            alert("Something went wrong: " + response.message);
+                        }
+                    }
+                });
+            });
      </script>
-   }*@
+   }

@@ -27,26 +27,26 @@
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-right ">
                         <div class="Send-your-request d-flex flex-column ">
                             <h1 class="send-your-request-header"><b>Send Your Request</b></h1>
-                            <form action="#">
+                            <form  id="contact-form">
                                 <div class="row gy-2">
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="contactItem">
-                                            <input placeholder="Name" type="text">
+                                            <input id="contact-name" placeholder="Name" type="text">
                                         </div>
                                     </div>
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="contactItem">
-                                            <input placeholder="Email" type="email">
+                                            <input id="contact-email" placeholder="Email" type="email">
                                         </div>
                                     </div>
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="contactItem">
-                                            <input placeholder="Phone" type="text">
+                                            <input id="contact-phone" placeholder="Phone" type="text">
                                         </div>
                                     </div>
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                         <div class="contactItem">
-                                            <textarea placeholder="Message" name="#" id="#" cols="30"
+                                            <textarea placeholder="Message" name="#" id="contact-message" cols="30"
                                                 rows="10"></textarea>
                                         </div>
                                     </div>
@@ -104,4 +104,72 @@
             </div>
         </div> 
     </main>
-    
+
+    @section addjs{
+    <script>
+        $(document).ready(function () {
+            // Обработчик события отправки формы через AJAX
+            $('#contactForm').submit(function (event) {
+                event.preventDefault(); // Предотвращаем обычное поведение формы (перезагрузку страницы)
+
+                // Собираем данные формы
+                var formData = $(this).serialize();
+
+                // Отправляем AJAX-запрос
+                $.ajax({
+                    url: $(this).attr('action'), // URL для отправки запроса, в данном случае "Create" метод в "ContactController"
+                    type: 'POST', // Метод запроса, POST для отправки данных
+                    data: formData, // Данные формы
+                    dataType: 'json', // Ожидаем JSON-ответ от сервера
+                    beforeSend: function () {
+                        // Добавляем загрузочный индикатор или блокируем форму перед отправкой
+                        // Пример: $('#loadingIndicator').show();
+                        // Пример: $('#contactForm :input').prop('disabled', true);
+                    },
+                    success: function (response) {
+                        // Обработка успешного ответа от сервера (response)
+                        // Здесь вы можете обновить часть страницы, отобразить сообщение об успехе и т. д.
+
+                        if (response.success) {
+                            // Если сервер вернул успешный результат
+                            // Очищаем форму
+                            $('#contactForm')[0].reset();
+                            // Выводим сообщение об успешной отправке формы
+                            showAlertMessage('Форма успешно отправлена!', 'success');
+                        } else {
+                            // Если сервер вернул ошибку
+                            showAlertMessage('Ошибка при обработке формы: ' + response.message, 'error');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Обработка ошибок, если AJAX-запрос не выполнен
+                        showAlertMessage('Ошибка при отправке AJAX-запроса: ' + error, 'error');
+                    },
+                    complete: function () {
+                        // Убираем загрузочный индикатор или разблокируем форму после завершения запроса
+                        Пример: $('#loadingIndicator').hide();
+                        // Пример: $('#contactForm :input').prop('disabled', false);
+                    }
+                });
+            });
+
+            // Функция для отображения надписи
+            function showAlertMessage(message, type) {
+                var alertMessage = $('#alertMessage');
+                alertMessage.text(message);
+                alertMessage.removeClass(); // Убираем все классы у элемента (если были добавлены ранее)
+
+                // В зависимости от типа сообщения, добавляем класс для соответствующего стиля
+                if (type === 'success') {
+                    alertMessage.addClass('alert alert-success');
+                } else if (type === 'error') {
+                    alertMessage.addClass('alert alert-danger');
+                }
+
+                alertMessage.show(); // Показываем элемент
+            }
+        });
+    </script>
+
+}
+

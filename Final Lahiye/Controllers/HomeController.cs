@@ -1,5 +1,6 @@
 ﻿using Final_Lahiye.Data;
 using Final_Lahiye.Models;
+using Final_Lahiye.Models.FormModel;
 using Final_Lahiye.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -73,20 +74,50 @@ public class HomeController : Controller
         };
         return View(faqVM);
     }
+
+
     [AllowAnonymous]
     public async Task<IActionResult> Contact()
     {
         var contacts = await _context.Contacts.ToListAsync();
         var details = await _context.ContactDetailss.FirstOrDefaultAsync();
+        var contact = await _context.Contacts.FirstOrDefaultAsync();
 
         ContactVM contactVM = new()
         {
             Contacts = contacts,
             ContactDetails = details,
+            Contact = contact
         };
+
         return View(contactVM);
     }
-
+    [AllowAnonymous]
+    [HttpPost]
+    public async Task<IActionResult> Create(ContactFormModel contactForm)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+       /*         await _context.Contacts.AddAsync(*//*contactForm*//*);
+                await _context.SaveChangesAsync();
+*/
+                // Вернуть успешный JSON-ответ
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                // Вернуть JSON-ответ с сообщением об ошибке
+                return Json(new { success = false, message = "Ошибка при сохранении данных." });
+            }
+        }
+        else
+        {
+            // Вернуть JSON-ответ с сообщением об ошибке валидации
+            return Json(new { success = false, message = "Некоторые поля формы заполнены некорректно." });
+        }
+    }
 
     [AllowAnonymous]
     public async Task<IActionResult> AddBasket(int? id)
@@ -130,7 +161,7 @@ public class HomeController : Controller
             error = false,
             message = "ok"
         });
-        /*    return RedirectToAction(nameof(Index));*/
+
     }
 
     [AllowAnonymous]
@@ -140,24 +171,28 @@ public class HomeController : Controller
         if (existBasket != null)
         {
             List<ProductBasketVM> products = JsonConvert.DeserializeObject<List<ProductBasketVM>>(existBasket);
+            ViewBag.TotalPrice = CalculateTotalPrice(products);
             return View(products);
         }
         else
         {
             List<ProductBasketVM> products = new List<ProductBasketVM>();
+            ViewBag.TotalPrice = 0;
             return View(products);
         }
     }
+
     [AllowAnonymous]
     public decimal CalculateTotalPrice(List<ProductBasketVM> products)
     {
         decimal totalPrice = 0;
         foreach (var product in products)
         {
-            totalPrice += product.Price * product.Count;
+            totalPrice += product.TotalPrice;
         }
         return totalPrice;
     }
+
     [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Remove(int id)
@@ -181,11 +216,5 @@ public class HomeController : Controller
         return RedirectToAction("Basket");
     }
 
-    /*    [AllowAnonymous]
-        public IActionResult Search(string search)
-        {
-            var model = _context.Products.Where(p => p.Name.Contains(search)).OrderByDescending(p => p.Id).Take(10).ToList();
-            return PartialView("_SearchPartial", model);
-        }*/
-
 }
+

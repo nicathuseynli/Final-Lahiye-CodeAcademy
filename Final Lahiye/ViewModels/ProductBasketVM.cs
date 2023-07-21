@@ -11,5 +11,11 @@ namespace Final_Lahiye.ViewModels
         public int Count { get; set; }
 
         public HomeProduct Product { get; set; }
+
+        public decimal TotalPrice
+        {
+            get { return Price * Count; }
+        }
+
     }
 }

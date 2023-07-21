@@ -1,204 +1,227 @@
-﻿@model HomeVM 
+﻿@model HomeVM
 <main>
     <section id="Header-Hero">
-      <div class="hero">
-        <div class="container">
-          <div class="row">
-            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-5">
-              <div class="header-hero-description">
-                <div class="header-hero-description-item mb-4">
-                  <h1>@Model?.Hero.Title</h1>
-                  <p>@Model?.Hero.Description</p>
+        <div class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mt-5">
+                        <div class="header-hero-description">
+                            <div class="header-hero-description-item mb-4">
+                                <h1>@Model?.Hero.Title</h1>
+                                <p>@Model?.Hero.Description</p>
+                            </div>
+                            <a asp-controller="Shop" asp-action="Index" class="btn-header-shop">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="header-hero-slider-img">
+                            <img src="~/images/@Model?.Hero.HeroImage" class="header-hero-slider-img-item mt-4" width="900px" alt="">
+                        </div>
+                    </div>
                 </div>
-                <a href="#" class="btn-header-shop">Shop Now</a>
-              </div>
             </div>
-            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-              <div class="header-hero-slider-img">
-                <img src="~/images/@Model?.Hero.HeroImage" class="header-hero-slider-img-item mt-4" width="900px" alt="">
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <section id="Main-Banner-Page">
-      <div class="baner">
-        <img src="~/images/@Model?.Banner.BannerImage" class="banerImg" alt="">
-        <div class="banerContent d-flex justify-content-center align-items-center flex-column">
-          <h1 class="banerContentItem">@Model.Banner.Title</h1>
-          <a href="#" class="banerBtn">Shop Now</a>
+        <div class="baner">
+            <img src="~/images/@Model?.Banner.BannerImage" class="banerImg" alt="">
+            <div class="banerContent d-flex justify-content-center align-items-center flex-column">
+                <h1 class="banerContentItem">@Model.Banner.Title</h1>
+                <a href="#" class="banerBtn">Shop Now</a>
+            </div>
         </div>
-      </div>
     </section>
 
     <section id="elementor-widget-part">
-      <div class="container-fluid">
-        <div class="row mt-5">
-          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-            <div class="elementer-widget-content">
-              <div class="elementor-widget">
-                <div class="elementor-widget-left">
-                  <div class="elementor-widget-left-Content d-none d-xl-block d-lg-block">
-                    <img src="~/images/@Model?.Elementor.ElementorUpImage" width="640" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="elementor-widget-right d-flex justify-content-end">
-                <img src="~/images/@Model?.Elementor.ElementorDownImage" width="580" height="720" alt="">
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-center align-items-center mt-5 pt-5">
-            <div class="row">
-                 <div class="element-widget-title text-center">
-                     <p class="elementor-widget-header text-center">Renovate your interior with moduler design</p>
-                 </div>   
-                      @foreach (var product in @Model?.Products.OrderBy(x=>x.Id).Take(2))
-        {   
-                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
-                <div class="home-products-elementor ">
-                  <div class="home-product">
-                    <div class="home-product-content">
-                      <div class="home-product-item">
-                  <div class="home-product-img">
-                     <span class="home-product-discount">-@product.SalePercent%</span>
-                         <div class="home-product-icon">
-                            <a asp-controller="Home" asp-action="AddBasket" asp-route-id="@product.Id"  class="home-product-icon-three ">    
-                            </a>
+        <div class="container-fluid">
+            <div class="row mt-5">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="elementer-widget-content">
+                        <div class="elementor-widget">
+                            <div class="elementor-widget-left">
+                                <div class="elementor-widget-left-Content d-none d-xl-block d-lg-block">
+                                    <img src="~/images/@Model?.Elementor.ElementorUpImage" width="640" alt="">
+                                </div>
+                            </div>
                         </div>
-                     <a asp-controller="Shop" asp-action="Product" asp-route-id="@product.Id">
-                         <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                          src="~/images/@product.Image"
-                          height="auto" width="800">
-                     </a>
-                  </div>
-                      </div>
+                        <div class="elementor-widget-right d-flex justify-content-end">
+                            <img src="~/images/@Model?.Elementor.ElementorDownImage" width="580" height="720" alt="">
+                        </div>
                     </div>
-                    <div class="home-product-desc">
-                      <div class="home-product-desc-item">
-                        <h5 class="home-produtc-title">
-                          <a href="#">@product.Name</a>
-                        </h5>
-                        <h6 class="home-product-price">
-                          <del class="home-product-oldPrice">$@product.LastPrice</del>
-                          <span class="home-product-newPrice">$@product.CurrentPrice</span>
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              }
+
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-center align-items-center mt-5 pt-5">
+                    <div class="row">
+                        <div class="element-widget-title text-center">
+                            <p class="elementor-widget-header text-center">Renovate your interior with moduler design</p>
+                        </div>
+                        @foreach (var product in @Model?.Products.OrderBy(x => x.Id).Take(2))
+                        {
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 m-auto">
+                                <div class="home-products-elementor ">
+                                    <div class="home-product">
+                                        <div class="home-product-content">
+                                            <div class="home-product-item">
+                                                <div class="home-product-img">
+                                                    <span class="home-product-discount">-@product.SalePercent%</span>
+                                                    <div class="home-product-icon">
+                                                        <a data-id="@product.Id" class="home-product-icon-three add-to-basket">
+                                                        </a>
+                                                    </div>
+                                                    <a asp-controller="Shop" asp-action="Product" asp-route-id="@product.Id">
+                                                        <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                                                         src="~/images/@product.Image"
+                                                         height="auto" width="800">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="home-product-desc">
+                                            <div class="home-product-desc-item">
+                                                <h5 class="home-produtc-title">
+                                                    <a href="#">@product.Name</a>
+                                                </h5>
+                                                <h6 class="home-product-price">
+                                                    <del class="home-product-oldPrice">$@product.LastPrice</del>
+                                                    <span class="home-product-newPrice">$@product.CurrentPrice</span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
             </div>
-          </div>
-          
         </div>
-      </div>
     </section>
 
     <section id="Main-Products">
-      <div class="container mt-5 mb-5">
-        <div class="row m-auto">
-          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-            <div class="home-products-title text-center">
-              <h1>
-                Deal on interior moduler
-              </h1>
-              <h6> @Model.Product?.Header</h6>
-            </div>
-          </div>
-          @foreach (var item in @Model.Products)
-          {                
-           <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-            <div class="home-product">
-              <div class="home-product-content">
-                <div class="home-product-item">
-                  <div class="home-product-img">
-                     <span class="home-product-discount">-@item.SalePercent%</span>
-                     <div class="home-product-icon">
-                         <a data-id="@item.Id" class="home-product-icon-three add-to-basket">
-                         </a>
-                     </div>
-                     <a asp-controller="Shop" asp-action="Product" asp-route-id="@item.Id">
-                         <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
-                          src="~/images/@item.Image"
-                          height="auto" width="800">
-                     </a>
-                  </div>
-                  </div>
+        <div class="container mt-5 mb-5">
+            <div class="row m-auto">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+                    <div class="home-products-title text-center">
+                        <h1>
+                            Deal on interior moduler
+                        </h1>
+                        <h6> @Model.Product?.Header</h6>
+                    </div>
                 </div>
-              </div>
-              <div class="home-product-desc">
-                <div class="home-product-desc-item">
-                  <h5 class="home-produtc-title">
-                    <a href="#">@item.Name</a>
-                  </h5>
-                  <h6 class="home-product-price">
-                    <del class="home-product-oldPrice">$@item?.LastPrice</del>
-                    <span class="home-product-newPrice">$@item?.CurrentPrice</span>
-                  </h6>
+                @foreach (var item in @Model.Products)
+                {
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="home-product">
+                            <div class="home-product-content">
+                                <div class="home-product-item">
+                                    <div class="home-product-img">
+                                        <span class="home-product-discount">-@item.SalePercent%</span>
+                                        <div class="home-product-icon">
+                                            <a data-id="@item.Id" class="home-product-icon-three add-to-basket">
+                                            </a>
+                                        </div>
+                                        <a asp-controller="Shop" asp-action="Product" asp-route-id="@item.Id">
+                                            <img decoding="async" loading="lazy" alt="custom-image" class="primary-img"
+                                             src="~/images/@item.Image"
+                                             height="auto" width="800">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-product-desc">
+                            <div class="home-product-desc-item">
+                                <h5 class="home-produtc-title">
+                                    <a href="#">@item.Name</a>
+                                </h5>
+                                <h6 class="home-product-price">
+                                    <del class="home-product-oldPrice">$@item?.LastPrice</del>
+                                    <span class="home-product-newPrice">$@item?.CurrentPrice</span>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5 mt-5">
+                    <div class="text-center">
+                        <a asp-action="Index" asp-controller="Shop" class="home-products-btn text-center">More Collection</a>
+                    </div>
                 </div>
-              </div>
             </div>
-          }
-          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5 mt-5">
-            <div class="text-center">
-              <a asp-action="Index" asp-controller="Shop" class="home-products-btn text-center">More Collection</a>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <section id="Main-Ending-Up-Elementor" class="up-elementor">
-      <div class="container-fluid element-widgetContent ">
-        <div class="row">
-          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12  mb-5">
-            <h3 class="upElementorTitle mt-5 text-center">Interior architectural styles</h3>
-            <p class="upElementor text-center">@Model.Testimonial.Header</p>
-          </div>
-        </div>
-        <div class="row gy-2 ms-4 me-4">
-            @foreach (var item in Model.Testimonials)
-            {
-          <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12  col-12">
-            <div class="elementorContent">
-                <img src="~/images/@item?.Image" class="elementorContent-Item" alt="">
-              <div class="up-elementorContent-text text-center ">
-                <h3 class="upelementorContentheader">@item?.Title</h3>
-                <a href="" class="up-elementor-btn-home mt-2">Shop Now</a>
-              </div>
-              <span class="caption"></span>
+        <div class="container-fluid element-widgetContent ">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12  mb-5">
+                    <h3 class="upElementorTitle mt-5 text-center">Interior architectural styles</h3>
+                    <p class="upElementor text-center">@Model.Testimonial.Header</p>
+                </div>
             </div>
-          </div>
-            }
+            <div class="row gy-2 ms-4 me-4">
+                @foreach (var item in Model.Testimonials)
+                {
+                    <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12  col-12">
+                        <div class="elementorContent">
+                            <img src="~/images/@item?.Image" class="elementorContent-Item" alt="">
+                            <div class="up-elementorContent-text text-center ">
+                                <h3 class="upelementorContentheader">@item?.Title</h3>
+                                <a href="" class="up-elementor-btn-home mt-2">Shop Now</a>
+                            </div>
+                            <span class="caption"></span>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
-      </div>
     </section>
 
     <section id="Main-Ending-Below-Elementor" class="below-elementor">
-      <div class="container-fluid">
-        <div class="row gy-4 mt-3 ms-5">
-            @foreach (var shortInfo in @Model.ShortInformations)
-            {            
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="below-elementorItem d-flex">
-              <img src="~/images/@shortInfo.Icon" class="below-elementorItem-signature" alt="">
-              <div class="elementorItem-text ms-5 d-flex flex-column flex-nowrap justify-content-center ">
-                <h6>@shortInfo.Title</h6>
-                <p>@shortInfo.Information</p>
-              </div>
+        <div class="container-fluid">
+            <div class="row gy-4 mt-3 ms-5">
+                @foreach (var shortInfo in @Model.ShortInformations)
+                {
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="below-elementorItem d-flex">
+                            <img src="~/images/@shortInfo.Icon" class="below-elementorItem-signature" alt="">
+                            <div class="elementorItem-text ms-5 d-flex flex-column flex-nowrap justify-content-center ">
+                                <h6>@shortInfo.Title</h6>
+                                <p>@shortInfo.Information</p>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
-            </div>
-            }
         </div>
-      </div>
     </section>
 
-  </main>
-
-
+</main>
+}
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $(".add-to-basket").click(function(e) {
+                e.preventDefault();
+                var productId = $(this).data("id");
+                $.ajax({
+                    url: '/Home/AddBasket',
+                    type: 'POST',
+                    data: { id: productId },
+                    success: function(response) {
+                        if (!response.error) {
+                            var currentProductCount = parseInt($("#basketCount").text());
+                            var updateProductCount = currentProductCount + 1;
+                            $("#basketCount").text(updateProductCount);
+                            console.log("Product successfully added .");
+                        } else {
+                            console.log("Something goes Wrong: " + response.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 }
