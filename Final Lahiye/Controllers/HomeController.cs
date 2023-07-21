@@ -82,40 +82,39 @@ public class HomeController : Controller
         var contacts = await _context.Contacts.ToListAsync();
         var details = await _context.ContactDetailss.FirstOrDefaultAsync();
         var contact = await _context.Contacts.FirstOrDefaultAsync();
+        var form = await _context.ContactFormModels.FirstOrDefaultAsync();
 
         ContactVM contactVM = new()
         {
             Contacts = contacts,
             ContactDetails = details,
-            Contact = contact
+            Contact = contact,
+            contactFormModel = form,
         };
 
         return View(contactVM);
     }
     [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> Create(ContactFormModel contactForm)
+    public async Task<IActionResult> Create(ContactFormModel contactFormModel)
     {
         if (ModelState.IsValid)
         {
             try
             {
-       /*         await _context.Contacts.AddAsync(*//*contactForm*//*);
+                await _context.ContactFormModels.AddAsync(contactFormModel);
                 await _context.SaveChangesAsync();
-*/
-                // Вернуть успешный JSON-ответ
+
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
-                // Вернуть JSON-ответ с сообщением об ошибке
-                return Json(new { success = false, message = "Ошибка при сохранении данных." });
+                return Json(new { success = false, message = "Your contact message can not be sent" });
             }
         }
         else
         {
-            // Вернуть JSON-ответ с сообщением об ошибке валидации
-            return Json(new { success = false, message = "Некоторые поля формы заполнены некорректно." });
+            return Json(new { success = false, message = "Your message sent , We will call you soon ." });
         }
     }
 
