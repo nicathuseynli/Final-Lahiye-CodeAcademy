@@ -139,13 +139,6 @@
                                             <input placeholder="Email Address" type="email">
                                         </div>
                                     </div>
-                                    <!-- ========= -->
-                                    <p class="singleblog-text mt-4">
-                                        <!-- Burda niye P Tag yazmisan-->
-                                        <input type="checkbox" name="save" id="Save Data">
-
-                                        Ship to a different address?
-                                    </p>
                                     <!-- ======= -->
                                     <div class="checkout_text">
                                         <textarea type="text" placeholder="Notes about your order e,g. special notes for delivery"></textarea>
@@ -188,7 +181,7 @@
                                 </p>
                             </div>
                             <div class="orderbtn mt-5 mb-3">
-                                <input type="submit" value="Place Order">
+                                <a asp-action="Order" asp-controller="Shop" class="home-products-btn text-center">Place Order</a>
                             </div>
                         </div>
                     </div>

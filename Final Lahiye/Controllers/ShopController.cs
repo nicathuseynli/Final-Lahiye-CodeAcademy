@@ -174,4 +174,48 @@ public class ShopController : Controller
         return Json(products);
     }
 
+    //[AllowAnonymous]
+    //public async Task<IActionResult> Order()
+    //{
+    //    var contacts = await _context..ToListAsync();
+    //    var details = await _context.ContactDetailss.FirstOrDefaultAsync();
+    //    var contact = await _context.Contacts.FirstOrDefaultAsync();
+    //    var form = await _context.ContactFormModels.FirstOrDefaultAsync();
+
+    //    ContactVM contactVM = new()
+    //    {
+    //        Contacts = contacts,
+    //        ContactDetails = details,
+    //        Contact = contact,
+    //        contactFormModel = form,
+    //    };
+
+    //    return View(contactVM);
+    //}
+ 
+    //}
+    //[AllowAnonymous]
+    //[HttpPost]
+    //public async Task<IActionResult> Create(CheckoutFormModel checkoutFormModel)
+    //{
+    //    if (ModelState.IsValid)
+    //    {
+    //        try
+    //        {
+    //            await _context.ContactFormModels.AddAsync(checkoutFormModel);
+    //            await _context.SaveChangesAsync();
+
+    //            return Json(new { success = true });
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            return Json(new { success = false, message = "Your contact message can not be sent" });
+    //        }
+    //    }
+    //    else
+    //    {
+    //        return Json(new { success = false, message = "Your message sent , We will call you soon ." });
+    //    }
+    //}
+
 }
