@@ -34,7 +34,7 @@ public class BlogController : Controller
     [AllowAnonymous]
     public async Task<IActionResult> Details(int id)
     {
-        var blog = await _context.Blogs.Include(x => x.Author).FirstOrDefaultAsync(x => x.Id == id);
+        Blog? blog = await _context.Blogs.Include(x=>x.Author) .FirstOrDefaultAsync(x => x.Id == id);
         ViewBag.datetime = DateTime.Now.ToString("dd MMMM yyyy");
 
         SingleBlogVM singleBlogVM = new()
@@ -43,5 +43,4 @@ public class BlogController : Controller
         };
         return View(singleBlogVM);
     }
-  
 }

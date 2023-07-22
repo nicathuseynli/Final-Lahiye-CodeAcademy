@@ -5,8 +5,6 @@ namespace Final_Lahiye
 {
     public static class Extensions
     {
-     
-
         //email RegexExtation
         public static bool IsEmail(this string value)
         {

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Final_Lahiye.Models;
 public class HomeProduct :BaseEntity<int>
@@ -51,7 +50,4 @@ public class HomeProduct :BaseEntity<int>
     public int CategoryId { get; set; }
 
     public int ColourId { get; set; }
-
-    public virtual ICollection<Comment> Comments { get; set; }
-
 }

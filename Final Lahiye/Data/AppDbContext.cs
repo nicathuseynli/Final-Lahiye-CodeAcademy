@@ -31,7 +31,6 @@ public class AppDbContext : IdentityDbContext<MUser,MRole,int,MUserClaim,MUserRo
     public DbSet<HomeProduct> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Colour> Colours { get; set; }
-    public DbSet<Comment> Comments { get; set; }
     public DbSet<ContactFormModel> ContactFormModels { get; set; }
     public DbSet<CheckoutFormModel> CheckOutFormModels { get; set; }
 

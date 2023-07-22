@@ -54,6 +54,7 @@ public class HomeController : Controller
         return View(homeVM);
 
     }
+
     [AllowAnonymous]
     public async Task<IActionResult> Error()
     {
@@ -64,6 +65,7 @@ public class HomeController : Controller
         };
         return View(errorVM);
     }
+
     [AllowAnonymous]
     public async Task<IActionResult> FAQ()
     {
@@ -74,7 +76,6 @@ public class HomeController : Controller
         };
         return View(faqVM);
     }
-
 
     [AllowAnonymous]
     public async Task<IActionResult> Contact()

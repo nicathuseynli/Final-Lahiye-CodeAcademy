@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -17,7 +16,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddDependecies();
-//builder.Services.AddAutoMapper(typeof(MapperAdminPanelProfile));
 
 builder.Services.AddIdentity<MUser, MRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
@@ -81,14 +79,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-/*app.MapAreaControllerRoute(
-              name: "default",
-              areaName: "Admin",
-              pattern: "signin.html",
-              defaults: new
-              {
-                  controller = "Account",
-                  action = "Login",
-                  area = "admin"
-              });*/
 app.Run();

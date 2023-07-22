@@ -21,14 +21,8 @@ public class ShopController : Controller
     }
 
     [AllowAnonymous]
-    public async Task<IActionResult> Index(int id ,int? categoryId, int? colourId, int pageNumber = 1, int pageSize = 5)
+    public async Task<IActionResult> Index(int id ,int? categoryId, int? colourId, int pageNumber = 1, int pageSize = 8)
     {
-        //HomeProduct? product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
-        //.Include(x => x.Comments)
-        //.ThenInclude(c => c.Children)
-        //.Include(x => x.Comments)
-        //.ThenInclude(c => c.User)
-
         var query = _context.Products
             .Include(x => x.Category)
             .Include(x=>x.Colour)
@@ -56,7 +50,6 @@ public class ShopController : Controller
             Categories = category,
             Colours = colour,
             Products = paginatedProducts,
-            //Product = product,
             ProductPagination = new Pagination<HomeProduct>(paginatedProducts, pageNumber, totalPages)
         };
 
@@ -68,10 +61,7 @@ public class ShopController : Controller
     {
         HomeProduct? product = await _context.Products
           .Include(c => c.Category)
-          .Include(x => x.Comments)
-          .ThenInclude(c => c.Children)
-          .Include(x => x.Comments)
-          .ThenInclude(c => c.User)
+          .Include(c=>c.Colour)
           .FirstOrDefaultAsync(x => x.Id == id);
 
         var newproduct = await _context.Products.ToListAsync();
@@ -153,95 +143,7 @@ public class ShopController : Controller
         }
     }
 
-
-    //[AllowAnonymous]
-    //public async Task<IActionResult> CheckoutForm()
-    //{
-    //    var checkForm = await _context.CheckOutFormModels.FirstOrDefaultAsync();
-    //    var product = await _context.Products.FirstOrDefaultAsync();
-    //    CheckoutVM checkOutVM = new()
-    //    {
-    //        checkOutFormModel = checkForm,
-    //        Product = product,
-    //    };
-
-    //    return View(checkOutVM);
-    //}
-    //[AllowAnonymous]
-    //[HttpPost]
-    //public async Task<IActionResult> Create(CheckoutFormModel checkoutFormModel)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        try
-    //        {
-    //            await _context.CheckOutFormModels.AddAsync(checkoutFormModel);
-    //            await _context.SaveChangesAsync();
-
-    //            return Json(new { success = true });
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            return Json(new { success = false, message = "Your contact message can not be sent" });
-    //        }
-    //    }
-    //    else
-    //    {
-    //        return Json(new { success = false, message = "Your message sent , We will call you soon ." });
-    //    }
-    //}
-
 }
 
 
-//[AllowAnonymous]
-//[HttpPost]
-//public async Task<IActionResult> Comments(int? commentId, int productId, string comment)
-//{
-//    if (string.IsNullOrWhiteSpace(comment))
-//    {
-//        return Json(new
-//        {
-//            error = true,
-//            message = "Serh bos buraxila bilmez"
-//        });
-//    }
-//    if (productId < 1)
-//    {
-//        return Json(new
-//        {
-//            error = true,
-//            message = "blog movcud deyil"
-//        });
-//    }
 
-//    var blog = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
-
-//    if (blog == null)
-//    {
-//        return Json(new
-//        {
-//            error = true,
-//            message = "blog movcud deyil"
-//        });
-//    }
-
-//    var commentModel = new Comment
-//    {
-//        ProductId = productId,
-//        Description = comment,
-//    };
-
-//    if (commentId.HasValue && await _context.Comments.AnyAsync(c => c.Id == commentId))
-//    {
-//        commentModel.ParentId = commentId;
-//    }
-
-
-//    commentModel.UserId = ControllerContext.GetUserId().Value;
-
-//    await _context.Comments.AddAsync(commentModel);
-//    await _context.SaveChangesAsync();
-
-//    return PartialView("_Comment", commentModel);
-//}

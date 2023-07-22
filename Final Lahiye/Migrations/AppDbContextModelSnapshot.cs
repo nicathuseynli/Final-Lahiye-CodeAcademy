@@ -454,38 +454,6 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("Colours");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("Final_Lahiye.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
@@ -970,31 +938,6 @@ namespace Final_Lahiye.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
-                {
-                    b.HasOne("Final_Lahiye.Models.Comment", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId");
-
-                    b.HasOne("Final_Lahiye.Models.HomeProduct", "Product")
-                        .WithMany("Comments")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Final_Lahiye.Membership.MUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Parent");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Final_Lahiye.Models.HomeProduct", b =>
                 {
                     b.HasOne("Final_Lahiye.Models.Category", "Category")
@@ -1042,16 +985,6 @@ namespace Final_Lahiye.Migrations
             modelBuilder.Entity("Final_Lahiye.Models.Colour", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
-                {
-                    b.Navigation("Children");
-                });
-
-            modelBuilder.Entity("Final_Lahiye.Models.HomeProduct", b =>
-                {
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
