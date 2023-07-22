@@ -1,13 +1,30 @@
 ﻿@model Bio
 
-<div class="container">
-    <h1>Social Media Address</h1>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Social Media Addresses</h1>
     <div class="row">
-        <div>
-            <h3>@Model.FacebookLink</h3>
-            <h3>@Model.TwitterLink</h3>
-            <h3>@Model.InstagramLink</h3>
-            <h3>@Model.Text</h3>
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title text-center">Social Media Information</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Facebook:</h5>
+                    <p class="card-text">
+                        <a href="@Model.FacebookLink" target="_blank">@Model.FacebookLink</a>
+                    </p>
+                    <h5 class="card-title">Twitter:</h5>
+                    <p class="card-text">
+                        <a href="@Model.TwitterLink" target="_blank">@Model.TwitterLink</a>
+                    </p>
+                    <h5 class="card-title">Instagram:</h5>
+                    <p class="card-text">
+                        <a href="@Model.InstagramLink" target="_blank">@Model.InstagramLink</a>
+                    </p>
+                    <h5 class="card-title">Text:</h5>
+                    <p class="card-text">@Model.Text</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

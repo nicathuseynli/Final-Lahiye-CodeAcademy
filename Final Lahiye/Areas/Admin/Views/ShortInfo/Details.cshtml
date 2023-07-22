@@ -1,12 +1,18 @@
 ﻿@model ShortInformation
 
 <div class="container">
-    <h1>Short Information Text part</h1>
-    <div class="row">
-        <div>
-           <img src="~/images/@Model.Icon" width="500px" height="500px"/>
-            <h5>@Model.Title</h5>
-            <h5>@Model.Information</h5>
+    <h1 class="text-center mb-4">Short Information</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card mb-4 shadow">
+                <div class="card-body d-flex align-items-center">
+                    <img src="~/images/@Model.Icon" class="mr-3" style="width: 50px; height: 50px;"/>
+                    <div>
+                        <h5 class="card-title">@Model.Title</h5>
+                        <p class="card-text">@Model.Information</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

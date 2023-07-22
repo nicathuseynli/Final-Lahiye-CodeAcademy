@@ -1,5 +1,17 @@
 ﻿@model Author
 
+<div class="container mt-5">
+    <h1 class="text-center mb-4">About Author</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+            <img src="~/images/@Model.Image" class="rounded-circle img-thumbnail" style="width:300px; height:300px;"/>
+            <h2 class="mt-4">@Model.FullName</h2>
+            <p class="lead">@Model.Proffesion</p>
+            <h4 class="text-muted">Blog Id: @Model.BlogId</h4>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <h1>About Author</h1>
     <div class="row">

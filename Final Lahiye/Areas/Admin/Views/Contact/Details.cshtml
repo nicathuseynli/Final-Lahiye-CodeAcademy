@@ -1,13 +1,15 @@
 ﻿@model Contact
 
-<div class="container">
-    <h1>Contact Page Details</h1>
-    <div class="row">
-        <div>
-            <img src="~/images/@Model.Image" width="300px" height="300px"/>
-            <h3>@Model.Magazine</h3>
-            <h3>@Model.City</h3>
-            <h3>@Model.Description</h3>
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Contact Information</h2>
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="~/images/@Model.Image" class="img-fluid rounded mx-auto d-block" alt="@Model.Magazine image">
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center my-3">@Model.Magazine</h3>
+            <p class="text-center my-2"><i class="fas fa-map-marker-alt"></i> @Model.City</p>
+            <p>@Model.Description</p>
         </div>
     </div>
 </div>

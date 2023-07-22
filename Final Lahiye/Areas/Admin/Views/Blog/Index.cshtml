@@ -7,75 +7,50 @@
         <a asp-action="Create" class="btn btn-outline-success mx-2 my-2">Create</a>
     </div>
     <div class="row">
-
-                @foreach (var blog in Model)
-                {
-                        <p scope="col">@(count++)</p>
-                        <h4 scope="col">@blog.Title</h4>
-                        <h5 scope="col">@blog.HeaderUp</h5>
-                        <p scope="col">@blog.InformationUp</p>
-                        <h5 scope="col">@blog.HeaderMiddle</h5>
-                        <p scope="col">@blog.InformationMiddle</p>
-                        <p scope="col">@blog.MiddleDescription</p>
-                        <p scope="col">@blog.MiddleTextFirst</p>
-                        <p scope="col">@blog.MiddleTextSecond</p>
-                        <p scope="col">@blog.MiddleTextThird</p>
-                        <p scope="col">@blog.MiddleTextFourth</p>
-                        <p scope="col">@blog.ServiceNameFirst</p>
-                        <p scope="col">@blog.ServicePriceFirst</p>
-                        <p scope="col">@blog.ServiceDescriptionFirst</p>
-                        <p scope="col">@blog.ServiceNameSecond</p>
-                        <p scope="col">@blog.ServicePriceSecond </p>
-                        <p scope="col">@blog.ServiceDescriptionSecond</p>
-                        <p scope="col">@blog.ServiceNameThird</p>
-                        <p scope="col">@blog.ServicePriceThird</p>
-                        <p scope="col">@blog.ServiceDescriptionThird</p>
-                        <p scope="col">@blog.ServiceNameFourth</p>
-                        <p scope="col">@blog.ServiceDescriptionFourth</p>
-                        <p scope="col">@blog.ServicePriceFourth</p>
-                        <h5 scope="col">@blog.HeaderEnd</h5>
-                        <p scope="col">@blog.InformationEnd</p>
-                        <p scope="col">@blog.ApplyInfo</p>
-                        <p scope="col">@blog.ServiceInfo</p>
-                        <p scope="col">@blog.AuthorId</p>
-                        <td scope="col">
-                            <img src="~/images/@blog.Image" style="border-radius:10%" width="100" />
-                        </td>                           
-                        <td scope="col">
-                            <img src="~/images/@blog.ApplyInfoLeftImage" style="border-radius:10%" width="100" />
-                        </td>                           
-                        <td scope="col">
-                            <img src="~/images/@blog.ApplyInfoRightImage" style="border-radius:10%" width="100" />
-                        </td>     
-                        <td>
+        @foreach (var blog in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header">
+                        <h4>@blog.Title</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="~/images/@blog.Image" class="img-fluid rounded mb-3" alt="@blog.Title image" />
+                        <h5>@blog.HeaderUp</h5>
+                        <p>@blog.InformationUp</p>
+                        <!-- ... Rest of your blog content here ... -->
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
                             <a asp-action="Update" asp-route-id="@blog.Id" class="btn btn-outline-warning">Update</a>
                             <a asp-action="Details" asp-route-id="@blog.Id" class="btn btn-outline-info">Details</a>
-
                             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal@(count)">
                                 Delete
                             </button>
+                        </div>
 
-                            <div class="modal fade" id="exampleModal@(count)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Delete Blog</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Blog will be deleted.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">No</button>
-                                            <form style="display:inline-block" asp-action="Delete" method="post">
-                                                <input type="submit" asp-action="Delete" asp-route-id="@blog.Id" class="btn btn-outline-danger" value="Yes">
-                                            </form>
-                                        </div>
+                        <div class="modal fade" id="exampleModal@(count)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Blog</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Blog will be deleted.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">No</button>
+                                        <form style="display:inline-block" asp-action="Delete" method="post">
+                                            <input type="submit" asp-action="Delete" asp-route-id="@blog.Id" class="btn btn-outline-danger" value="Yes">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </td>
-                }
-            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>

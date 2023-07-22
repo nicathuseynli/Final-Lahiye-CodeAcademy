@@ -2,94 +2,97 @@
 @{
     int count = 1;
 }
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     <div class="d-flex justify-content-end">
         <a asp-action="Create" class="btn btn-outline-success mx-2 my-2">Create</a>
     </div>
     <div class="row">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Header</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Count</th>
-                    <th scope="col">LastPrice</th>
-                    <th scope="col">CurrentPrice</th>
-                    <th scope="col">SalePercent</th>
-                    <th scope="col">Rating</th>
-                    <th scope="col">SKUCode</th>
-                    <th scope="col">DeliveryInfo</th>
-                    <th scope="col">ShippingInfo</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Style</th>
-                    <th scope="col">RoomType</th>
-                    <th scope="col">IdealFor</th>
-                    <th scope="col">Capacity</th>
-                    <th scope="col">Shape</th>
-                    <th scope="col">CategoryId</th>
-                    <th scope="col">ShopColourId</th>
-                    <th scope="col">ImageUrl</th>
-                    <th scope="col">Operations</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var homeProduct in Model)
-                {
+        <div class="table-responsive">  <!-- Responsive table -->
+            <table class="table table-hover table-striped">  <!-- Added table-striped for better readability -->
+                <thead class="table-dark">  <!-- Changed header color for contrast -->
                     <tr>
-                        <td scope="col">@(count++)</td>
-                        <td scope="col">@homeProduct.Header</td>
-                        <td scope="col">@homeProduct.Name</td>
-                        <td scope="col">@homeProduct.Count</td>
-                        <td scope="col">@homeProduct.LastPrice</td>
-                        <td scope="col">@homeProduct.CurrentPrice</td>
-                        <td scope="col">@homeProduct.SalePercent</td>
-                        <td scope="col">@homeProduct.Rating</td>
-                        <td scope="col">@homeProduct.SKUCode</td>
-                        <td scope="col">@homeProduct.DeliveryInfo</td>
-                        <td scope="col">@homeProduct.ShippingInfo</td>
-                        <td scope="col">@homeProduct.Description</td>
-                        <td scope="col">@homeProduct.Style</td>
-                        <td scope="col">@homeProduct.RoomType</td>
-                        <td scope="col">@homeProduct.IdealFor</td>
-                        <td scope="col">@homeProduct.Capacity</td>
-                        <td scope="col">@homeProduct.Shape</td>
-                        <td scope="col">@homeProduct.CategoryId</td>
-                        <td scope="col">@homeProduct.ColourId</td>
-                        <td scope="col">
-                            <img src="~/images/@homeProduct.Image" style="border-radius:20%" />
-                        </td>    
-                        <td>
-                            <a asp-action="Update" asp-route-id="@homeProduct.Id" class="btn btn-outline-warning">Update</a>
-                            <a asp-action="Details" asp-route-id="@homeProduct.Id" class="btn btn-outline-info">Details</a>
+                        <th scope="col">#</th>
+                        <th scope="col">Header</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">LastPrice</th>
+                        <th scope="col">CurrentPrice</th>
+                        <th scope="col">SalePercent</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">SKUCode</th>
+                        <th scope="col">DeliveryInfo</th>
+                        <th scope="col">ShippingInfo</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Style</th>
+                        <th scope="col">RoomType</th>
+                        <th scope="col">IdealFor</th>
+                        <th scope="col">Capacity</th>
+                        <th scope="col">Shape</th>
+                        <th scope="col">CategoryId</th>
+                        <th scope="col">ShopColourId</th>
+                        <th scope="col">ImageUrl</th>
+                        <th scope="col">Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var homeProduct in Model)
+                    {
+                        <tr>
+                            <td>@(count++)</td>
+                            <td>@homeProduct.Header</td>
+                            <td>@homeProduct.Name</td>
+                            <td>@homeProduct.Count</td>
+                            <td>@homeProduct.LastPrice</td>
+                            <td>@homeProduct.CurrentPrice</td>
+                            <td>@homeProduct.SalePercent</td>
+                            <td>@homeProduct.Rating</td>
+                            <td>@homeProduct.SKUCode</td>
+                            <td>@homeProduct.DeliveryInfo</td>
+                            <td>@homeProduct.ShippingInfo</td>
+                            <td>@homeProduct.Description</td>
+                            <td>@homeProduct.Style</td>
+                            <td>@homeProduct.RoomType</td>
+                            <td>@homeProduct.IdealFor</td>
+                            <td>@homeProduct.Capacity</td>
+                            <td>@homeProduct.Shape</td>
+                            <td>@homeProduct.CategoryId</td>
+                            <td>@homeProduct.ColourId</td>
+                            <td><img src="~/images/@homeProduct.Image" style="width: 100px; height: 100px; object-fit: cover; border-radius:20%;" /></td>    
+                            <td>
+                                <div class="btn-group">  <!-- Grouped buttons for better organization -->
+                                    <a asp-action="Update" asp-route-id="@homeProduct.Id" class="btn btn-outline-warning">Update</a>
+                                    <a asp-action="Details" asp-route-id="@homeProduct.Id" class="btn btn-outline-info">Details</a>
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal@(count)">
+                                        Delete
+                                    </button>
+                                </div>
 
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal@(count)">
-                                Delete
-                            </button>
-
-                            <div class="modal fade" id="exampleModal@(count)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Delete Slider</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Product will be deleted.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">No</button>
-                                            <form style="display:inline-block" asp-action="Delete" method="post">
-                                                <input type="submit" asp-action="Delete" asp-route-id="@homeProduct.Id" class="btn btn-outline-danger" value="Yes">
-                                            </form>
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="exampleModal@(count)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete @homeProduct.Name?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No</button>
+                                                <form style="display:inline-block" asp-action="Delete" method="post">
+                                                    <input type="hidden" name="id" value="@homeProduct.Id" />
+                                                    <input type="submit" class="btn btn-outline-danger" value="Yes" />
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -1,11 +1,17 @@
 ﻿@model Elementor
 
 <div class="container">
-    <h1>Elementor Widget</h1>
-    <div class="row">
-        <div>
-            <img src="~/images/@Model.ElementorUpImage" width="300px" height="300px"/>
-            <img src="~/images/@Model.ElementorDownImage" width="300px" height="300px"/>
+    <h1 class="text-center mb-5">Elementor Widget</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow">
+                <img src="~/images/@Model.ElementorUpImage" class="card-img-top" alt="Elementor Up Image">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <img src="~/images/@Model.ElementorDownImage" class="card-img-top" alt="Elementor Down Image">
+            </div>
         </div>
     </div>
 </div>

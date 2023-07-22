@@ -3,36 +3,41 @@
 <div class="container">
     <h1>HomeProduct Details</h1>
     <div class="row">
-        <div>
-            <img src="~/images/@Model.Image" width="500px" height="500px"/>
-            <h4>@Model.Title</h4>
-            <h4>@Model.HeaderUp</h4>
-            <h4>@Model.InformationUp</h4>
-            <h4>@Model.HeaderMiddle</h4>
-            <h4>@Model.InformationMiddle</h4>
-            <h4>@Model.HeaderEnd</h4>
-            <h4>@Model.InformationEnd</h4>
-            <h4>@Model.ServiceInfo</h4>
-            <h4>@Model.ServiceDescriptionFirst</h4>
-            <h4>@Model.ServiceDescriptionSecond</h4>
-            <h4>@Model.ServiceDescriptionThird</h4>
-            <h4>@Model.ServiceDescriptionFourth</h4>
-            <h4>@Model.ServiceNameFirst</h4>
-            <h4>@Model.ServiceNameSecond</h4>
-            <h4>@Model.ServiceNameThird</h4>
-            <h4>@Model.ServiceNameFourth</h4>
-            <h4>@Model.ServicePriceFirst</h4>
-            <h4>@Model.ServicePriceSecond</h4>
-            <h4>@Model.ServicePriceThird</h4>
-            <h4>@Model.ServicePriceFourth</h4>
-            <h4>@Model.MiddleTextFirst</h4>
-            <h4>@Model.MiddleTextSecond</h4>
-            <h4>@Model.MiddleTextThird</h4>
-            <h4>@Model.MiddleTextFourth</h4>
-            <h4>@Model.MiddleDescription</h4>
-            <h4>@Model.ApplyInfoLeftImage</h4>
-            <h4>@Model.ApplyInfoRightImage</h4>
-            <h4>@Model.Image</h4>
+        <div class="col-md-6">
+            <img src="~/images/@Model.Image" class="img-fluid rounded mb-3" alt="@Model.Title image" />
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title">@Model.Title</h4>
+                    <p><strong>@Model.HeaderUp:</strong> @Model.InformationUp</p>
+                    <p><strong>@Model.HeaderMiddle:</strong> @Model.InformationMiddle</p>
+                    <p><strong>@Model.HeaderEnd:</strong> @Model.InformationEnd</p>
+                    <p><strong>@Model.ServiceInfo:</strong></p>
+                    <ul>
+                        <li>@Model.ServiceDescriptionFirst - @Model.ServiceNameFirst: @Model.ServicePriceFirst</li>
+                        <li>@Model.ServiceDescriptionSecond - @Model.ServiceNameSecond: @Model.ServicePriceSecond</li>
+                        <li>@Model.ServiceDescriptionThird - @Model.ServiceNameThird: @Model.ServicePriceThird</li>
+                        <li>@Model.ServiceDescriptionFourth - @Model.ServiceNameFourth: @Model.ServicePriceFourth</li>
+                    </ul>
+                    <p><strong>@Model.MiddleDescription:</strong></p>
+                    <ul>
+                        <li>@Model.MiddleTextFirst</li>
+                        <li>@Model.MiddleTextSecond</li>
+                        <li>@Model.MiddleTextThird</li>
+                        <li>@Model.MiddleTextFourth</li>
+                    </ul>
+                    <p><strong>@Model.ApplyInfo:</strong></p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="~/images/@Model.ApplyInfoLeftImage" class="img-fluid rounded" alt="Apply Info Left Image" />
+                        </div>
+                        <div class="col-md-6">
+                            <img src="~/images/@Model.ApplyInfoRightImage" class="img-fluid rounded" alt="Apply Info Right Image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

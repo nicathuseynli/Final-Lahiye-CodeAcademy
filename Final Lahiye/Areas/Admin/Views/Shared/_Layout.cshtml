@@ -34,126 +34,14 @@
                 </div>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <ul class="navbar-nav mr-lg-4 w-100">
-                    <li class="nav-item nav-search d-none d-lg-block w-100">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="search">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown me-1">
-                        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="mdi mdi-message-text mx-0"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <img src="~/admin/images/faces/face4.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="item-content flex-grow">
-                                    <h6 class="ellipsis font-weight-normal">
-                                        David Grey
-                                    </h6>
-                                    <p class="font-weight-light small-text text-muted mb-0">
-                                        The meeting is cancelled
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <img src="~/admin/images/faces/face2.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="item-content flex-grow">
-                                    <h6 class="ellipsis font-weight-normal">
-                                        Tim Cook
-                                    </h6>
-                                    <p class="font-weight-light small-text text-muted mb-0">
-                                        New product launch
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <img src="~/admin/images/faces/face3.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="item-content flex-grow">
-                                    <h6 class="ellipsis font-weight-normal">
-                                        Johnson
-                                    </h6>
-                                    <p class="font-weight-light small-text text-muted mb-0">
-                                        Upcoming board meeting
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown me-4">
-                        <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="mdi mdi-bell mx-0"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <div class="item-icon bg-success">
-                                        <i class="mdi mdi-information mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <h6 class="font-weight-normal">Application Error</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <div class="item-icon bg-warning">
-                                        <i class="mdi mdi-settings mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <h6 class="font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">
-                                <div class="item-thumbnail">
-                                    <div class="item-icon bg-info">
-                                        <i class="mdi mdi-account-box mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <h6 class="font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
+                <ul>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                            <img src="~/admin/images/faces/face5.jpg" alt="profile" />
-                            <span class="nav-profile-name">Louis Barnett</span>
+                            <img src="~/images/7d7c6276-b766-4c04-8c3c-0d567d8a811c_review-user-null-photo.png" alt="profile" />
+                            <span class="nav-profile-name">@User.Identity.Name</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
-                                <i class="mdi mdi-settings text-primary"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item">
+                            <a asp-controller="Account" asp-action="Logout" class="dropdown-item">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
                             </a>
@@ -184,53 +72,44 @@
                         </a>
                         <div class="collapse" id="home">
                             <ul class="nav flex-column sub-menu">
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Bio" asp-action="SocialMediaIndex">Bio</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Hero" asp-action="Index">Hero</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Banner" asp-action="Index"> Banner</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="ElementorWidget" asp-action="Index">Elementor</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Testimonial" asp-action="Index">Testimonial</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="ShortInfo" asp-action="Index">Short Information Store</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Product" asp-action="Index">Home Product</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Bio" asp-action="SocialMediaIndex">Bio</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Hero" asp-action="Index">Hero</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Banner" asp-action="Index"> Banner</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="ElementorWidget" asp-action="Index">Elementor</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Testimonial" asp-action="Index">Testimonial</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="ShortInfo" asp-action="Index">Short Information Store</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Product" asp-action="Index">Home Product</a></li>
                             </ul>
                         </div>
                     </li>
-                      <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#about" aria-expanded="false" aria-controls="about">
-                            <i  class="mdi mdi-information menu-icon"></i>
+                            <i class="mdi mdi-information menu-icon"></i>
                             <span class="menu-title">Blog</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="about">
                             <ul class="nav flex-column sub-menu">
-                              <li class="nav-item"> <a class="nav-link" asp-controller="Author" asp-action="Index">Author</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Author" asp-action="Index">Author</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Blog" asp-action="Index">Blog</a></li>
                             </ul>
                         </div>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="about">
-                            <i  class="mdi mdi-frequently-asked-questions"></i>
+                            <i class="mdi mdi-frequently-asked-questions"></i>
                             <span class="menu-title">FAQ Page</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="faq">
                             <ul class="nav flex-column sub-menu">
-                              <li class="nav-item"> <a class="nav-link" asp-controller="FaqPage" asp-action="Index">FAQ Page</a></li>
-                              <li class="nav-item"> <a class="nav-link" asp-controller="FaqPayment" asp-action="Index">FAQ Payment</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="FaqPage" asp-action="Index">FAQ Page</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="FaqPayment" asp-action="Index">FAQ Payment</a></li>
                             </ul>
                         </div>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="about">
-                            <i  class="mdi mdi-file-document-alert"></i>
-                            <span class="menu-title">Error Page</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                    </li>
-
-                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#contact" aria-expanded="false" aria-controls="contact">
                             <i class="mdi mdi-phone  menu-icon"></i>
                             <span class="menu-title">Contact</span>
@@ -238,37 +117,13 @@
                         </a>
                         <div class="collapse" id="contact">
                             <ul class="nav flex-column sub-menu">
-                           <li class="nav-item"> <a class="nav-link" asp-controller="ContactDetails" asp-action="Index">Contact Details </a></li>
-                           <li class="nav-item"> <a class="nav-link" asp-controller="Contact" asp-action="Index">Magazine Page </a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="ContactDetails" asp-action="Index">Contact Details </a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Contact" asp-action="Index">Magazine Page </a></li>
                             </ul>
                         </div>
-                    </li>  
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#headerfooter" aria-expanded="false" aria-controls="headerfooter">
-                            <i class="mdi mdi-creative-commons menu-icon"></i>
-                            <span class="menu-title">Login Register</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="headerfooter">
-                            <ul class="nav flex-column sub-menu">
-                             <li class="nav-item"> <a class="nav-link" asp-controller="LoginPage" asp-action="Index">Login Page</a></li>                    
-                             <li class="nav-item"> <a class="nav-link" asp-controller="RegisterPage" asp-action="Index">Register Page</a></li>                    
-                         </ul>
-                        </div>
                     </li>
-@*                       <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#singleproduct" aria-expanded="false" aria-controls="singleproduct">
-                            <i class="mdi mdi mdi-hanger menu-icon"></i>
-                            <span class="menu-title">Single Product</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="singleproduct">
-                            <ul class="nav flex-column sub-menu">
-                             <li class="nav-item"> <a class="nav-link" asp-controller="SingleProduct" asp-action="Index">SingleProduct</a></li>
-                             </ul>
-                        </div>
-                       </li>   *@        
-                       <li class="nav-item">
+
+                    <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#shop" aria-expanded="false" aria-controls="shop">
                             <i class="mdi mdi mdi-store menu-icon"></i>
                             <span class="menu-title">Shop</span>
@@ -276,11 +131,11 @@
                         </a>
                         <div class="collapse" id="shop">
                             <ul class="nav flex-column sub-menu">
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Category" asp-action="Index">Category</a></li>
-                             <li class="nav-item"> <a class="nav-link" asp-controller="Colour" asp-action="Index">Colour</a></li>
-                             </ul>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Category" asp-action="Index">Category</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Colour" asp-action="Index">Colour</a></li>
+                            </ul>
                         </div>
-                       </li>
+                    </li>
                 </ul>
             </nav>
             @RenderBody()
