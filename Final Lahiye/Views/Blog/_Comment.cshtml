@@ -1,0 +1,24 @@
+﻿@model Comment
+
+<li class="comment d-flex flex-wrap mb-3" id="c-@Model.Id" data-comment-id="@Model.Id">
+    <div class="d-flex flex-wrap">
+        <div class="blogComentProfilPhoto">
+            <img src="~/images/7d7c6276-b766-4c04-8c3c-0d567d8a811c_review-user-null-photo.png" alt="Photo">
+        </div>
+        <div class="blogCommentItem">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h3 href="#" class="blogCommentItemArea me-5">
+                        @Model.User.Name
+                    </h3>
+                    <span class="blogCommentData">
+                        <span class="commentTime">@ViewBag.DateTime</span>
+                    </span>
+                </div>
+            </div>
+        <span class="commentReplyDesc me-5">
+            @Model.Description
+        </span>
+        </div>
+    </div>
+</li>

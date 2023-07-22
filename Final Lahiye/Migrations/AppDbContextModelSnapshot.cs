@@ -454,6 +454,38 @@ namespace Final_Lahiye.Migrations
                     b.ToTable("Colours");
                 });
 
+            modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Final_Lahiye.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
@@ -938,6 +970,31 @@ namespace Final_Lahiye.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
+                {
+                    b.HasOne("Final_Lahiye.Models.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Final_Lahiye.Models.Comment", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.HasOne("Final_Lahiye.Membership.MUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Final_Lahiye.Models.HomeProduct", b =>
                 {
                     b.HasOne("Final_Lahiye.Models.Category", "Category")
@@ -977,6 +1034,11 @@ namespace Final_Lahiye.Migrations
                     b.Navigation("Blogs");
                 });
 
+            modelBuilder.Entity("Final_Lahiye.Models.Blog", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("Final_Lahiye.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -985,6 +1047,11 @@ namespace Final_Lahiye.Migrations
             modelBuilder.Entity("Final_Lahiye.Models.Colour", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Final_Lahiye.Models.Comment", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

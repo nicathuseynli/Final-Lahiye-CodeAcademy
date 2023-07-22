@@ -16,12 +16,12 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-xxl-6 col-xl-6 col-lg-6  d-lg-block d-none">
-           @*         <img src="~/images/@Model.RegisterPage?.Image" width="100%" alt="">*@
+                    <img src="~/images/5105e1f4-7710-468c-a00f-93e7f8d47d9f_blog-image-3.jpg" width="100%" alt="">
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="login">
                         <h2 class="loginTitle">Sign Up Your Account</h2>
-               @*         <span class="loginDesc">@Model.RegisterPage?.Description .</span>*@
+                        <span class="loginDesc">If you don't have any account lets create new one</span>
                         <form method="post">
                             @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
                               {
@@ -83,7 +83,7 @@
                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt-3">
                                     <div class="SignUp">
                                         <span>Sign in Your Account <a class="loginRegister"
-                                           asp-controller="LoginRegister" asp-action="Login"> Your Account</a></span>
+                                           asp-controller="Account" asp-action="Login"> Your Account</a></span>
                                     </div>
                                 </div>
                             </div>
