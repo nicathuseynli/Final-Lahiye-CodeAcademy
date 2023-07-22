@@ -13,7 +13,5 @@ public class Author : BaseEntity<int>
     public IFormFile Photo { get; set; }
 
     //navigation
-    public int BlogId { get; set; }
-
     public virtual ICollection<Blog> Blogs { get; set; }
 }

@@ -42,7 +42,7 @@ public class AuthorService : IAuthorService
 
     public async Task<Author> GetByIdAsync(int id)
     {
-        var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+        var author = await _context.Authors.Include(a => a.Blogs).FirstOrDefaultAsync(x => x.Id == id);
         if (author == null)  
             return null;
         return author;

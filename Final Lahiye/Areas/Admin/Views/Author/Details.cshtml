@@ -4,22 +4,20 @@
     <h1 class="text-center mb-4">About Author</h1>
     <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
-            <img src="~/images/@Model.Image" class="rounded-circle img-thumbnail" style="width:300px; height:300px;"/>
+            <img src="~/images/@Model.Photo" class="rounded-circle img-thumbnail" style="width:300px; height:300px;"/>
             <h2 class="mt-4">@Model.FullName</h2>
-            <p class="lead">@Model.Proffesion</p>
-            <h4 class="text-muted">Blog Id: @Model.BlogId</h4>
+            <p class="lead">@Model.FullName</p>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <h1>About Author</h1>
-    <div class="row">
-        <div>
-         <img src="~/images/@Model.Image" width="500px" height="500px"/>
-            <h1>@Model.BlogId</h1>
-            <h1>@Model.FullName</h1>
-            <h1>@Model.Proffesion</h1>
+    <h3 class="mt-5">Blogs</h3>
+    @foreach(var blog in Model.Blogs)
+    {
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">@blog.Title</h5>
+              <img src="~/images/@blog.Photo" class="rounded-circle img-thumbnail" style="width:300px; height:300px;"/>
+            </div>
         </div>
-    </div>
+    }
 </div>

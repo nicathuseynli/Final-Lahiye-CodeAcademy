@@ -9,8 +9,6 @@ public class UpdateAuthorVM
 
     public string Proffession { get; set; }
 
-    public int Blogid { get; set; }
-
     public string Image { get; set; }
 
     [AllowNull]

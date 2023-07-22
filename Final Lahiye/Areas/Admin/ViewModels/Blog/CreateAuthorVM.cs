@@ -6,8 +6,6 @@ public class CreateAuthorVM
     [Required]
     public string FullName { get; set; }
 
-    public int  Blogid { get; set; }
-
     [Required]
     public string Proffession { get; set; }
 

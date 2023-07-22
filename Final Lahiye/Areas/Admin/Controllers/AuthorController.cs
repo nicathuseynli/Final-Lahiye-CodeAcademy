@@ -23,8 +23,12 @@ public class AuthorController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var category = await _context.Authors.ToListAsync();
-        return View(category);
+        var author = await _context.Authors.Include(a => a.Blogs).ToListAsync();
+        if (author == null)
+        {
+            author = new List<Author>();
+        }
+        return View(author);
     }
 
     [HttpGet]
@@ -81,7 +85,6 @@ public class AuthorController : Controller
             Id = author.Id,
             FullName = author.FullName,
             Proffession = author.Proffesion,
-            Blogid = author.BlogId,
             Image = author.Image,
         };
         return View(updateAuthorVM);
