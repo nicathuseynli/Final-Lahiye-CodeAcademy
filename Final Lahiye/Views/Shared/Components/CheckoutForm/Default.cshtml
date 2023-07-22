@@ -1,0 +1,80 @@
+﻿@using Final_Lahiye.Models.FormModel
+@model CheckoutFormModel
+
+<div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xsm-12 mt-5 billing">
+    <div class="checkOut-Content">
+        <h5 class="billing-header-first ms-1 mt-3 mb-4"> Billing Details </h5>
+        <form id="checkoutForm" method="post" asp-controller="Shop" asp-action="Create">
+            <div class="row gy-3">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="contactItem">
+                        <input asp-for="FirstName" id="contact-firstname" placeholder="FirstName">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <span class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="contactItem">
+                        <input asp-for="LastName" id="contact-lastname" placeholder="LastName">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </span>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="Address" id="checkOut-address" placeholder="Address">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="Apartment" id="checkOut-apartment" placeholder="Apartment">
+                        <span asp-validation-for="Apartment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="City" id="checkOut-city" placeholder="City">
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="CompanyName" id="checkOut-companyname" placeholder="CompanyName">
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="ZipCode" id="checkOut-zipcode" placeholder="ZipCode">
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="PhoneNumber" id="checkOut-phonenumber" placeholder="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="contactItem">
+                        <input asp-for="Email" id="checkOut-email" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="checkout_text">
+                    <textarea id="checkOut-message" cols="30" asp-for="Message" rows="10"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div id="alertMessage" class="alert" style="display: none;"></div>
+                    <input type="submit" value="Save" class="contact-button-wrap">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+

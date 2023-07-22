@@ -6,11 +6,11 @@
           <h2>Top 5 Tips For 2022</h2>
           <div class="container  d-flex align-items-center mt-4 pb-4">
             <div class="authors_photo me-2">
-              <img src="~/images/@Model.Blog?.Author.Image" width="70" alt="creater-image" class="creator-image" style="border-radius:100%;">
+              <img src="~/images/@Model.Blog.Author?.Image" width="70" alt="creater-image" class="creator-image" style="border-radius:100%;">
             </div>
             <div class="creator-info d-flex flex-column  me-3">
-              <span class="creator-name">@Model.Blog?.Author.FullName</span>
-              <span class="creator-profession mt-2">@Model.Blog?.Author.Proffesion</span>
+              <span class="creator-name">@Model.Blog.Author.FullName</span>
+              <span class="creator-profession mt-2">@Model.Blog.Author.Proffesion</span>
             </div>
             <div class="singleblog-time d-flex me-3">
               <div><i class="fa-solid fa-calendar-days"></i></div>

@@ -17,14 +17,7 @@ public class HeaderViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        //var headerUpTexts = await _context.HeaderUpTexts.FirstOrDefaultAsync();
         var headerUps = await _context.Bios.FirstOrDefaultAsync();
-        //HeaderVM headerVM = new()
-        //{ 
-        //    //HeaderUpTexts = headerUpTexts,
-        //    Bios = headerUps
-        //};
-
         string basket = Request.Cookies["basket"];
         ViewBag.BasketCount = 0;
         ViewBag.BasketPrice = 0;

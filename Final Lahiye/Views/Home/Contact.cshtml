@@ -116,44 +116,40 @@
     </div>
 </main>
 
-
 @section addjs{
     <script>
-        $(document).ready(function() {
-            $('#contactForm input[type="text"],#contactForm input[type="number"], #contactForm input[type="email"], #contactForm textarea').val('');
+        $(document).ready(function () {
+            $('#checkoutForm input[type="text"],#checkoutForm input[type="email"], #checkoutForm input[type="number"],#checkoutForm textarea').val('');
         });
         $(document).ready(function() {
             $('#contactform').on('submit', function(e) {
                 e.preventDefault();
+                var form = $(this);
                 $.ajax({
-                    url: $(this).attr('action'),
+                    url: form.attr('action'),
                     type: 'POST',
-                    data: $(this).serialize(),
+                    data: form.serialize(),
                     success: function(response) {
                         var alertMessage = $('#alertMessage');
                         if (response.success) {
-                           $('#contactForm input[type="text"],#contactForm input[type="number"], #contactForm input[type="email"], #contactForm textarea').val('');
-                            alertMessage.text('Your message successfully sended ,We will call you soon');
-                            alertMessage.removeClass();
-                            alertMessage.addClass('alert alert-success');
+                            form[0].reset(); // Resetting the form.
+                            alertMessage.text('Your message has been successfully sent. We will call you soon.');
+                            alertMessage.removeClass().addClass('alert alert-success');
                         } else {
-                            alertMessage.text('Something went wrong: ' + response.message);
-                            alertMessage.removeClass();
-                            alertMessage.addClass('alert alert-danger');
+                            alertMessage.text('Something went wrong ,There seems to be a problem with your contact information.');
+                            alertMessage.removeClass().addClass('alert alert-danger');
                         }
                         alertMessage.show();
                     },
                     error: function() {
                         var alertMessage = $('#alertMessage');
-                        alertMessage.text('Upps : Your contact informations are not done.');
-                        alertMessage.removeClass();
-                        alertMessage.addClass('alert alert-danger');
+                        alertMessage.text('Oops: There seems to be a problem with your contact information.');
+                        alertMessage.removeClass().addClass('alert alert-danger');
                         alertMessage.show();
                     }
                 });
             });
         });
     </script>
-
 }
 

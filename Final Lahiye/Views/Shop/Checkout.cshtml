@@ -80,6 +80,7 @@
                             </div>
                         </div>
                     </div>
+                    @await Component.InvokeAsync("CheckoutForm")
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mt-4">
                         <div class="checOutContent">
                             <h4 class="checkoutTitle">Your Order</h4>
@@ -114,7 +115,6 @@
                                 </p>
                             </div>
                             <div class="orderbtn mt-5 mb-3">
-                                <input type="submit" value="Save" />
                                 <a asp-action="Order" asp-controller="Shop" class="home-products-btn text-center">Place Order</a>
                             </div>
                         </div>
@@ -123,6 +123,41 @@
             </div>
     </section>
 </main>
+
+
+@section addjs{
+    <script>
+        $(document).ready(function() {
+            $('#checkoutForm').on('submit', function(e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function(response) {
+                        var alertMessage = $('#alertMessage');
+                        if (response.success) {
+                            form[0].reset(); 
+                            alertMessage.text('Your billing details has been successfully saved. Thank you.');
+                            alertMessage.removeClass().addClass('alert alert-success');
+                        } else {
+                            alertMessage.text('Something went wrong ,There seems to be a problem with your billing information.');
+                            alertMessage.removeClass().addClass('alert alert-danger');
+                        }
+                        alertMessage.show();
+                    },
+                    error: function() {
+                        var alertMessage = $('#alertMessage');
+                        alertMessage.text('Oops: There seems to be a problem with your billing information.');
+                        alertMessage.removeClass().addClass('alert alert-danger');
+                        alertMessage.show();
+                    }
+                });
+            });
+        });
+    </script>
+}
 
 
 

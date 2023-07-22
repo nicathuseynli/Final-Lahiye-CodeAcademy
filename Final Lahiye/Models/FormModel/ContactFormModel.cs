@@ -3,13 +3,16 @@
 namespace Final_Lahiye.Models.FormModel;
 public class ContactFormModel : BaseEntity<int>
 {
-    [Required]
+    [Required(ErrorMessage = "First Name is required")]
     public string Name { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Email is required")]
     [EmailAddress]
     public string Email { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Phone Number is required")]
     public int Phone { get; set; }
+
     [Required]
     public string Message { get; set; }
 }

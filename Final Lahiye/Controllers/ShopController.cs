@@ -112,58 +112,6 @@ public class ShopController : Controller
         }
         return totalPrice;
     }
-
-    //[AllowAnonymous]
-    //[HttpPost]
-    //public async Task<IActionResult> Comments(int? commentId, int productId, string comment)
-    //{
-    //    if (string.IsNullOrWhiteSpace(comment))
-    //    {
-    //        return Json(new
-    //        {
-    //            error = true,
-    //            message = "Serh bos buraxila bilmez"
-    //        });
-    //    }
-    //    if (productId < 1)
-    //    {
-    //        return Json(new
-    //        {
-    //            error = true,
-    //            message = "blog movcud deyil"
-    //        });
-    //    }
-
-    //    var blog = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
-
-    //    if (blog == null)
-    //    {
-    //        return Json(new
-    //        {
-    //            error = true,
-    //            message = "blog movcud deyil"
-    //        });
-    //    }
-
-    //    var commentModel = new Comment
-    //    {
-    //        ProductId = productId,
-    //        Description = comment,
-    //    };
-
-    //    if (commentId.HasValue && await _context.Comments.AnyAsync(c => c.Id == commentId))
-    //    {
-    //        commentModel.ParentId = commentId;
-    //    }
-
-
-    //    commentModel.UserId = ControllerContext.GetUserId().Value;
-
-    //    await _context.Comments.AddAsync(commentModel);
-    //    await _context.SaveChangesAsync();
-
-    //    return PartialView("_Comment", commentModel);
-    //}
     [AllowAnonymous]
     [HttpPost]
     public JsonResult GetProducts([FromBody] FilterPrice value)
@@ -181,25 +129,11 @@ public class ShopController : Controller
       return View();
     }
 
-
-    [AllowAnonymous]
-    public async Task<IActionResult> CheckoutForm()
-    {
-        var checkForm = await _context.CheckOutFormModels.FirstOrDefaultAsync();
-        var product = await _context.Products.FirstOrDefaultAsync();
-        CheckoutVM checkOutVM = new()
-        {
-            checkOutFormModel = checkForm,
-            Product = product,
-        };
-
-        return View(checkOutVM);
-    }
     [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Create(CheckoutFormModel checkoutFormModel)
     {
-        if (ModelState.IsValid)
+       if (ModelState.IsValid)
         {
             try
             {
@@ -210,13 +144,104 @@ public class ShopController : Controller
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = "Your contact message can not be sent" });
+                return Json(new { success = false, message = "Something went wrong" });
             }
         }
         else
         {
-            return Json(new { success = false, message = "Your message sent , We will call you soon ." });
+            return Json(new { success = false, message = "Ooops, Your Biling details are not done !" });
         }
     }
 
+
+    //[AllowAnonymous]
+    //public async Task<IActionResult> CheckoutForm()
+    //{
+    //    var checkForm = await _context.CheckOutFormModels.FirstOrDefaultAsync();
+    //    var product = await _context.Products.FirstOrDefaultAsync();
+    //    CheckoutVM checkOutVM = new()
+    //    {
+    //        checkOutFormModel = checkForm,
+    //        Product = product,
+    //    };
+
+    //    return View(checkOutVM);
+    //}
+    //[AllowAnonymous]
+    //[HttpPost]
+    //public async Task<IActionResult> Create(CheckoutFormModel checkoutFormModel)
+    //{
+    //    if (ModelState.IsValid)
+    //    {
+    //        try
+    //        {
+    //            await _context.CheckOutFormModels.AddAsync(checkoutFormModel);
+    //            await _context.SaveChangesAsync();
+
+    //            return Json(new { success = true });
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            return Json(new { success = false, message = "Your contact message can not be sent" });
+    //        }
+    //    }
+    //    else
+    //    {
+    //        return Json(new { success = false, message = "Your message sent , We will call you soon ." });
+    //    }
+    //}
+
 }
+
+
+//[AllowAnonymous]
+//[HttpPost]
+//public async Task<IActionResult> Comments(int? commentId, int productId, string comment)
+//{
+//    if (string.IsNullOrWhiteSpace(comment))
+//    {
+//        return Json(new
+//        {
+//            error = true,
+//            message = "Serh bos buraxila bilmez"
+//        });
+//    }
+//    if (productId < 1)
+//    {
+//        return Json(new
+//        {
+//            error = true,
+//            message = "blog movcud deyil"
+//        });
+//    }
+
+//    var blog = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
+
+//    if (blog == null)
+//    {
+//        return Json(new
+//        {
+//            error = true,
+//            message = "blog movcud deyil"
+//        });
+//    }
+
+//    var commentModel = new Comment
+//    {
+//        ProductId = productId,
+//        Description = comment,
+//    };
+
+//    if (commentId.HasValue && await _context.Comments.AnyAsync(c => c.Id == commentId))
+//    {
+//        commentModel.ParentId = commentId;
+//    }
+
+
+//    commentModel.UserId = ControllerContext.GetUserId().Value;
+
+//    await _context.Comments.AddAsync(commentModel);
+//    await _context.SaveChangesAsync();
+
+//    return PartialView("_Comment", commentModel);
+//}
