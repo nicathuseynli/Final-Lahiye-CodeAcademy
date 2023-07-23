@@ -55,7 +55,11 @@ public class AuthorController : Controller
     public async Task<IActionResult> Details(int id)
     {
         var details = await _authorService.GetByIdAsync(id);
-        return View(nameof(Index));
+        if (details == null)
+        {
+            return NotFound();
+        }
+        return View(details);
     }
 
     [HttpPost]

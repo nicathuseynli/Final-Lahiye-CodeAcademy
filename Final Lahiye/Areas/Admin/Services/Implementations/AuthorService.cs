@@ -42,8 +42,9 @@ public class AuthorService : IAuthorService
 
     public async Task<Author> GetByIdAsync(int id)
     {
-        var author = await _context.Authors.Include(a => a.Blogs).FirstOrDefaultAsync(x => x.Id == id);
-        if (author == null)  
+        var author = await _context.Authors
+             .Include(a => a.Blogs)
+             .FirstOrDefaultAsync(a => a.Id == id); if (author == null)
             return null;
         return author;
     }
@@ -51,7 +52,7 @@ public class AuthorService : IAuthorService
     public async Task<Author> UpdateAsync(UpdateAuthorVM updateAuthorVM)
     {
         var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == updateAuthorVM.Id);
-        if (author == null) 
+        if (author == null)
             return null;
 
         if (updateAuthorVM.Photo != null)
@@ -67,10 +68,10 @@ public class AuthorService : IAuthorService
             string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
 
             using FileStream stream = new FileStream(path, FileMode.Create);
-    
-             await updateAuthorVM.Photo.CopyToAsync(stream);
+
+            await updateAuthorVM.Photo.CopyToAsync(stream);
             #endregion
-    
+
             #region DeleteOldImage
             string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", author.Image);
             if (System.IO.File.Exists(oldPath))
