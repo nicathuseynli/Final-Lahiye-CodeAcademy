@@ -1,6 +1,6 @@
 ﻿@model HomeVM
 <main>
-    <section id="Header-Hero">
+    <section id="Header-Hero" class="animate__animated animate__fadeIn">
         <div class="hero">
             <div class="container">
                 <div class="row">
@@ -23,7 +23,7 @@
         </div>
     </section>
 
-    <section id="Main-Banner-Page">
+    <section id="Main-Banner-Page" class="animate__animated animate__fadeIn">
         <div class="baner">
             <img src="~/images/@Model?.Banner.BannerImage" class="banerImg" alt="">
             <div class="banerContent d-flex justify-content-center align-items-center flex-column">
@@ -33,7 +33,7 @@
         </div>
     </section>
 
-    <section id="elementor-widget-part">
+    <section id="elementor-widget-part" class="animate__animated animate__fadeIn">
         <div class="container-fluid">
             <div class="row mt-5">
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -99,7 +99,7 @@
         </div>
     </section>
 
-    <section id="Main-Products">
+    <section id="Main-Products" class="animate__animated animate__fadeIn">
         <div class="container mt-5 mb-5">
             <div class="row m-auto">
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
@@ -153,7 +153,7 @@
         </div>
     </section>
 
-    <section id="Main-Ending-Up-Elementor" class="up-elementor">
+    <section id="Main-Ending-Up-Elementor" class="up-elementor animate__animated animate__fadeIn">
         <div class="container-fluid element-widgetContent ">
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12  mb-5">
@@ -179,7 +179,7 @@
         </div>
     </section>
 
-    <section id="Main-Ending-Below-Elementor" class="below-elementor">
+    <section id="Main-Ending-Below-Elementor" class="below-elementor animate__animated animate__fadeIn">
         <div class="container-fluid">
             <div class="row gy-4 mt-3 ms-5">
                 @foreach (var shortInfo in @Model.ShortInformations)

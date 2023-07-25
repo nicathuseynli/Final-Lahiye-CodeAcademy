@@ -7,6 +7,76 @@
     box-sizing: border-box;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.headerLogo img,
+.navigation li {
+    animation: fadeIn 1s ease-in-out;
+}
+
+#Header-Hero,
+#Main-Banner-Page,
+#elementor-widget-part,
+#Main-Products,
+#Main-Ending-Up-Elementor,
+#Main-Ending-Below-Elementor {
+    opacity: 0; 
+}
+
+#Header-Hero {
+    animation-delay: 0.5s;
+}
+
+#Main-Banner-Page {
+    animation-delay: 1s;
+}
+
+#elementor-widget-part {
+    animation-delay: 1.5s;
+}
+
+#Main-Products {
+    animation-delay: 2s;
+}
+
+#Main-Ending-Up-Elementor {
+    animation-delay: 2.5s;
+}
+
+#Main-Ending-Below-Elementor {
+    animation-delay: 3s;
+}
+
+/* Animation classes */
+.animate__animated {
+    animation-fill-mode: both;
+    animation-duration: 1s;
+}
+
+/* Fade in animation */
+.animate__fadeIn {
+    animation-name: fadeIn;
+}
+
+/* Keyframes for fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 :root {
     --main-font: 'Montserrat', sans-serif;
     --body-font: "Poppins", sans-serif;
@@ -2265,6 +2335,8 @@ input[type="checkbox"] {
 
 /*Single Product Start*/
 
+
+
 .shopDetailsProductReting li i {
     font-size: 15px;
 }
@@ -2549,7 +2621,7 @@ input[type="checkbox"] {
 .store-desc,
 span {
     font-size: 19px;
-    font-family:var(--body-font);
+    font-family: var(--body-font);
     color: #7c7c7c;
     font-weight: 400;
     line-height: 1.2rem;
@@ -3021,10 +3093,12 @@ span {
 .singlePageBarHeader a {
     font-size: 13px;
 }
-.blogCommentData{
-    color:red;
-    margin-left:20px;
+
+.blogCommentData {
+    color: red;
+    margin-left: 20px;
 }
+
 .category {
     font-size: 13px;
 }
@@ -3271,25 +3345,25 @@ span {
     transform: translateY(0);
 }
 
-.commentTime{
-    padding-left:17px;
+.commentTime {
+    padding-left: 17px;
 }
 
-.CommentReplyDesc{
-    padding-left:25px;
+.CommentReplyDesc {
+    padding-left: 25px;
 }
 
 .blogCommentItemArea {
     padding-left: 25px;
 }
 
-    .commentBtn:hover {
-        cursor: pointer;
-        transform: translateY(-1em);
-        transition: 0.4s;
-        background-color: black;
-        color: white !important;
-    }
+.commentBtn:hover {
+    cursor: pointer;
+    transform: translateY(-1em);
+    transition: 0.4s;
+    background-color: black;
+    color: white !important;
+}
 /*Single Page End*/
 
 

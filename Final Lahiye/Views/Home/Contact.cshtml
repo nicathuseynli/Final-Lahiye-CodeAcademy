@@ -5,20 +5,20 @@
             <div class="row gy-5">
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-left d-flex justify-content-center align-items-center ">
                     <div class="reach-to-Us">
-                        <div class="reach-to-Us-info mt-5">
+                        <div class="reach-to-Us-info animated mt-5">
                             <h2 class="reach-to-Us-info-header ">Reach Out To Us</h2>
                             <div class="by-address">
                                 <span class="by-contact-header"><b>By Address</b></span>
                                 <p class="by-contact-desc mt-2">@Model.ContactDetails?.ByAddress</p>
                             </div>
-                            <div class="by-email mt-4">
+                            <div class="by-email animated mt-4">
                                 <span class="by-contact-header mt-2">By email</span>
                                 <p class="by-contact-desc">
                                     Please email us and we'll get back to you within 24
                                     hours: @Model.ContactDetails?.ByEmail
                                 </p>
                             </div>
-                            <div class="by-phone mt-4">
+                            <div class="by-phone animated mt-4">
                                 <span class="by-contact-header mt-2"><b>By phone</b></span>
                                 <p class="by-contact-desc">Call our store: @Model.ContactDetails?.ByPhone</p>
                             </div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contact-line-right ">
-                    <div class="Send-your-request d-flex flex-column ">
+                    <div class="Send-your-request animated d-flex flex-column ">
                         <h1 class="send-your-request-header"><b>Send Your Request</b></h1>
                         <form id="contactform" asp-controller="Home" asp-action="Create" method="post">
                             <div class="row gy-2">
@@ -69,7 +69,7 @@
             </div>
         </div>
     </section>
-    <section id="Stores">
+    <section id="Stores" class="animate__animated animate__fadeIn">
         <h3 class="store-header d-flex justify-content-center align-items-center mt-5 mb-5">Our Stores</h3>
         <div class="container">
             <div class="row">
