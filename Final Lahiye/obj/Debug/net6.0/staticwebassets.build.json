@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NTIEDFKe13LYPfAu4+0URX6K0Fg7BLrRfrVQcxrusQo=",
+  "Hash": "kRoqd011/VVnNix+m5r9PaOb9QSV+6UbUVXA/4P3jdo=",
   "Source": "Final Lahiye",
   "BasePath": "_content/Final Lahiye",
   "Mode": "Default",
@@ -3400,6 +3400,23 @@
       "OriginalItemSpec": "wwwroot\\images\\684bb48c-3fa5-49f3-9f10-e709c6070d37_dollar.svg"
     },
     {
+      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\6b3f285e-e29c-4969-a28d-23ba1036576d_hoverlogo.webp",
+      "SourceId": "Final Lahiye",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
+      "BasePath": "_content/Final Lahiye",
+      "RelativePath": "images/6b3f285e-e29c-4969-a28d-23ba1036576d_hoverlogo.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\6b3f285e-e29c-4969-a28d-23ba1036576d_hoverlogo.webp"
+    },
+    {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\71a49b52-a50f-418c-8728-1eef159c56d9 _ blog-image-1.jpg",
       "SourceId": "Final Lahiye",
       "SourceType": "Discovered",
@@ -3534,23 +3551,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\7d94cbca-fd5f-404c-b41f-d0fec6344be3 _ blog-image-6.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\7dc362d5-1369-4c58-bb85-dcc96cc7ec67_blog-image-4.jpg",
-      "SourceId": "Final Lahiye",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\",
-      "BasePath": "_content/Final Lahiye",
-      "RelativePath": "images/7dc362d5-1369-4c58-bb85-dcc96cc7ec67_blog-image-4.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\7dc362d5-1369-4c58-bb85-dcc96cc7ec67_blog-image-4.jpg"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\Final Lahiye\\Final Lahiye\\wwwroot\\images\\819e6aa6-6d5e-48df-af31-607cacf1290b_blog-image-2.jpg",
