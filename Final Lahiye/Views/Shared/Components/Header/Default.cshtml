@@ -1,91 +1,105 @@
 ﻿@model Bio
 
 <header>
- <section id="mob">
+    <section id="mob">
         <div class="hamburger">
- <div class="row">
-    <div class="col-1 d-flex justify-content-center">
-        <div id="mySidenav" class="sidenav">
-            <a asp-controller="Home" asp-action="Index" >Home</a>
-            <a asp-controller="Shop" asp-action="Index">Shop</a>
-            <a asp-controller="Blog" asp-action="Index" >Blog</a>
-            <a asp-controller="Home" asp-action="Contact">Contact</a>
-            <a asp-controller="Home" asp-action="Basket" >Basket</a>
-            <a asp-controller="Account" asp-action="Login" >User</a>
-        </div>
-    </div>
-</div>
-<!--Navbar-->
-
-  <nav class="navbar navbar-light d-lg-none p-4" >
-    <!-- Collapse button -->
-    <button class="navbar-toggler hamburger-button" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" onclick="Nav()" style="z-index: 2">
-        <div class="animated-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-    </button>
-  </nav>
-    </div>
-        <section id="Up-Navigation" class="Up-Navigation">
-              <div class="up-header d-none d-lg-block">
-                <div class="container">
-                  <div class="row align-items-center">
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                      <div class="up-header-top-left">
-                        <span class="up-header-text">@Model?.Text</span>
-                      </div>
+            <div class="row">
+                <div class="col-1 d-flex justify-content-center">
+                    <div id="mySidenav" class="sidenav">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Shop" asp-action="Index">Shop</a>
+                        <a asp-controller="Blog" asp-action="Index">Blog</a>
+                        <a asp-controller="Home" asp-action="Contact">Contact</a>
+                        <a asp-controller="Home" asp-action="Basket">Basket</a>
+                        <a asp-controller="Account" asp-action="Login">User</a>
                     </div>
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                      <div class="up-header-top-right">
-                        <ul class="up-header-socialmedia-menu d-flex justify-content-end">
-                          <li><a class="navigation-socialmediadresses"
-                              href="@Model?.FacebookLink"><i
-                                class="fa-brands fa-facebook"></i></a></li>
-                          <li><a class="navigation-socialmediadresses"
-                              href="@Model?.InstagramLink"><i
-                                class="fa-brands fa-instagram"></i></a></li>
-                          <li><a class="navigation-socialmediadresses"
-                              href="@Model?.TwitterLink"><i
-                                class="fa-brands fa-twitter"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </section>
-    <section id="Navigation d-lg-none">
-      <div class="container-fluid">
-        <div class="row headerWidthNone">
-          <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-            <div class="headerLogo">
-              <a asp-controller="Home" asp-action="Index" ><img src="~/images/interior-logo.webp" class="logo" alt="website-logo" /></a>
             </div>
-          </div>
-          <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
-            <nav class="basketCartRegister">
-              <ul class="navigation">
-                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Shop" asp-action="Index">Shop</a></li>
-                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Blog" asp-action="Index">Blog</a></li>
-                <li class="navigation-item"><a class="navigation-item-area  navigationPages" href="#">Pages <i
-                      class="fa-solid fa-chevron-down"></i></a>
-                  <ul class="submenu">
-                    <li class="submenuItem"><a class="submenuItem-area"  asp-controller="Home" asp-action="FAQ">FAQ</a></li>
-                    <li class="submenuItem"><a class="submenuItem-area"  asp-controller="Account" asp-action="Account">Account</a></li>
-                  </ul>
-                </li>
-                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                <li class="basketCartRegister-header"><a asp-controller="Home" asp-action="Basket" class="cartCount"><span
-                    id="basketCount"  class="cartCountItem">@ViewBag.BasketCount</span><i class="fa-solid fa-cart-shopping"></i></a></li>
-                <li class="basketCartRegister-header"><a asp-controller="Account" asp-action="Login"><i class="fa-regular fa-user"></i></a></li>
-              </ul>
+            <!--Navbar-->
+
+            <nav class="navbar navbar-light d-lg-none p-4">
+                <!-- Collapse button -->
+                <button class="navbar-toggler hamburger-button" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" onclick="Nav()" style="z-index: 2">
+                    <div class="animated-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
             </nav>
-          </div>
         </div>
-      </div>
+        <section id="Up-Navigation" class="Up-Navigation">
+            <div class="up-header d-none d-lg-block">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="up-header-top-left">
+                                <span class="up-header-text">@Model?.Text</span>
+                            </div>
+                        </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="up-header-top-right">
+                                <ul class="up-header-socialmedia-menu d-flex justify-content-end">
+                                    <li>
+                                        <a class="navigation-socialmediadresses"
+                                           href="@Model?.FacebookLink">
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="navigation-socialmediadresses"
+                                           href="@Model?.InstagramLink">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="navigation-socialmediadresses"
+                                           href="@Model?.TwitterLink">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="Navigation d-lg-none">
+            <div class="container-fluid">
+                <div class="row headerWidthNone">
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                        <div class="headerLogo">
+                            <a asp-controller="Home" asp-action="Index"><img src="~/images/interior-logo.webp" class="logo" alt="website-logo" /></a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
+                        <nav class="basketCartRegister">
+                            <ul class="navigation">
+                                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Shop" asp-action="Index">Shop</a></li>
+                                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Blog" asp-action="Index">Blog</a></li>
+                                <li class="navigation-item">
+                                    <a class="navigation-item-area  navigationPages" href="#">
+                                        Pages <i class="fa-solid fa-chevron-down"></i>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li class="submenuItem"><a class="submenuItem-area" asp-controller="Home" asp-action="FAQ">FAQ</a></li>
+                                        <li class="submenuItem"><a class="submenuItem-area" asp-controller="Account" asp-action="Account">Account</a></li>
+                                    </ul>
+                                </li>
+                                <li class="navigation-item"><a class="navigation-item-area" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                                <li class="basketCartRegister-header">
+                                    <a asp-controller="Home" asp-action="Basket" class="cartCount">
+                                        <span id="basketCount" class="cartCountItem">@ViewBag.BasketCount</span><i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </li>
+                                <li class="basketCartRegister-header"><a asp-controller="Account" asp-action="Login"><i class="fa-regular fa-user"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
-</section>
 </header>

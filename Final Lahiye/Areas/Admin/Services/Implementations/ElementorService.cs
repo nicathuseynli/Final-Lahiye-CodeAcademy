@@ -64,7 +64,8 @@ public class ElementorService : IElementorService
 
         if (updateElementorWidgetVM.ElementorUpPhoto != null && updateElementorWidgetVM.ElementorDownPhoto != null)
         {
-            if (!updateElementorWidgetVM.ElementorUpPhoto.ContentType.Contains("image/") || !updateElementorWidgetVM.ElementorDownPhoto.ContentType.Contains("image/"))
+            if (!updateElementorWidgetVM.ElementorUpPhoto.ContentType.Contains("image/") 
+            || !updateElementorWidgetVM.ElementorDownPhoto.ContentType.Contains("image/"))
                 return null;
 
             if (updateElementorWidgetVM.ElementorUpPhoto.Length / 1024 > 1000 && updateElementorWidgetVM.ElementorDownPhoto.Length / 1024 > 1000)

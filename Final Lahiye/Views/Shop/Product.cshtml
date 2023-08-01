@@ -28,8 +28,8 @@
                         </div>
                     </div>
                     <div class='col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12'>
-                        <div id="main_image">
-                            <img id='mainimg' class="primary-img"
+                        <div class="zoom-container" id="main_image">
+                            <img id='mainimg' class="primary-img zoom"
                                  src="~/images/@Model.Product?.Image"
                                  onClick='sendimg(this);'>
                         </div>
@@ -58,7 +58,7 @@
                 <div class="shopDetailsProduct shopDetailsProductDesc">
                     <i class="fa-solid fa-circle-check mt-1"></i>
                     <p class="shopDetailsProductDescItem ms-1">
-                        Hurry up!! only <span class="singleproductleftitem">@Model.Products.Count()</span>
+                        Hurry up!! only <span class="singleproductleftitem">@Model.Product.Count</span>
                         items left
                     </p>
                 </div>
@@ -157,17 +157,16 @@
                             <div class="row">
                                 <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 mt-4">
                                     <p>Type</p>
-                                    <p>Meterial</p>
                                     <p>Ideal For</p>
                                     <p>Pack Of</p>
                                     <p>Seating Capacity</p>
                                     <p>Shape</p>
+                                    <p>Colour</p>
                                 </div>
                                 <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 mt-4">
                                     <p>@Model.Product?.Style</p>
-                                    <p>@Model.Product?.RoomType</p>
-                                    <p>@Model.Product?.PackCount</p>
                                     <p>@Model.Product?.IdealFor</p>
+                                    <p>@Model.Product?.PackCount</p>
                                     <p>@Model.Product?.Capacity</p>
                                     <p>@Model.Product?.Shape</p>
                                     <p>@Model.Product?.Colour?.Name</p>
@@ -224,6 +223,25 @@
     </div>
 </section>
 
+<style>
+    /* Zoom effect styles */
+    .zoom-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .zoom {
+        display: block;
+        max-width: 100%;
+        transition: transform 0.3s ease;
+        transform-origin: 0 0; /* Set the initial transform origin to the top left */
+    }
+
+        .zoom:hover {
+            transform: scale(1.5);
+        }
+</style>
+
 
 @section addjs{
     <script>
@@ -260,6 +278,26 @@
             $("#addToBasketButton").on("click", addToBasket);
             $("#buyNowButton").on("click", buyNow);
         });
+
+        const mainImg = document.getElementById('mainimg');
+
+        // Function to handle the mousemove event on the main image container
+        function handleMouseMove(event) {
+            const containerRect = event.currentTarget.getBoundingClientRect();
+            const mouseX = event.clientX - containerRect.left;
+            const mouseY = event.clientY - containerRect.top;
+
+            // Calculate the percentage position of the mouse within the container
+            const percentX = mouseX / containerRect.width;
+            const percentY = mouseY / containerRect.height;
+
+            // Set the transform origin based on the mouse position
+            mainImg.style.transformOrigin = `${percentX * 100}% ${percentY * 100}%`;
+        }
+
+        // Attach the mousemove event handler to the main image container
+        document.getElementById('main_image').addEventListener('mousemove', handleMouseMove);
+
 
     </script>
    }

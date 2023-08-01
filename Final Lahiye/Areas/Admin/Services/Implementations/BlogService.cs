@@ -129,8 +129,8 @@ public class BlogService : IBlogService
         if (updateBlogPageVM.Photo != null && updateBlogPageVM.ApplyInfoLeftPhoto != null && updateBlogPageVM.ApplyInfoRightPhoto != null)
         {
             #region Create NewImage
-            if (!updateBlogPageVM.Photo.ContentType.Contains("image/") &&
-                !updateBlogPageVM.ApplyInfoLeftPhoto.ContentType.Contains("image/") &&
+            if (!updateBlogPageVM.Photo.ContentType.Contains("image/") ||
+                !updateBlogPageVM.ApplyInfoLeftPhoto.ContentType.Contains("image/") ||
                 !updateBlogPageVM.ApplyInfoRightPhoto.ContentType.Contains("image/"))
                 return null;
 
@@ -138,88 +138,66 @@ public class BlogService : IBlogService
                 return null;
 
             string filename = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.Photo.FileName;
-            string applyleft = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.ApplyInfoRightPhoto.FileName;
-            string applyright = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.ApplyInfoLeftPhoto.FileName;
-
             string path = Path.Combine(_webHostEnvironment.WebRootPath, "images", filename);
+
+            string applyleft = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.ApplyInfoLeftPhoto.FileName;
             string applyleftpath = Path.Combine(_webHostEnvironment.WebRootPath, "images", applyleft);
+
+            string applyright = Guid.NewGuid().ToString() + " _ " + updateBlogPageVM.ApplyInfoRightPhoto.FileName;
             string applyrightpath = Path.Combine(_webHostEnvironment.WebRootPath, "images", applyright);
 
             using FileStream stream = new FileStream(path, FileMode.Create);
-            using FileStream applyleftstream = new FileStream(applyleft, FileMode.Create);
-            using FileStream applyrighttream = new FileStream(applyright, FileMode.Create);
+            using FileStream applyleftstream = new FileStream(applyleftpath, FileMode.Create);
+            using FileStream applyrighttream = new FileStream(applyrightpath, FileMode.Create);
 
             await updateBlogPageVM.Photo.CopyToAsync(stream);
-            await updateBlogPageVM.Photo.CopyToAsync(applyleftstream);
-            await updateBlogPageVM.Photo.CopyToAsync(applyrighttream);
+            await updateBlogPageVM.ApplyInfoLeftPhoto.CopyToAsync(applyleftstream);
+            await updateBlogPageVM.ApplyInfoRightPhoto.CopyToAsync(applyrighttream);
             #endregion
 
             #region DeleteOldImage
             string oldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.Image);
             string applyleftoldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.ApplyInfoLeftImage);
             string applyrightoldPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", blog.ApplyInfoRightImage);
-            if (System.IO.File.Exists(oldPath))
-                System.IO.File.Delete(oldPath);
+            if (System.IO.File.Exists(oldPath)) System.IO.File.Delete(oldPath);
+            if (System.IO.File.Exists(applyleftoldPath)) System.IO.File.Delete(applyleftoldPath);
+            if (System.IO.File.Exists(applyrightoldPath)) System.IO.File.Delete(applyrightoldPath);
+
             blog.Image = filename;
             blog.ApplyInfoLeftImage = applyleft;
             blog.ApplyInfoRightImage = applyright;
             #endregion
         }
+
         blog.Title = updateBlogPageVM.Title;
-
         blog.HeaderUp = updateBlogPageVM.HeaderUp;
-
         blog.InformationUp = updateBlogPageVM.InformationUp;
-
         blog.HeaderMiddle = updateBlogPageVM.HeaderMiddle;
-
         blog.InformationMiddle = updateBlogPageVM.InformationMiddle;
-
         blog.MiddleTextFirst = updateBlogPageVM.MiddleTextFourth;
-
         blog.MiddleTextSecond = updateBlogPageVM.MiddleTextSecond;
-
         blog.MiddleTextThird = updateBlogPageVM.MiddleTextThird;
-
         blog.MiddleTextFourth = updateBlogPageVM.MiddleTextFourth;
-
         blog.MiddleDescription = updateBlogPageVM.MiddleDescription;
-
         blog.HeaderEnd = updateBlogPageVM.HeaderEnd;
-
         blog.InformationEnd = updateBlogPageVM.InformationEnd;
-
         blog.ServiceInfo = updateBlogPageVM.ServiceInfo;
-
         blog.ServiceNameFirst = updateBlogPageVM.ServiceNameFirst;
-
         blog.ServicePriceFirst = updateBlogPageVM.ServicePriceFirst;
-
         blog.ServiceDescriptionFirst = updateBlogPageVM.ServiceDescriptionFirst;
-
         blog.ServiceNameSecond = updateBlogPageVM.ServiceNameSecond;
-
         blog.ServicePriceSecond = updateBlogPageVM.ServicePriceSecond;
-
         blog.ServiceDescriptionSecond = updateBlogPageVM.ServiceDescriptionSecond;
-
         blog.ServiceNameThird = updateBlogPageVM.ServiceNameThird;
-
         blog.ServicePriceThird = updateBlogPageVM.ServicePriceThird;
-
         blog.ServiceDescriptionThird = updateBlogPageVM.ServiceDescriptionThird;
-
         blog.ServiceNameFourth = updateBlogPageVM.ServiceNameFourth;
-
         blog.ServicePriceFourth = updateBlogPageVM.ServicePriceFourth;
-
         blog.ServiceDescriptionFourth = updateBlogPageVM.ServiceDescriptionFourth;
-
         blog.ApplyInfo = updateBlogPageVM.ApplyInfo;
-
-        blog.AuthorId = updateBlogPageVM.AuthorId;
 
         await _context.SaveChangesAsync();
         return blog;
     }
 }
+

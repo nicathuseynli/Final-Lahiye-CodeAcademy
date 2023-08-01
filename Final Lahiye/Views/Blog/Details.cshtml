@@ -51,7 +51,7 @@
                     <img width="1100" height="600" src="~/images/@Model.Blog?.Image " class="blog-page-area" alt="">
                 </div>
                 <p class="singleblog-text mt-5">
-                    @Model.Blog.
+                    @Model.Blog?.ApplyInfo
                 </p>
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xsm-12 mt-5">
                     <h5 class="singleblog-header-first mt-4">@Model.Blog?.HeaderMiddle</h5>
@@ -167,7 +167,7 @@
                         <li class="comment d-flex flex-wrap mb-3" data-comment-id="@comment.Id">
                             <div class="d-flex flex-wrap">
                                 <div class="blogComentProfilPhoto">
-                                    <img src="~/images/7d7c6276-b766-4c04-8c3c-0d567d8a811c_review-user-null-photo.png" alt="Photo">
+                                    <img class="defaultuser" src="~/images/null.png" alt="Photo">
                                 </div>
                                 <div class="blogCommentItem">
                                     <div class="d-flex justify-content-between">

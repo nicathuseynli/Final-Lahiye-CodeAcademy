@@ -145,7 +145,14 @@ public class BlogController : Controller
 
             ServiceDescriptionFourth = blog.ServiceDescriptionFourth,
 
+            ApplyInfoLeftImage  = blog.ApplyInfoLeftImage,
+
+            ApplyInfoRightImage = blog.ApplyInfoRightImage,
+
+            Image = blog.Image,
+
             ApplyInfo = blog.ApplyInfo,
+
             Title = blog.Title,
         };
         return View(updateBlogPageVM);

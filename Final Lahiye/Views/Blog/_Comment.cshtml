@@ -3,7 +3,7 @@
 <li class="comment d-flex flex-wrap mb-3" id="c-@Model.Id" data-comment-id="@Model.Id">
     <div class="d-flex flex-wrap">
         <div class="blogComentProfilPhoto">
-            <img src="~/images/78870ef1-23a4-41b6-8f81-8a75f33b9f50_review-user-null-photo.png" alt="Photo">
+            <img class="defaultuser" src="~/images/null.png" alt="Photo">
         </div>
         <div class="blogCommentItem">
             <div class="d-flex justify-content-between">
@@ -16,9 +16,9 @@
                     </span>
                 </div>
             </div>
-        <span class="commentReplyDesc me-5">
-            @Model.Description
-        </span>
+            <span class="commentReplyDesc me-5">
+                @Model.Description
+            </span>
         </div>
     </div>
 </li>

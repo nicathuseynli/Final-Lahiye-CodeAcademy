@@ -44,14 +44,21 @@ public class ProductController : Controller
         {
             ViewBag.Category = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
             ViewBag.Colour = new SelectList(await _context.Colours.ToListAsync(), "Id", "Name");
+            return View(createhomeproductVm);
+        }
+
+        if (!createhomeproductVm.Photo.ContentType.Contains("image/"))
+        {
+            ModelState.AddModelError("Photo", "Photo must be an image.");
             return View();
         }
 
-        if (!createhomeproductVm.Photo.ContentType.Contains("image/") )
-            return View();
+        if (createhomeproductVm.Photo.Length / 1024 > 500)
+        {
 
-        if (createhomeproductVm.Photo.Length / 1024 > 500 )
+            ModelState.AddModelError("Photo", "Photo size should be less than 500KB.");
             return View();
+        }
 
         await _productService.CreateAsync(createhomeproductVm);
         return RedirectToAction(nameof(Index));

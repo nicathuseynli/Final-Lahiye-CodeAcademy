@@ -44,7 +44,6 @@ builder.Services.ConfigureApplicationCookie(cfg =>
 
 builder.Services.AddScoped<UserManager<MUser>>();
 builder.Services.AddScoped<SignInManager<MUser>>();
-
 builder.Services.AddScoped<IClaimsTransformation, AppClaimProvider>();
 
 builder.Services.AddControllers(
